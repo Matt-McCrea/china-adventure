@@ -68,3 +68,33 @@ export function parseCoords(text: string): { lat: number; lon: number; match: st
   }
   return null;
 }
+
+const norm = (s: string) => s.toLowerCase().normalize("NFKD").replace(/[^a-z0-9一-鿿]/g, "");
+
+/**
+ * Finds a stop tag: a line in the body like "@ stop 1", "@ Chongqing", "@ Xi'an" or "@ 重庆",
+ * or the same at the end of the subject ("Hot pot @ stop 1"). Returns the stop and the matched text.
+ */
+export function parseStopTag(text: string): { stopId: string; match: string } | null {
+  const lookup = (raw: string): string | null => {
+    const t = raw.trim();
+    const n = /^(?:stop|s|#)\s*0*(\d{1,2})$/i.exec(t);
+    if (n) return STOPS.find((s) => s.number === Number(n[1]))?.id ?? null;
+    const k = norm(t);
+    if (!k) return null;
+    const hit = STOPS.find((s) =>
+      [s.id, s.city, s.city.replace(/\s+(village|valley)$/i, ""), s.chineseName].some((c) => norm(c) === k),
+    );
+    return hit?.id ?? null;
+  };
+  for (const m of text.matchAll(/(?:^|\n)[ \t]*@[ \t]*([^\n@]{1,40}?)[ \t]*(?=\n|$)/g)) {
+    const id = lookup(m[1]);
+    if (id) return { stopId: id, match: m[0].replace(/^\n/, "") };
+  }
+  const tail = /\s*@\s*([^@]{1,40})$/.exec(text.split("\n")[0]);
+  if (tail) {
+    const id = lookup(tail[1]);
+    if (id) return { stopId: id, match: tail[0] };
+  }
+  return null;
+}

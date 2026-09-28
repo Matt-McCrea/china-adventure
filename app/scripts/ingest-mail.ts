@@ -22,7 +22,7 @@ import heicConvert from "heic-convert";
 import { createHash } from "node:crypto";
 import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { STOPS } from "../src/data/itinerary";
-import { chinaDate, parseCoords, stopForDate, type JournalEntry, type JournalFile, type JournalPhoto } from "../src/data/journal";
+import { chinaDate, parseCoords, parseStopTag, stopForDate, type JournalEntry, type JournalFile, type JournalPhoto } from "../src/data/journal";
 
 const OUT_DIR = "public/journal";
 const IMG_DIR = `${OUT_DIR}/img`;
@@ -51,9 +51,9 @@ function authorised(mail: ParsedMail): { ok: boolean; why: string } {
   return passed ? { ok: true, why: "" } : { ok: false, why: `SPF/DKIM did not pass for ${domain}` };
 }
 
-function cleanText(raw: string, coordsMatch?: string) {
+function cleanText(raw: string, ...strip: (string | undefined)[]) {
   let t = raw.replace(/\r/g, "");
-  if (coordsMatch) t = t.replace(coordsMatch, "");
+  for (const m of strip) if (m) t = t.replace(m, "");
   t = t.split(/\n(?:On .+ wrote:|-{2,}\s*Original Message|Sent from my (?:iPhone|iPad|phone)|Get Outlook for)/i)[0];
   return t.replace(/\n{3,}/g, "\n\n").trim();
 }
@@ -113,17 +113,20 @@ async function process1(raw: Buffer, db: ReturnType<typeof load>): Promise<"adde
   const date = (mail.date ?? new Date()).toISOString();
   const day = chinaDate(date);
   const id = `${day}-${mid.slice(0, 6)}`;
-  const body = mail.text ?? "";
+  const body = (mail.text ?? "").replace(/\r/g, "");
   const coords = parseCoords(body);
+  // "@ stop 1" / "@ Chongqing" puts the post under that stop, whatever the date
+  const bodyTag = parseStopTag(body);
+  const subjectTag = bodyTag ? null : parseStopTag(subject);
   const photos = await savePhotos(mail, id);
-  const text = cleanText(body, coords?.match);
-  const stopId = stopForDate(day);
+  const text = cleanText(body, coords?.match, bodyTag?.match);
+  const stopId = bodyTag?.stopId ?? subjectTag?.stopId ?? stopForDate(day);
   const stop = STOPS.find((s) => s.id === stopId)!;
   const photoLoc = photos.find((p) => p.lat != null);
 
   const entry: JournalEntry = {
     id, date,
-    title: subject || text.split("\n")[0].slice(0, 80) || `Update from ${stop.city}`,
+    title: (subjectTag ? subject.replace(subjectTag.match, "").trim() : subject) || text.split("\n")[0].slice(0, 80) || `Update from ${stop.city}`,
     text,
     ...(coords
       ? { lat: coords.lat, lon: coords.lon, locSource: "email" as const }
