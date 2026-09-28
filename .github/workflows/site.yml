@@ -55,7 +55,8 @@ jobs:
 
   deploy:
     needs: ingest
-    if: ${{ !cancelled() && (github.event_name == 'push' || needs.ingest.outputs.changed == 'true' || github.event_name == 'workflow_dispatch') }}
+    # deploy on code pushes and when the inbox produced new posts (not on every quiet check)
+    if: ${{ !cancelled() && (github.event_name == 'push' || needs.ingest.outputs.changed == 'true') }}
     runs-on: ubuntu-latest
     concurrency:
       group: site
