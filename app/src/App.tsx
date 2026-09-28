@@ -5,11 +5,12 @@ import { MAP_CONFIG } from "./map/config";
 import { SEGMENTS, STOPS, TRIP } from "./data/itinerary";
 import { approxKm, dateRange } from "./data/format";
 import { StopCard, LegLine, type SegLengths } from "./components/StopCard";
-import { JournalPanel, NewPopup, PostViewer } from "./components/Journal";
+import { JournalPanel, NewPopup, PostViewer, timeAgo } from "./components/Journal";
 import type { JournalEntry, JournalFile } from "./data/journal";
 import { project } from "./map/routeModel";
 
 const SEEN_KEY = "china-adventure:journal-seen";
+const WELCOME_KEY = "china-adventure:welcomed";
 const readSeen = () => {
   try {
     return localStorage.getItem(SEEN_KEY);
@@ -62,6 +63,22 @@ export default function App() {
   const [openPost, setOpenPost] = useState<string | null>(null);
   const [news, setNews] = useState<{ posts: JournalEntry[]; first: boolean } | null>(null);
   const [journalOpen, setJournalOpen] = useState(false);
+  // first visit (and no deep link): introduce the map before anything else
+  const [welcome, setWelcome] = useState(() => {
+    try {
+      return !localStorage.getItem(WELCOME_KEY) && !window.location.hash;
+    } catch {
+      return !window.location.hash;
+    }
+  });
+  const closeWelcome = () => {
+    try {
+      localStorage.setItem(WELCOME_KEY, "1");
+    } catch {
+      /* ignore */
+    }
+    setWelcome(false);
+  };
 
   // ---- journal: fetched at runtime so new posts show without a rebuild of the app code
   useEffect(() => {
@@ -295,7 +312,7 @@ export default function App() {
   const mapBox = mapRef.current?.getBoundingClientRect();
 
   return (
-    <main className={`app ${poster ? "is-poster" : ""}`}>
+    <main className={`app ${poster ? "is-poster" : ""} ${new URLSearchParams(window.location.search).has("clean") ? "is-clean" : ""}`}>
       <div
         ref={mapRef}
         className="map"
@@ -311,6 +328,11 @@ export default function App() {
           <h1 className="title">China{" "}<br />Adventure</h1>
           <p className="dates">2–27 October 2026</p>
           <p className="corridor">Chongqing → Guizhou → Chengdu → Kashgar → Silk Road → Xi'an</p>
+          {!poster && (
+            <button type="button" className="about-link" onClick={() => setWelcome(true)} data-map-ui>
+              How this works
+            </button>
+          )}
           {poster && <p className="strap">{TRIP.strap}</p>}
         </header>
 
@@ -335,7 +357,10 @@ export default function App() {
           </button>
         </div>
 
-        {news && !poster && !openPost && !journalOpen && !stop && (
+        {welcome && !poster && (
+          <Welcome posts={posts} onClose={closeWelcome} onOpenJournal={() => { closeWelcome(); markSeen(); setJournalOpen(true); }} />
+        )}
+        {news && !welcome && !poster && !openPost && !journalOpen && !stop && (
           <NewPopup posts={news.posts} firstVisit={news.first} onOpen={showPost} onDismiss={markSeen} />
         )}
         {journalOpen && !poster && <JournalPanel posts={posts} onOpen={showPost} onClose={() => setJournalOpen(false)} />}
@@ -472,5 +497,46 @@ export default function App() {
         )}
       </div>
     </main>
+  );
+}
+
+function Welcome({ posts, onClose, onOpenJournal }: { posts: JournalEntry[]; onClose: () => void; onOpenJournal: () => void }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => ref.current?.focus(), []);
+  const latest = posts[posts.length - 1];
+  return (
+    <div className="post-backdrop welcome-backdrop" onClick={onClose} data-map-ui>
+      <div
+        ref={ref}
+        className="welcome"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="welcome-title"
+        tabIndex={-1}
+        onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => e.key === "Escape" && onClose()}
+      >
+        <p className="post-kicker">2–27 October 2026 · 26 days · 13 stops</p>
+        <h2 id="welcome-title" className="welcome-title">Hello! This is our route across China.</h2>
+        <p className="welcome-lede">{TRIP.strap}</p>
+        <ul className="welcome-list">
+          <li><b>Tap a numbered stop</b> to see where we'll be, when, and how we're getting there.</li>
+          <li><b>Press Play journey</b> to watch the whole route unfold, Chongqing to Xi'an.</li>
+          <li><b>Updates from the road</b> pop up here the next time you open this page. They also appear as <span className="welcome-pin" aria-hidden="true" /> pins, and the dotted line shows where we've actually been.</li>
+          <li>Signal will be patchy in places, so a quiet few days usually just means no signal.</li>
+        </ul>
+        <p className="welcome-status">
+          {latest ? (
+            <>Latest post: <b>{latest.title}</b>, {timeAgo(latest.date)}. </>
+          ) : (
+            <>Nothing posted yet. The first update will come once we've landed.</>
+          )}
+        </p>
+        <div className="welcome-actions">
+          <button type="button" className="welcome-go" onClick={onClose}>Explore the map</button>
+          {latest && <button type="button" className="nav-btn" onClick={onOpenJournal}>Read the journal →</button>}
+        </div>
+      </div>
+    </div>
   );
 }
