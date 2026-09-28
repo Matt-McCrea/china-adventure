@@ -19,14 +19,13 @@ permissions:
   id-token: write
   actions: write
 
-concurrency:
-  group: site
-  cancel-in-progress: false
-
 jobs:
   ingest:
     if: github.event_name != 'push'
     runs-on: ubuntu-latest
+    concurrency:
+      group: site
+      cancel-in-progress: false
     outputs:
       changed: ${{ steps.ingest.outputs.changed }}
     steps:
@@ -58,6 +57,9 @@ jobs:
     needs: ingest
     if: ${{ !cancelled() && (github.event_name == 'push' || needs.ingest.outputs.changed == 'true' || github.event_name == 'workflow_dispatch') }}
     runs-on: ubuntu-latest
+    concurrency:
+      group: site
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.pages.outputs.page_url }}
@@ -79,12 +81,22 @@ jobs:
       - id: pages
         uses: actions/deploy-pages@v4
 
-  # keep checking even when GitHub's scheduler doesn't fire; the concurrency group caps this at one queued run
+  # Keep checking even when GitHub's scheduler doesn't fire. Exactly one loop survives: a run only starts
+  # the next check if no OLDER check is still active (so duplicate loops die out, and a scheduled run
+  # restarts the loop if it ever stopped).
   next:
     needs: [ingest, deploy]
     if: ${{ always() && github.event_name != 'push' && vars.JOURNAL_CHAIN != 'off' }}
     runs-on: ubuntu-latest
     steps:
-      - run: sleep 540 && gh workflow run site.yml -R "$GITHUB_REPOSITORY" --ref main
-        env:
+      - env:
           GH_TOKEN: ${{ github.token }}
+        run: |
+          sleep 540
+          me=$(gh run view "$GITHUB_RUN_ID" -R "$GITHUB_REPOSITORY" --json createdAt -q .createdAt)
+          older=$(gh run list -R "$GITHUB_REPOSITORY" -w site.yml -L 30 --json databaseId,status,event,createdAt \
+            -q "[.[] | select(.databaseId != $GITHUB_RUN_ID and (.event == \"workflow_dispatch\" or .event == \"schedule\")
+                 and (.status == \"queued\" or .status == \"in_progress\" or .status == \"waiting\" or .status == \"pending\")
+                 and .createdAt < \"$me\")] | length")
+          if [ "$older" = "0" ]; then gh workflow run site.yml -R "$GITHUB_REPOSITORY" --ref main; echo "next check started"
+          else echo "an older check loop is running; letting it continue"; fi
