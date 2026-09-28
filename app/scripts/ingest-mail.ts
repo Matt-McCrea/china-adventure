@@ -95,12 +95,21 @@ const tidy = (n: string) => n.replace(/\s+(Prefecture|City|District|County)$/i, 
 
 async function geocode(q: string): Promise<{ lat: number; lon: number; name: string; zh?: string } | null> {
   try {
-    const url = `https://nominatim.openstreetmap.org/search?format=json&limit=3&countrycodes=cn&namedetails=1&accept-language=en&q=${encodeURIComponent(q)}`;
-    const res: any[] = await (await fetch(url, { headers: UA })).json();
-    await pause();
+    const search = async (china: boolean): Promise<any[]> => {
+      const url = `https://nominatim.openstreetmap.org/search?format=json&limit=${china ? 3 : 10}${china ? "&countrycodes=cn" : ""}&namedetails=1&accept-language=en&q=${encodeURIComponent(q)}`;
+      const r = await (await fetch(url, { headers: UA })).json();
+      await pause();
+      return r;
+    };
+    // China first, then the world (a layover). The world's best match wins only if it's well known (Nominatim
+    // importance >= 0.58: Dublin, Istanbul, Doha) and clearly better known than the China match, so "@ Istanbul"
+    // isn't pinned on a Hong Kong restaurant of that name, and a typo isn't pinned on a random namesake.
+    const res = await search(true);
     // prefer actual towns/sights over administrative areas (a prefecture's centre can be 100+ km from its city)
     const rank = (r: any) => ["place", "tourism", "historic", "natural", "water", "waterway", "leisure", "amenity"].indexOf(r.class);
-    const hit = res.filter((r) => rank(r) >= 0).sort((a, b) => rank(a) - rank(b))[0] ?? res.find((r) => r.class === "boundary");
+    let hit: any = res.filter((r) => rank(r) >= 0).sort((a, b) => rank(a) - rank(b))[0] ?? res.find((r) => r.class === "boundary");
+    const world = (await search(false)).sort((a, b) => (b.importance ?? 0) - (a.importance ?? 0))[0];
+    if (world && (world.importance ?? 0) >= 0.58 && (world.importance ?? 0) > (hit?.importance ?? 0) + 0.15) hit = world;
     if (!hit) return null;
     return { lat: +hit.lat, lon: +hit.lon, name: tidy(hit.namedetails?.["name:en"] || hit.display_name.split(",")[0]), zh: hit.namedetails?.["name:zh"] || hit.namedetails?.name };
   } catch {

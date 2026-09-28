@@ -280,6 +280,11 @@ export class MapEngine {
     this.sel.transition().duration(reducedMotion() ? 0 : 350).call(this.zoomer.scaleBy, f);
   }
 
+  /** True when the map can't zoom out any further (the next step out is the world view). */
+  atMinZoom() {
+    return this.t.k <= this.zoomer.scaleExtent()[0] * 1.02;
+  }
+
   fitAll(animate = true) {
     const pts = [...STOP_XY.values()];
     for (const r of this.routes) pts.push(r.bbox[0], r.bbox[1]);
