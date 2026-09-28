@@ -28,6 +28,9 @@ export type EngineCallbacks = {
   onOpenPost?: (id: string) => void;
 };
 
+/** Journal activity at a planned stop: shown as a small photo stuck to its badge (glows when new). */
+export type StopMark = { thumb?: string; count: number; isNew: boolean };
+
 /** A journal post as the map needs it: only posts with a real location get a pin. */
 export type MapPost = { id: string; title: string; date: string; xy: Pt; thumb?: string; place?: string; ideaId?: string };
 
@@ -83,6 +86,7 @@ export class MapEngine {
   private postPins = new Map<string, HTMLButtonElement>();
   private actualPath: Path2D | null = null;
   private visitLabels: SecondaryLabel[] = [];
+  private marks: Record<string, StopMark> = {};
   private visitedIdeas = new Set<string>();
   private stopLabels = new Map<string, HTMLDivElement>();
   private leaders = new Map<string, { line: SVGLineElement; dot: SVGCircleElement }>();
@@ -199,6 +203,28 @@ export class MapEngine {
   }
 
   /** Number of segments revealed (fractional); null = whole route. */
+  setStopMarks(marks: Record<string, StopMark>) {
+    this.marks = marks;
+    for (const [id, b] of this.badges) {
+      const m = marks[id];
+      b.querySelector(".bthumb")?.remove();
+      b.classList.toggle("has-posts", !!m?.count);
+      b.classList.toggle("is-new", !!m?.isNew);
+      if (!m?.count) continue;
+      const el = document.createElement(m.thumb ? "img" : "span");
+      el.className = "bthumb";
+      el.setAttribute("aria-hidden", "true");
+      if (m.thumb) {
+        (el as HTMLImageElement).src = m.thumb;
+        (el as HTMLImageElement).alt = "";
+      } else el.textContent = String(m.count);
+      b.append(el);
+      const s = STOPS.find((x) => x.id === id)!;
+      b.setAttribute("aria-label", `Stop ${s.number}: ${s.city}, ${dateRangeLong(s.dateStart, s.dateEnd)}, ${m.count} journal ${m.count === 1 ? "post" : "posts"}${m.isNew ? ", new" : ""}`);
+    }
+    this.requestRender();
+  }
+
   /** Journal posts with exact locations: drawn as pins, joined in date order as "our actual route". */
   setPosts(posts: MapPost[]) {
     for (const el of this.postPins.values()) el.remove();
@@ -906,6 +932,8 @@ export class MapEngine {
       b.classList.toggle("is-active", this.active === id);
       b.classList.toggle("is-future", !this.stopReached(a.s));
       placed.push({ x0: bp[0] - B / 2, y0: bp[1] - B / 2, x1: bp[0] + B / 2, y1: bp[1] + B / 2 });
+      // the photo stuck to the badge's top-right shoulder is part of the marker too
+      if (this.marks[id]?.count) placed.push({ x0: bp[0] + B / 2 - 8, y0: bp[1] - B / 2 - 18, x1: bp[0] + B / 2 + 18, y1: bp[1] - B / 2 + 8 });
       const { line, dot } = this.leaders.get(id)!;
       const displaced = Math.hypot(bp[0] - a.p[0], bp[1] - a.p[1]) > 1;
       line.style.display = dot.style.display = displaced ? "" : "none";
@@ -935,7 +963,7 @@ export class MapEngine {
       // a post sent from a stop would hide its number: tuck the pin onto the badge's shoulder instead
       let [px, py] = g.p;
       for (const bp of badgePos.values())
-        if (Math.abs(bp[0] - px) < B / 2 + 6 && Math.abs(bp[1] - py) < B / 2 + 6) { px = bp[0] + B / 2 - 1; py = bp[1] - B / 2 + 1; break; }
+        if (Math.abs(bp[0] - px) < B / 2 + 6 && Math.abs(bp[1] - py) < B / 2 + 6) { px = bp[0] + B / 2 - 1; py = bp[1] + B / 2 - 1; break; }
       g.p = [px, py];
       el.style.transform = `translate(${g.p[0] - 7}px, ${g.p[1] - 7}px) scale(var(--s, 1))`;
       el.style.visibility = this.reveal == null && !this.poster ? "visible" : "hidden";

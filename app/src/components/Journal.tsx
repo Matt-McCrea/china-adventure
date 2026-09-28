@@ -97,20 +97,54 @@ export function PostViewer({ post, onClose, onPrev, onNext }: { post: JournalEnt
   );
 }
 
-export function NewPopup({ posts, firstVisit, onOpen, onDismiss }: { posts: JournalEntry[]; firstVisit: boolean; onOpen: (id: string) => void; onDismiss: () => void }) {
-  const latest = [...posts].reverse().slice(0, 3);
+export function NewPopup({ posts, firstVisit, onOpen, onDismiss, onOpenJournal }: {
+  posts: JournalEntry[];
+  firstVisit: boolean;
+  onOpen: (id: string) => void;
+  onDismiss: () => void;
+  onOpenJournal: () => void;
+}) {
+  const list = [...posts].reverse();
+  const [top, ...rest] = list;
+  const cover = top.photos[0];
   return (
-    <aside className="news" role="dialog" aria-labelledby="news-title" data-map-ui>
+    <aside className="news news-big" role="dialog" aria-labelledby="news-title" data-map-ui>
       <header className="news-head">
-        <span className="news-dot" aria-hidden="true" />
-        <h2 id="news-title">{firstVisit ? "Latest from the road" : `${posts.length} new since your last visit`}</h2>
+        <span className="news-flag">New</span>
+        <h2 id="news-title">{firstVisit ? "Latest from the road" : `${posts.length} new ${posts.length === 1 ? "post" : "posts"} from the road`}</h2>
         <button type="button" className="icon-btn" onClick={onDismiss} aria-label="Dismiss">
           <svg width="12" height="12" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" /></svg>
         </button>
       </header>
-      <p className="news-sub">Updated {timeAgo(posts[posts.length - 1].date)}</p>
-      <PostThumbs posts={latest} onOpen={onOpen} />
+      <button type="button" className="news-hero" onClick={() => onOpen(top.id)}>
+        {cover && <img src={cover.src} alt="" width={cover.w} height={cover.h} />}
+        <span className="news-hero-body">
+          <small>{postTime(top.date)} · {top.place?.name ?? cityOf(top.stopId)} · {timeAgo(top.date)}</small>
+          <b>{top.title}</b>
+          {top.text && <span className="post-snippet">{top.text.slice(0, 120)}{top.text.length > 120 ? "…" : ""}</span>}
+        </span>
+      </button>
+      {rest.length > 0 && <PostThumbs posts={rest.slice(0, 2)} onOpen={onOpen} />}
+      <div className="news-actions">
+        <button type="button" className="welcome-go" onClick={onOpenJournal}>Open journal{posts.length > 1 ? ` (${posts.length} new)` : ""}</button>
+        <button type="button" className="nav-btn" onClick={onDismiss}>Later</button>
+      </div>
     </aside>
+  );
+}
+
+/** The big Journal button: latest photo, post count, and a NEW flag when there's news. */
+export function JournalButton({ posts, isNew, open, onClick }: { posts: JournalEntry[]; isNew: boolean; open: boolean; onClick: () => void }) {
+  const latestPhoto = [...posts].reverse().find((p) => p.photos[0])?.photos[0];
+  return (
+    <button type="button" className={`journal-btn ${isNew ? "is-new" : ""}`} onClick={onClick} aria-expanded={open} data-map-ui>
+      {latestPhoto ? <img src={latestPhoto.thumb} alt="" width={36} height={36} /> : <span className="jb-icon" aria-hidden="true" />}
+      <span className="jb-text">
+        <b>Journal</b>
+        <small>{posts.length ? `${posts.length} ${posts.length === 1 ? "post" : "posts"}` : "from the road"}</small>
+      </span>
+      {isNew && <span className="news-flag">New</span>}
+    </button>
   );
 }
 

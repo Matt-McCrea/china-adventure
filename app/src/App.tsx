@@ -5,7 +5,7 @@ import { MAP_CONFIG } from "./map/config";
 import { SEGMENTS, STOPS, TRIP } from "./data/itinerary";
 import { approxKm, dateRange } from "./data/format";
 import { StopCard, LegLine, type SegLengths } from "./components/StopCard";
-import { JournalPanel, NewPopup, PostViewer, timeAgo } from "./components/Journal";
+import { JournalButton, JournalPanel, NewPopup, PostViewer, timeAgo } from "./components/Journal";
 import type { JournalEntry, JournalFile } from "./data/journal";
 import { project } from "./map/routeModel";
 
@@ -63,6 +63,8 @@ export default function App() {
   const [openPost, setOpenPost] = useState<string | null>(null);
   const [news, setNews] = useState<{ posts: JournalEntry[]; first: boolean } | null>(null);
   const [journalOpen, setJournalOpen] = useState(false);
+  /** posts that are new to this visitor (since their last visit; for a first visit, the last 3 days) */
+  const [freshIds, setFreshIds] = useState<Set<string>>(new Set());
   // first visit (and no deep link): introduce the map before anything else
   const [welcome, setWelcome] = useState(() => {
     try {
@@ -93,6 +95,8 @@ export default function App() {
         const h = decodeURIComponent(window.location.hash);
         if (h.startsWith("#post:") && list.some((e) => e.id === h.slice(6))) setOpenPost(h.slice(6));
         else if (fresh.length && !h.includes("poster")) setNews({ posts: fresh, first: !seen });
+        const recent = Date.now() - 3 * 86400e3;
+        setFreshIds(new Set((seen ? fresh : list.filter((e) => new Date(e.date).getTime() > recent)).map((e) => e.id)));
       })
       .catch(() => {});
   }, []);
@@ -107,6 +111,17 @@ export default function App() {
   useEffect(() => {
     if (engine.current) engine.current.cb.onOpenPost = showPost;
   });
+  // light up stops that have posts: latest photo on the badge, glowing if new to this visitor
+  useEffect(() => {
+    const marks: Record<string, { thumb?: string; count: number; isNew: boolean }> = {};
+    for (const p of posts) {
+      const m = (marks[p.stopId] ??= { count: 0, isNew: false });
+      m.count++;
+      if (p.photos[0]) m.thumb = p.photos[0].thumb; // posts are in date order: ends on the latest
+      if (freshIds.has(p.id)) m.isNew = true;
+    }
+    engine.current?.setStopMarks(marks);
+  }, [posts, freshIds]);
   const markSeen = () => {
     if (posts.length) writeSeen(posts[posts.length - 1].date);
     setNews(null);
@@ -138,7 +153,7 @@ export default function App() {
   const padFor = useCallback(
     (cardOpen: boolean) => {
       if (poster) return { top: 150, right: 60, bottom: 150, left: 60 };
-      if (mobile) return { top: 110, right: 20, bottom: cardOpen ? Math.round(window.innerHeight * 0.5) : 60, left: 20 };
+      if (mobile) return { top: 110, right: 20, bottom: cardOpen ? Math.round(window.innerHeight * 0.5) : 100, left: 20 };
       // desktop: keep the route clear of the open stop card, or of the journal drawer (46% of the width)
       if (journalOpen) return { top: 120, right: Math.round(Math.min(580, window.innerWidth * 0.46)) + 150, bottom: 80, left: 70 };
       return { top: 120, right: cardOpen ? 400 : 200, bottom: 80, left: 70 };
@@ -354,21 +369,26 @@ export default function App() {
         )}
 
         <div className="top-right" data-map-ui data-map-reserve>
-          {!poster && (
-            <button type="button" className="chip chip-journal" onClick={() => { markSeen(); setJournalOpen(!journalOpen); }} aria-expanded={journalOpen}>
-              Journal{posts.length ? <span className="chip-count">{posts.length}</span> : null}
+          {!poster && !mobile && (
+            <JournalButton posts={posts} isNew={freshIds.size > 0} open={journalOpen} onClick={() => { markSeen(); setJournalOpen(!journalOpen); }} />
+          )}
+          {(poster || !mobile) && (
+            <button type="button" className="chip" onClick={() => togglePoster()} aria-pressed={poster}>
+              {poster ? "Exit poster" : "Poster view"}
             </button>
           )}
-          <button type="button" className="chip" onClick={() => togglePoster()} aria-pressed={poster}>
-            {poster ? "Exit poster" : "Poster view"}
-          </button>
         </div>
+        {mobile && !poster && !journalOpen && !stop && !openPost && (
+          <div className="journal-dock" data-map-ui data-map-reserve>
+            <JournalButton posts={posts} isNew={freshIds.size > 0} open={journalOpen} onClick={() => { markSeen(); setJournalOpen(true); }} />
+          </div>
+        )}
 
         {welcome && !poster && (
           <Welcome posts={posts} onClose={closeWelcome} onOpenJournal={() => { closeWelcome(); markSeen(); setJournalOpen(true); }} />
         )}
         {news && !welcome && !poster && !openPost && !journalOpen && !stop && (
-          <NewPopup posts={news.posts} firstVisit={news.first} onOpen={showPost} onDismiss={markSeen} />
+          <NewPopup posts={news.posts} firstVisit={news.first} onOpen={showPost} onDismiss={markSeen} onOpenJournal={() => { markSeen(); setJournalOpen(true); }} />
         )}
         {journalOpen && !poster && <JournalPanel posts={posts} onOpen={showPost} onClose={() => setJournalOpen(false)} />}
         {openPost && (() => {
@@ -389,12 +409,12 @@ export default function App() {
             <div className="ctrl-group" role="group" aria-label="Journey playback">
               {playing ? (
                 <button type="button" className="ctrl ctrl-wide" onClick={pause} aria-label="Pause journey">
-                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" /></svg> Pause
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" /></svg> <span className="ctrl-label">Pause</span>
                 </button>
               ) : (
                 <button type="button" className="ctrl ctrl-wide ctrl-play" onClick={() => play()} aria-label={played && playState.current.step < STOPS.length ? "Resume journey" : "Play journey"}>
                   <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l8 5-8 5z" /></svg>
-                  {played && playState.current.step > 0 && playState.current.step < STOPS.length ? "Resume" : "Play journey"}
+                  <span className="ctrl-label">{played && playState.current.step > 0 && playState.current.step < STOPS.length ? "Resume" : "Play journey"}</span>
                 </button>
               )}
               {played && (
@@ -418,6 +438,11 @@ export default function App() {
               <button type="button" className="ctrl" onClick={() => { select(null, false); engine.current?.setPadding(padFor(false)); engine.current?.fitAll(); }} aria-label="Fit whole route" title="Whole route">
                 <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" /></svg>
               </button>
+              {mobile && (
+                <button type="button" className="ctrl" onClick={() => togglePoster(true)} aria-label="Poster view" title="Poster view">
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="2" width="11" height="12" rx="1" /><path d="M5 11l2-3 2 2 2-3" /></svg>
+                </button>
+              )}
             </div>
           </div>
         )}
