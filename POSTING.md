@@ -4,7 +4,7 @@ Site: **https://matt-mccrea.github.io/china-adventure/**
 
 ## Send a post
 
-Email the journal inbox **from an allowed address** (Hover or iCloud, not Gmail: Gmail is blocked in China).
+Email the journal inbox **from your Hover or iCloud address**. Not from Gmail: Gmail is blocked in China.
 
 | Part of the email | Becomes |
 |---|---|
@@ -15,7 +15,7 @@ Email the journal inbox **from an allowed address** (Hover or iCloud, not Gmail:
 
 No signal? Press send anyway. Mail keeps it in the Outbox and sends it the next time you have a connection.
 
-It appears on the site **15–30 minutes** after the email arrives. A "New from the road" popup shows it to anyone who opens the site.
+It appears on the site about **10–20 minutes** after the email arrives. A "New from the road" popup shows it to anyone who opens the site.
 
 ## Location, in order of preference
 
@@ -34,7 +34,7 @@ Pins joined up in date order draw **our actual route** on the map (the dotted ru
 ## Before you go
 
 - **Camera format:** Settings → Camera → Formats → **Most Compatible** (JPEG; every browser can show it).
-- **iCloud Mail as a backup sender:** Settings → [your name] → iCloud → iCloud Mail → turn on and create an @icloud.com address. When writing, tap **From** to choose it. (Tell Claude the address so it can be allowed.)
+- **iCloud Mail as a backup sender:** Settings → [your name] → iCloud → iCloud Mail → turn on and create an @icloud.com address. When writing, tap **From** to choose it.
 - **Roaming eSIM** (Airalo, Holafly, …): data exits outside China, so things usually work without a VPN.
 - **Test:** send one post before flying, and one from Chongqing on day one.
 
