@@ -1,6 +1,9 @@
 # Builds and deploys the site to GitHub Pages, and turns journal emails into posts.
 #   push to main          → build + deploy
 #   every 15 min / manual → check the journal inbox; if there are new posts, commit them, then build + deploy
+#   GitHub's schedule is unreliable (runs can be late or skipped), so each check also starts the next one
+#   ~10 minutes later. Stop the loop: set repository variable JOURNAL_CHAIN=off (Settings → Secrets and
+#   variables → Actions → Variables), or disable the workflow in the Actions tab.
 name: site
 
 on:
@@ -14,6 +17,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  actions: write
 
 concurrency:
   group: site
@@ -74,3 +78,13 @@ jobs:
           path: app/dist
       - id: pages
         uses: actions/deploy-pages@v4
+
+  # keep checking even when GitHub's scheduler doesn't fire; the concurrency group caps this at one queued run
+  next:
+    needs: [ingest, deploy]
+    if: ${{ always() && github.event_name != 'push' && vars.JOURNAL_CHAIN != 'off' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 540 && gh workflow run site.yml -R "$GITHUB_REPOSITORY" --ref main
+        env:
+          GH_TOKEN: ${{ github.token }}
