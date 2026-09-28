@@ -113,7 +113,13 @@ export class MapEngine {
     this.relief.src = reliefUrl;
 
     this.zoomer = zoom<HTMLElement, unknown>()
-      .filter((e: any) => (!e.ctrlKey || e.type === "wheel") && !e.button && !(e.target as HTMLElement).closest?.("[data-map-ui]"))
+      .filter((e: any) => {
+        const t = e.target as HTMLElement;
+        // drags that start on a marker or label still pan the map (a plain tap still selects it);
+        // panels, cards and buttons are left alone
+        const onMarker = !!t.closest?.(".map-badge, .map-slabel, .map-jpin");
+        return (!e.ctrlKey || e.type === "wheel") && !e.button && (onMarker || !t.closest?.("[data-map-ui]"));
+      })
       .on("zoom", (e) => {
         this.t = e.transform;
         this.requestRender();
@@ -242,7 +248,8 @@ export class MapEngine {
       const half = 180 / 6.371; // km → world units
       box = [[xy[0] - half, xy[1] - half], [xy[0] + half, xy[1] + half]];
     }
-    const minSpan = 70 / 6.371; // don't frame tighter than ~70 km
+    // never frame tighter than ~70 km for a clicked stop, or ~450 km while playing the journey
+    const minSpan = (mode === "leg" ? 450 : 70) / 6.371;
     const cx = (box[0][0] + box[1][0]) / 2, cy = (box[0][1] + box[1][1]) / 2;
     const hw = Math.max((box[1][0] - box[0][0]) / 2, minSpan / 2), hh = Math.max((box[1][1] - box[0][1]) / 2, minSpan / 2);
     return this.flyToBox([[cx - hw, cy - hh], [cx + hw, cy + hh]], duration, mode === "stop");
@@ -379,6 +386,7 @@ export class MapEngine {
       b.dataset.mapUi = "";
       b.dataset.stop = s.id;
       if (s.bigMoment) b.classList.add("is-moment");
+      if (s.tentative) b.classList.add("is-rough");
       b.setAttribute("aria-label", `Stop ${s.number}: ${s.city}, ${dateRangeLong(s.dateStart, s.dateEnd)}`);
       b.innerHTML = `<span>${pad2(s.number)}</span>`;
       b.addEventListener("click", (e) => {
@@ -397,7 +405,7 @@ export class MapEngine {
       l.setAttribute("aria-hidden", "true");
       l.innerHTML =
         `<span class="en">${s.city}</span><span class="zh" lang="zh-Hans">${s.chineseName}</span>` +
-        `<span class="dt">${stopDates(s)}${s.confidence === "approximate" ? " · approx." : ""}</span>` +
+        `<span class="dt">${s.tentative ? "≈ " : ""}${stopDates(s)}${s.tentative ? " · rough plan" : s.confidence === "approximate" ? " · approx." : ""}</span>` +
         `<span class="kick">${s.kicker}</span>`;
       l.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -613,6 +621,7 @@ export class MapEngine {
     }
 
     this.drawRoutes();
+    ctx.globalAlpha = 1;
 
     // our actual route, joining located journal posts in date order
     if (this.actualPath && this.reveal == null) {
@@ -692,7 +701,7 @@ export class MapEngine {
 
   private drawRoutes() {
     const { ctx, colors: C } = this;
-    const px = 1 / this.t.k;
+    const px = (this.W < 560 ? 1.3 : 1) / this.t.k; // phones: thicker lines
     const focus = this.hoverStop ?? this.active;
 
     // ghost of the whole route while the journey is playing
@@ -714,6 +723,8 @@ export class MapEngine {
       if (f <= 0) continue;
       const path = r.seg.offsetPx ? this.offsetPath(r, f, r.seg.offsetPx) : this.partialPath(r, f);
       const hi = r.seg.leg === focus;
+      // rough-plan legs (after Kashgar) are drawn faded unless highlighted
+      ctx.globalAlpha = !hi && STOPS.find((s) => s.id === r.seg.leg)?.tentative ? 0.5 : 1;
       const hov = r.seg.id === this.hoverSeg;
       const col = hi ? C.accent : r.seg.mode === "local" ? C.local : C.rail;
       const extra = hov ? 1.2 : 0;
@@ -850,7 +861,7 @@ export class MapEngine {
       const id = a.s.id;
       const bp = badgePos.get(id)!;
       const b = this.badges.get(id)!;
-      b.style.transform = `translate(${bp[0] - B / 2}px, ${bp[1] - B / 2}px)`;
+      b.style.transform = `translate(${bp[0] - B / 2}px, ${bp[1] - B / 2}px) scale(var(--s, 1))`;
       b.classList.toggle("is-active", this.active === id);
       b.classList.toggle("is-future", !this.stopReached(a.s));
       placed.push({ x0: bp[0] - B / 2, y0: bp[1] - B / 2, x1: bp[0] + B / 2, y1: bp[1] + B / 2 });
@@ -885,7 +896,7 @@ export class MapEngine {
       for (const bp of badgePos.values())
         if (Math.abs(bp[0] - px) < B / 2 + 6 && Math.abs(bp[1] - py) < B / 2 + 6) { px = bp[0] + B / 2 - 1; py = bp[1] - B / 2 + 1; break; }
       g.p = [px, py];
-      el.style.transform = `translate(${g.p[0] - 7}px, ${g.p[1] - 7}px)`;
+      el.style.transform = `translate(${g.p[0] - 7}px, ${g.p[1] - 7}px) scale(var(--s, 1))`;
       el.style.visibility = this.reveal == null && !this.poster ? "visible" : "hidden";
       if (this.reveal == null && !this.poster) placed.push({ x0: g.p[0] - 7, y0: g.p[1] - 7, x1: g.p[0] + 7, y1: g.p[1] + 7 });
     }
@@ -925,7 +936,9 @@ export class MapEngine {
         if (prev) sides = [prev, ...sides.filter((x) => x !== prev)];
         for (const pass of [routeObs, undefined]) {
           for (const side of sides) {
-            const [x, y] = cand[side];
+            let [x, y] = cand[side];
+            // labels above/below a badge may slide sideways to stay on screen (e.g. Kashgar at the left edge)
+            if (side === "t" || side === "b") x = Math.max(6, Math.min(this.W - 6 - w, x));
             const rect = { x0: x, y0: y, x1: x + w, y1: y + h };
             if (free(rect, pass)) {
               placed.push(rect);

@@ -54,7 +54,8 @@ export function StopCard({
     <article className={`card card-${variant} ${stop.bigMoment ? "is-moment" : ""}`} aria-labelledby="card-title" data-map-ui>
       <header className="card-head">
         <span className="card-num">{pad2(stop.number)}</span>
-        <span className="card-date">{stopDates(stop)}</span>
+        <span className="card-date">{stop.tentative ? "≈ " : ""}{stopDates(stop)}</span>
+        {stop.tentative && <span className="tag tag-rough">Rough plan</span>}
         <button type="button" className="icon-btn card-close" onClick={onClose} aria-label="Close stop card">
           <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" /></svg>
         </button>
@@ -69,6 +70,7 @@ export function StopCard({
       </div>
 
       <p className="card-kicker">{stop.kicker}</p>
+      {stop.tentative && <p className="card-note card-rough">After Kashgar the plan is loose. Dates, places and trains will change as we go.</p>}
 
       <ul className="card-highlights">
         {stop.highlights.map((h) => <li key={h}>{h}</li>)}

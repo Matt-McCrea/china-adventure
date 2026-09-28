@@ -43,6 +43,8 @@ export type Stop = {
   icon: IconId;
   /** chapter-level moment: gets a larger card treatment */
   bigMoment?: string;
+  /** loose plan: place, dates and route may change (shown faded, with a "Rough plan" tag) */
+  tentative?: boolean;
   /** stops that should only get a number (no name) at national zoom */
   minor?: boolean;
 };

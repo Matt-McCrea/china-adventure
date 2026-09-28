@@ -138,7 +138,7 @@ export default function App() {
   const padFor = useCallback(
     (cardOpen: boolean) => {
       if (poster) return { top: 150, right: 60, bottom: 150, left: 60 };
-      if (mobile) return { top: 96, right: 20, bottom: cardOpen ? Math.round(window.innerHeight * 0.5) : 70, left: 20 };
+      if (mobile) return { top: 110, right: 20, bottom: cardOpen ? Math.round(window.innerHeight * 0.5) : 60, left: 20 };
       return { top: 120, right: cardOpen ? 400 : 200, bottom: 80, left: 70 };
     },
     [mobile, poster],
@@ -324,7 +324,7 @@ export default function App() {
         <div className="paper-grain" aria-hidden="true" />
 
         <header className="title-block" data-map-reserve data-map-ui>
-          <p className="eyebrow">Route map · {TRIP.start.slice(0, 4)}</p>
+          <p className="eyebrow">{TRIP.travellers} · {TRIP.start.slice(0, 4)}</p>
           <h1 className="title">China{" "}<br />Adventure</h1>
           <p className="dates">2–27 October 2026</p>
           <p className="corridor">Chongqing → Guizhou → Chengdu → Kashgar → Silk Road → Xi'an</p>
@@ -342,7 +342,7 @@ export default function App() {
             <div><b>13</b><span>stops</span></div>
             <div><b>{approxKm(totalRail).replace(" km", "")}</b><span>km of rail, measured along the track</span></div>
             <div><b>1</b><span>村BA final</span></div>
-            <div><b>2</b><span>friends</span></div>
+            <div><b>2</b><span>friends: {TRIP.travellers}</span></div>
           </aside>
         )}
 
@@ -425,6 +425,7 @@ export default function App() {
             <dl className="legend" id="legend">
               <div><dt><svg width="28" height="8" aria-hidden="true" className="sw sw-rail"><line x1="1" y1="4" x2="27" y2="4" /><line className="tie" x1="1" y1="4" x2="27" y2="4" /></svg></dt><dd>Rail</dd></div>
               <div><dt><svg width="28" height="8" aria-hidden="true" className="sw sw-local"><line x1="1" y1="4" x2="27" y2="4" /></svg></dt><dd>Local</dd></div>
+              <div><dt><svg width="28" height="8" aria-hidden="true" className="sw sw-rail sw-rough"><line x1="1" y1="4" x2="27" y2="4" /><line className="tie" x1="1" y1="4" x2="27" y2="4" /></svg></dt><dd>Rough plan</dd></div>
               {posts.some((p) => p.locSource !== "plan") && (
                 <div><dt><svg width="28" height="8" aria-hidden="true" className="sw sw-actual"><line x1="2" y1="4" x2="21" y2="4" /><circle cx="24" cy="4" r="3" /></svg></dt><dd>Actual</dd></div>
               )}
@@ -517,12 +518,13 @@ function Welcome({ posts, onClose, onOpenJournal }: { posts: JournalEntry[]; onC
         onKeyDown={(e) => e.key === "Escape" && onClose()}
       >
         <p className="post-kicker">2–27 October 2026 · 26 days · 13 stops</p>
-        <h2 id="welcome-title" className="welcome-title">Hello! This is our route across China.</h2>
+        <h2 id="welcome-title" className="welcome-title">Hello from Matthew and Aymon! This is our route across China.</h2>
         <p className="welcome-lede">{TRIP.strap}</p>
         <ul className="welcome-list">
           <li><b>Tap a numbered stop</b> to see where we'll be, when, and how we're getting there.</li>
           <li><b>Press Play journey</b> to watch the whole route unfold, Chongqing to Xi'an.</li>
           <li><b>Updates from the road</b> pop up here the next time you open this page. They also appear as <span className="welcome-pin" aria-hidden="true" /> pins, and the dotted line shows where we've actually been.</li>
+          <li><b>After Kashgar it's a rough plan.</b> The faded part of the route will change as we go, so follow the pins for where we really are.</li>
           <li>Signal will be patchy in places, so a quiet few days usually just means no signal.</li>
         </ul>
         <p className="welcome-status">

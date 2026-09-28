@@ -12,7 +12,9 @@ export const TRIP = {
   end: "2026-10-27",
   arrival: "chongqing",
   departure: "xian",
-  strap: "Two friends crossing China by train, bus and whatever local transport gets them there.",
+  travellers: "Matthew & Aymon",
+  strap: "Matthew and Aymon crossing China by train, bus and whatever local transport gets them there.",
+  roughPlanNote: "After Kashgar the plan is very rough. Places, dates and trains will change as we go; the dotted line and pins show where we actually end up.",
 };
 
 export const CHAPTERS: Chapter[] = [
@@ -99,7 +101,7 @@ export const STOPS: Stop[] = [
     bigMoment: "Far west",
   },
   {
-    id: "kuqa", number: 8, chapter: "xinjiang",
+    id: "kuqa", tentative: true, number: 8, chapter: "xinjiang",
     dateStart: "2026-10-16", dateEnd: "2026-10-17",
     city: "Kuqa", chineseName: "库车", region: "Xinjiang", regionZh: "新疆",
     longitude: 82.9544, latitude: 41.7135, confidence: "verified", coordSource: OSM,
@@ -108,7 +110,7 @@ export const STOPS: Stop[] = [
     icon: "oasis",
   },
   {
-    id: "turpan", number: 9, chapter: "xinjiang",
+    id: "turpan", tentative: true, number: 9, chapter: "xinjiang",
     dateStart: "2026-10-18", dateEnd: "2026-10-18",
     city: "Turpan", chineseName: "吐鲁番", region: "Xinjiang", regionZh: "新疆",
     longitude: 89.1796, latitude: 42.9425, confidence: "verified", coordSource: OSM,
@@ -117,7 +119,7 @@ export const STOPS: Stop[] = [
     icon: "oasis",
   },
   {
-    id: "hami", number: 10, chapter: "hexi",
+    id: "hami", tentative: true, number: 10, chapter: "hexi",
     dateStart: "2026-10-19", dateEnd: "2026-10-19",
     city: "Hami", chineseName: "哈密", region: "Xinjiang", regionZh: "新疆",
     longitude: 93.513, latitude: 42.8255, confidence: "verified", coordSource: OSM,
@@ -126,7 +128,7 @@ export const STOPS: Stop[] = [
     icon: "oasis",
   },
   {
-    id: "dunhuang", number: 11, chapter: "hexi",
+    id: "dunhuang", tentative: true, number: 11, chapter: "hexi",
     dateStart: "2026-10-20", dateEnd: "2026-10-20",
     city: "Dunhuang", chineseName: "敦煌", region: "Gansu", regionZh: "甘肃",
     longitude: 94.6611, latitude: 40.1387, confidence: "verified", coordSource: "OSM, Shazhou town centre",
@@ -136,7 +138,7 @@ export const STOPS: Stop[] = [
     bigMoment: "Desert",
   },
   {
-    id: "zhangye", number: 12, chapter: "hexi",
+    id: "zhangye", tentative: true, number: 12, chapter: "hexi",
     dateStart: "2026-10-21", dateEnd: "2026-10-21",
     city: "Zhangye", chineseName: "张掖", region: "Gansu", regionZh: "甘肃",
     longitude: 100.4556, latitude: 38.9365, confidence: "verified", coordSource: OSM,
@@ -146,7 +148,7 @@ export const STOPS: Stop[] = [
     bigMoment: "Danxia",
   },
   {
-    id: "xian", number: 13, chapter: "xian",
+    id: "xian", tentative: true, number: 13, chapter: "xian",
     dateStart: "2026-10-22", dateEnd: "2026-10-27",
     city: "Xi'an", chineseName: "西安", region: "Shaanxi", regionZh: "陕西",
     longitude: 108.9423, latitude: 34.261, confidence: "verified", coordSource: "OSM, Bell Tower",

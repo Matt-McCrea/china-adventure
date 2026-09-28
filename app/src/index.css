@@ -15,12 +15,12 @@
   --sand: #d9c49a;
   --focus: #1f6fd1;
 
-  --map-sea: #cdd6d1;
-  --map-sea-line: #9fb2ad;
-  --map-land: #f1ece1;
-  --map-land-other: #e2dccd;
-  --map-border: #a2998a;
-  --map-border-focus: #7f7563;
+  --map-sea: #b4c8cd;
+  --map-sea-line: #86a3aa;
+  --map-land: #f7f2e7;
+  --map-land-other: #d9d1bf;
+  --map-border: #968c7a;
+  --map-border-focus: #5f5544;
   --map-prov: #c4b69e;
   --map-river: #93adb0;
   --map-lake: #bccbc8;
@@ -32,7 +32,7 @@
   --map-accent: var(--accent);
   --map-paper: #f7f3ea;
   --map-ghost: rgba(29, 74, 68, 0.22);
-  --map-relief-alpha: 0.75;
+  --map-relief-alpha: 0.62;
 
   --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --f-serif: "Newsreader", Georgia, "Times New Roman", serif;
@@ -59,20 +59,20 @@
     --teal-2: #6fa597;
     --sand: #6b5d40;
     --focus: #7fb2ff;
-    --map-sea: #121819;
-    --map-sea-line: #29393b;
-    --map-land: #262a26;
-    --map-land-other: #1c201d;
-    --map-border: #545a50;
-    --map-border-focus: #7b8274;
+    --map-sea: #0b1519;
+    --map-sea-line: #1f3a42;
+    --map-land: #343a33;
+    --map-land-other: #1f2320;
+    --map-border: #5d655a;
+    --map-border-focus: #a3ab98;
     --map-prov: #3d423a;
-    --map-river: #2f4a4d;
-    --map-lake: #1d2e30;
+    --map-river: #2e5a63;
+    --map-lake: #173039;
     --map-grat: rgba(180, 200, 190, 0.07);
     --map-ink-2: #8f8a7c;
     --map-paper: #1f2320;
     --map-ghost: rgba(140, 195, 179, 0.2);
-    --map-relief-alpha: 0.9;
+    --map-relief-alpha: 0.42;
     --shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 10px 28px -10px rgba(0, 0, 0, 0.7);
     color-scheme: dark;
   }
@@ -90,20 +90,20 @@
   --teal-2: #6fa597;
   --sand: #6b5d40;
   --focus: #7fb2ff;
-  --map-sea: #121819;
-  --map-sea-line: #29393b;
-  --map-land: #262a26;
-  --map-land-other: #1c201d;
-  --map-border: #545a50;
-  --map-border-focus: #7b8274;
+  --map-sea: #0b1519;
+  --map-sea-line: #1f3a42;
+  --map-land: #343a33;
+  --map-land-other: #1f2320;
+  --map-border: #5d655a;
+  --map-border-focus: #a3ab98;
   --map-prov: #3d423a;
-  --map-river: #2f4a4d;
-  --map-lake: #1d2e30;
+  --map-river: #2e5a63;
+  --map-lake: #173039;
   --map-grat: rgba(180, 200, 190, 0.07);
   --map-ink-2: #8f8a7c;
   --map-paper: #1f2320;
   --map-ghost: rgba(140, 195, 179, 0.2);
-  --map-relief-alpha: 0.9;
+  --map-relief-alpha: 0.42;
   --shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 10px 28px -10px rgba(0, 0, 0, 0.7);
   color-scheme: dark;
 }
@@ -180,8 +180,9 @@ a { color: inherit; }
 }
 .map-badge::before { content: ""; position: absolute; inset: -9px; border-radius: 50%; } /* 42px touch target */
 .map-badge.is-moment { background: var(--teal); }
-.map-badge:hover, .map-badge:focus-visible { scale: 1.16; z-index: 2; }
-.map-badge.is-active { background: var(--accent); color: var(--accent-ink); scale: 1.2; z-index: 3; }
+.map-badge:focus-visible { --s: 1.16; z-index: 2; }
+@media (hover: hover) { .map-badge:hover { --s: 1.16; z-index: 2; } }
+.map-badge.is-active { background: var(--accent); color: var(--accent-ink); --s: 1.2; z-index: 3; }
 .map-badge.is-future { opacity: 0.35; }
 :root[data-theme="dark"] .map-badge:not(.is-active):not(.is-moment) { background: var(--ink); color: #151816; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .map-badge:not(.is-active):not(.is-moment) { background: var(--ink); color: #151816; } }
@@ -436,7 +437,7 @@ a { color: inherit; }
   .title br { display: none; }
   .corridor { display: none; }
   .top-right { top: 12px; right: 12px; }
-  .controls { right: 12px; bottom: 30px; }
+  .controls { right: 12px; top: 54px; bottom: auto; gap: 6px; } /* top on phones, so the bottom sheet never covers Pause */
   .ctrl { min-width: 44px; height: 44px; }
   .legend-dock { left: 12px; bottom: 28px; }
   .legend { flex-direction: column; gap: 7px; padding: 8px 10px; }
@@ -482,7 +483,8 @@ a { color: inherit; }
 }
 .map-jpin.is-latest { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent); animation: pin-pulse 2.4s ease-out infinite; }
 @keyframes pin-pulse { 70% { box-shadow: 0 0 0 10px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
-.map-jpin:hover, .map-jpin:focus-visible { scale: 1.25; z-index: 4; }
+.map-jpin:focus-visible { --s: 1.25; z-index: 4; }
+@media (hover: hover) { .map-jpin:hover { --s: 1.25; z-index: 4; } }
 
 .sw-actual line { stroke: var(--accent); stroke-width: 1.6; stroke-dasharray: 1.5 3.5; stroke-linecap: round; }
 .sw-actual circle { fill: var(--accent); stroke: var(--map-paper); stroke-width: 1.2; }
@@ -581,3 +583,13 @@ a { color: inherit; }
   .welcome-title { font-size: 23px; }
 }
 .is-clean .top-right { display: none; } /* ?clean: for rendering the link-preview image */
+
+/* ------------------------------------------------------------------ rough plan (after Kashgar) */
+.map-badge.is-rough { outline: 1.5px dashed var(--ink-2); outline-offset: 2px; }
+.map-badge.is-rough.is-active { outline-color: var(--accent); }
+.sw-rough { opacity: 0.5; }
+.tag-rough { color: var(--ink-2); border-style: dashed; margin-left: 2px; }
+.card-rough { margin-top: 2px; margin-bottom: 8px; }
+
+/* keep previous / next reachable on the phone bottom sheet */
+.card-sheet .card-nav { position: sticky; bottom: calc(-14px - env(safe-area-inset-bottom, 0px)); margin: 12px -18px calc(-14px - env(safe-area-inset-bottom, 0px)); padding: 8px 18px calc(10px + env(safe-area-inset-bottom, 0px)); background: var(--paper-2); z-index: 1; }
