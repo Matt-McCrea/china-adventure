@@ -1,11 +1,39 @@
 {
- "updated": "1970-01-01T00:00:00.000Z",
- "entries": [],
  "seen": [
   "3b42239bdebca45a1f8b564eecf605925ac577da2fff34284bd26b96a6c88379",
   "0d62477d3b021d94a097a720fb2fc55fa49bbfd754981d0927bcc434fa8b11d0",
   "afe082c5d0300427844f6915d34f13fadb3130bc5547300f3259a9794d7fab1b",
   "b5a9c6f491133723291bf4cad521722db7974eadf66c0ae9d4309f31ee5e09bf",
-  "b9bb6cbade6d838f168e2a16f1afaf124d7f380fe8f70607c2b12d15e910bfa9"
+  "b9bb6cbade6d838f168e2a16f1afaf124d7f380fe8f70607c2b12d15e910bfa9",
+  "d106c512888ebb535a9901cb210e2e1c52e42819b69f94f9d5f23a658a2b3cba"
+ ],
+ "updated": "2026-09-28T18:45:00.085Z",
+ "entries": [
+  {
+   "id": "2026-09-29-d106c5",
+   "date": "2026-09-28T18:40:19.000Z",
+   "title": "Prepare for takeoff!",
+   "text": "Getting some training in before we hit the steppes 🐎",
+   "lat": 53.30763611111111,
+   "lon": -6.667736111111111,
+   "locSource": "photo",
+   "stopId": "chongqing",
+   "photos": [
+    {
+     "src": "journal/img/2026-09-29-d106c5-1.jpg",
+     "thumb": "journal/img/2026-09-29-d106c5-1-t.jpg",
+     "w": 1158,
+     "h": 1544,
+     "lat": 53.30763611111111,
+     "lon": -6.667736111111111
+    },
+    {
+     "src": "journal/img/2026-09-29-d106c5-2.jpg",
+     "thumb": "journal/img/2026-09-29-d106c5-2-t.jpg",
+     "w": 1200,
+     "h": 1600
+    }
+   ]
+  }
  ]
 }
