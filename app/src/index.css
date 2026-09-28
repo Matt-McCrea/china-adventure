@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------ tokens
-   Paper atlas palette. Light is the default; dark is a night-atlas variant.
+   One light atlas palette on every device (a dark variant made the land too murky on phones).
    Map colours are read by the canvas renderer through --map-* variables. */
 :root {
   --paper: #efeadf;
@@ -47,77 +47,6 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #171a18;
-    --paper-2: #1f2320;
-    --ink: #ece6d8;
-    --ink-2: #b1aa98;
-    --ink-3: #847e70;
-    --rule: #3a3d37;
-    --accent: #e27a4b;
-    --accent-ink: #1a0f08;
-    --teal: #8cc3b3;
-    --teal-2: #6fa597;
-    --sand: #6b5d40;
-    --focus: #7fb2ff;
-    --map-sea: #0c2b44;
-    --map-sea-line: #1f5a85;
-    --map-land: #474a40;
-    --map-land-other: #2b2d28;
-    --map-border: #6b6e62;
-    --map-border-focus: #c79bf0;
-    --map-prov: #5d5a4c;
-    --map-river: #3f8fcf;
-    --map-lake: #1d4f73;
-    --map-grat: rgba(120, 180, 230, 0.1);
-    --map-ink-2: #8f8a7c;
-    --map-paper: #1f2320;
-    --map-ghost: rgba(255, 77, 77, 0.28);
-    --map-relief-alpha: 0.4;
-    --map-rail: #ff4d4d;
-    --map-local: #ff4d4d;
-    --map-hi: #ffc23d;
-    --map-actual: #7b96ff;
-    --shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 10px 28px -10px rgba(0, 0, 0, 0.7);
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #171a18;
-  --paper-2: #1f2320;
-  --ink: #ece6d8;
-  --ink-2: #b1aa98;
-  --ink-3: #847e70;
-  --rule: #3a3d37;
-  --accent: #e27a4b;
-  --accent-ink: #1a0f08;
-  --teal: #8cc3b3;
-  --teal-2: #6fa597;
-  --sand: #6b5d40;
-  --focus: #7fb2ff;
-  --map-sea: #0c2b44;
-  --map-sea-line: #1f5a85;
-  --map-land: #474a40;
-  --map-land-other: #2b2d28;
-  --map-border: #6b6e62;
-  --map-border-focus: #c79bf0;
-  --map-prov: #5d5a4c;
-  --map-river: #3f8fcf;
-  --map-lake: #1d4f73;
-  --map-grat: rgba(120, 180, 230, 0.1);
-  --map-ink-2: #8f8a7c;
-  --map-paper: #1f2320;
-  --map-ghost: rgba(255, 77, 77, 0.28);
-  --map-relief-alpha: 0.4;
-  --map-rail: #ff4d4d;
-  --map-local: #ff4d4d;
-  --map-hi: #ffc23d;
-  --map-actual: #7b96ff;
-  --shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 10px 28px -10px rgba(0, 0, 0, 0.7);
-  color-scheme: dark;
-}
-
 /* ------------------------------------------------------------------ base */
 *, *::before, *::after { box-sizing: border-box; }
 html, body, #root { height: 100%; }
@@ -160,8 +89,6 @@ a { color: inherit; }
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .22 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-:root[data-theme="dark"] .paper-grain { mix-blend-mode: screen; opacity: 0.12; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .paper-grain { mix-blend-mode: screen; opacity: 0.12; } }
 
 .map-leaders { z-index: 2; }
 .map-leaders line { stroke: var(--ink); stroke-width: 1; }
@@ -194,10 +121,6 @@ a { color: inherit; }
 @media (hover: hover) { .map-badge:hover { --s: 1.16; z-index: 2; } }
 .map-badge.is-active { background: var(--map-hi); color: #221a08; --s: 1.2; z-index: 3; }
 .map-badge.is-future { opacity: 0.35; }
-:root[data-theme="dark"] .map-badge:not(.is-active):not(.is-moment) { background: var(--ink); color: #151816; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .map-badge:not(.is-active):not(.is-moment) { background: var(--ink); color: #151816; } }
-:root[data-theme="dark"] .map-badge.is-moment { color: #0f1a17; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .map-badge.is-moment { color: #0f1a17; } }
 
 /* ------------------------------------------------------------------ stop labels */
 .map-slabel {
