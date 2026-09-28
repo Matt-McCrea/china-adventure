@@ -1,4 +1,4 @@
-import type { Chapter, RouteSegment, Stop, Waypoint } from "./types";
+import type { Chapter, Idea, RouteSegment, Stop, Waypoint } from "./types";
 
 /**
  * THE ITINERARY. Edit this file to change dates, stops, trains or copy.
@@ -302,12 +302,26 @@ export const SEGMENTS: RouteSegment[] = [
   },
 ];
 
+/** Ideas for the loose second half (not booked). Coordinates: OpenStreetMap, Sept 2026. */
+export const IDEAS: Idea[] = [
+  { id: "jiayuguan", name: "Jiayuguan Pass", chineseName: "嘉峪关", longitude: 98.2178, latitude: 39.8022, near: "zhangye",
+    why: "Fort at the western end of the Ming Great Wall, on the Hexi Corridor line.", coordSource: "OSM attraction" },
+  { id: "xining", name: "Xining", chineseName: "西宁", longitude: 101.7762, latitude: 36.6173, near: "xian",
+    why: "Qinghai's capital, on the high-speed line between Zhangye and Lanzhou.", coordSource: "OSM place node" },
+  { id: "kumbum", name: "Kumbum Monastery", chineseName: "塔尔寺", longitude: 101.567, latitude: 36.4878, near: "xian",
+    why: "Major Tibetan Buddhist monastery, about 25 km south-west of Xining.", coordSource: "OSM monastery" },
+  { id: "qinghai-lake", name: "Qinghai Lake", chineseName: "青海湖", longitude: 100.0502, latitude: 36.8926, near: "xian",
+    why: "China's largest lake, on the plateau west of Xining.", coordSource: "OSM lake" },
+  { id: "lanzhou", name: "Lanzhou", chineseName: "兰州", longitude: 103.8395, latitude: 36.0526, near: "xian",
+    why: "Yellow River city and home of Lanzhou beef noodles.", coordSource: "OSM place node" },
+  { id: "maijishan", name: "Maijishan Grottoes", chineseName: "麦积山", longitude: 106.004, latitude: 34.3517, near: "xian",
+    why: "Buddhist cave temples near Tianshui, on the way to Xi'an.", coordSource: "OSM attraction" },
+];
+
 /** Faint reference cities for orientation only — not part of the route. */
 export const CONTEXT_CITIES = [
   { name: "Beijing", zh: "北京", lon: 116.3913, lat: 39.9057 },
   { name: "Shanghai", zh: "上海", lon: 121.47, lat: 31.2313 },
-  { name: "Lanzhou", zh: "兰州", lon: 103.8395, lat: 36.0526 },
-  { name: "Xining", zh: "西宁", lon: 101.7762, lat: 36.6173 },
   { name: "Ürümqi", zh: "乌鲁木齐", lon: 87.6139, lat: 43.8244 },
   { name: "Lhasa", zh: "拉萨", lon: 91.1173, lat: 29.6542 },
   { name: "Kunming", zh: "昆明", lon: 102.7169, lat: 25.0399 },

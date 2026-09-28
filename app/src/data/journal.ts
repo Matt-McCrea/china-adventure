@@ -1,4 +1,4 @@
-import { STOPS } from "./itinerary";
+import { IDEAS, STOPS } from "./itinerary";
 
 /**
  * Journal posts arrive by email (scripts/ingest-mail.ts) and are stored in
@@ -22,7 +22,9 @@ export type JournalEntry = {
   lat?: number;
   lon?: number;
   /** where the location came from: typed in the email, photo metadata, or the planned stop for that date */
-  locSource: "email" | "photo" | "plan";
+  locSource: "email" | "photo" | "named" | "plan";
+  /** where the post was made, as a name: from the @tag, or looked up from the coordinates */
+  place?: { name: string; zh?: string; ideaId?: string };
   /** planned stop for the date the post was sent (China time) */
   stopId: string;
   photos: JournalPhoto[];
@@ -69,32 +71,45 @@ export function parseCoords(text: string): { lat: number; lon: number; match: st
   return null;
 }
 
-const norm = (s: string) => s.toLowerCase().normalize("NFKD").replace(/[^a-z0-9一-鿿]/g, "");
+const norm = (s: string) => s.toLowerCase().normalize("NFKD").replace(/[^a-z0-9\u4e00-\u9fff]/g, "");
+
+export type PlaceTag =
+  | { kind: "stop"; stopId: string; match: string }
+  | { kind: "idea"; ideaId: string; match: string }
+  | { kind: "free"; text: string; match: string };
 
 /**
- * Finds a stop tag: a line in the body like "@ stop 1", "@ Chongqing", "@ Xi'an" or "@ 重庆",
- * or the same at the end of the subject ("Hot pot @ stop 1"). Returns the stop and the matched text.
+ * Finds a place tag: a line in the body like "@ stop 1", "@ Chongqing", "@ 重庆", "@ Xining"
+ * (a planned stop, an idea, or any other place name), or the same at the end of the subject
+ * ("Hot pot @ stop 1"). Coordinates ("@ 36.6, 101.7") are handled by parseCoords instead.
  */
-export function parseStopTag(text: string): { stopId: string; match: string } | null {
-  const lookup = (raw: string): string | null => {
+export function parsePlaceTag(text: string, opts: { allowFree?: boolean } = {}): PlaceTag | null {
+  const resolve = (raw: string, match: string): PlaceTag | null => {
     const t = raw.trim();
+    if (/\d+\.\d+/.test(t)) return null; // coordinates
     const n = /^(?:stop|s|#)\s*0*(\d{1,2})$/i.exec(t);
-    if (n) return STOPS.find((s) => s.number === Number(n[1]))?.id ?? null;
+    if (n) {
+      const stop = STOPS.find((s) => s.number === Number(n[1]));
+      return stop ? { kind: "stop", stopId: stop.id, match } : null; // "stop 14" doesn't exist: ignored
+    }
     const k = norm(t);
     if (!k) return null;
-    const hit = STOPS.find((s) =>
-      [s.id, s.city, s.city.replace(/\s+(village|valley)$/i, ""), s.chineseName].some((c) => norm(c) === k),
-    );
-    return hit?.id ?? null;
+    const stop = STOPS.find((s) => [s.id, s.city, s.city.replace(/\s+(village|valley)$/i, ""), s.chineseName].some((c) => norm(c) === k));
+    if (stop) return { kind: "stop", stopId: stop.id, match };
+    const idea = IDEAS.find((i) => [i.id, i.name, i.chineseName, i.name.replace(/\s+(pass|monastery|lake|grottoes)$/i, "")].some((c) => norm(c) === k));
+    if (idea) return { kind: "idea", ideaId: idea.id, match };
+    if (opts.allowFree && t.length >= 2 && t.length <= 40) return { kind: "free", text: t, match };
+    return null;
   };
   for (const m of text.matchAll(/(?:^|\n)[ \t]*@[ \t]*([^\n@]{1,40}?)[ \t]*(?=\n|$)/g)) {
-    const id = lookup(m[1]);
-    if (id) return { stopId: id, match: m[0].replace(/^\n/, "") };
+    const r = resolve(m[1], m[0].replace(/^\n/, ""));
+    if (r) return r;
   }
+  // subject tail: only known stops/ideas, never free text ("Met someone @ the market" stays a title)
   const tail = /\s*@\s*([^@]{1,40})$/.exec(text.split("\n")[0]);
   if (tail) {
-    const id = lookup(tail[1]);
-    if (id) return { stopId: id, match: tail[0] };
+    const r = resolve(tail[1], tail[0]);
+    if (r && r.kind !== "free") return r;
   }
   return null;
 }

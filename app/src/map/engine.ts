@@ -4,7 +4,8 @@ import "d3-transition";
 import { easeCubicInOut } from "d3-ease";
 import { geoDistance } from "d3-geo";
 import reliefUrl from "../assets/relief.jpg";
-import { CHAPTERS, CONTEXT_CITIES, PHYSICAL_LABELS, SEGMENTS, STOPS } from "../data/itinerary";
+import { CHAPTERS, CONTEXT_CITIES, IDEAS, PHYSICAL_LABELS, SEGMENTS, STOPS, TRIP } from "../data/itinerary";
+import { chinaDate } from "../data/journal";
 import type { Stop } from "../data/types";
 import { approxKm, dateRange, dateRangeLong, pad2, stopDates } from "../data/format";
 import { MAP_CONFIG } from "./config";
@@ -28,7 +29,7 @@ export type EngineCallbacks = {
 };
 
 /** A journal post as the map needs it: only posts with a real location get a pin. */
-export type MapPost = { id: string; title: string; date: string; xy: Pt; thumb?: string };
+export type MapPost = { id: string; title: string; date: string; xy: Pt; thumb?: string; place?: string; ideaId?: string };
 
 const overlaps = (a: Rect, b: Rect, m = 2) => a.x0 < b.x1 + m && a.x1 > b.x0 - m && a.y0 < b.y1 + m && a.y1 > b.y0 - m;
 const R_EARTH_KM = 6371.0088;
@@ -38,10 +39,14 @@ type SecondaryLabel = {
   id: string;
   el: HTMLElement;
   xy: Pt;
-  kind: "country" | "province" | "physical" | "chapter" | "city" | "station" | "river";
+  kind: "country" | "province" | "physical" | "chapter" | "city" | "station" | "river" | "idea" | "visit";
   /** place centred on the anchor, or beside a dot */
   mode: "center" | "beside";
   visible: (k: number, poster: boolean) => boolean;
+  /** may sit on top of the route if there's no other room (visited-place names) */
+  overRoute?: boolean;
+  /** distance from the anchor for "beside" labels (default 6px; pins need more) */
+  gap?: number;
 };
 
 export class MapEngine {
@@ -77,6 +82,8 @@ export class MapEngine {
   private posts: MapPost[] = [];
   private postPins = new Map<string, HTMLButtonElement>();
   private actualPath: Path2D | null = null;
+  private visitLabels: SecondaryLabel[] = [];
+  private visitedIdeas = new Set<string>();
   private stopLabels = new Map<string, HTMLDivElement>();
   private leaders = new Map<string, { line: SVGLineElement; dot: SVGCircleElement }>();
   private arcLabel: HTMLDivElement;
@@ -212,10 +219,28 @@ export class MapEngine {
       this.layer.append(b);
       this.postPins.set(p.id, b);
     }
+    // name each place we've posted from (skip planned stops: they're already labelled)
+    for (const l of this.visitLabels) l.el.remove();
+    this.visitLabels = [];
+    this.visitedIdeas = new Set(this.posts.map((p) => p.ideaId).filter((x): x is string => !!x));
+    const stopNames = new Set(STOPS.map((s) => s.city.toLowerCase()));
+    const seen = new Set<string>();
+    for (const p of [...this.posts].reverse()) {
+      if (!p.place || stopNames.has(p.place.toLowerCase()) || seen.has(p.place.toLowerCase())) continue;
+      seen.add(p.place.toLowerCase());
+      const el = document.createElement("div");
+      el.className = "map-label is-visit";
+      el.setAttribute("aria-hidden", "true");
+      el.textContent = p.place;
+      this.layer.prepend(el);
+      this.visitLabels.push({ id: `visit-${p.id}`, kind: "visit", mode: "beside", xy: p.xy, el, visible: (_k, poster) => !poster, overRoute: true, gap: 12 });
+    }
     this.actualPath = null;
-    if (this.posts.length > 1) {
+    // the actual route only joins posts made during the trip (a pre-trip post from home isn't part of it)
+    const onTrip = this.posts.filter((p) => chinaDate(p.date) >= TRIP.start);
+    if (onTrip.length > 1) {
       this.actualPath = new Path2D();
-      this.posts.forEach((p, i) => (i ? this.actualPath!.lineTo(p.xy[0], p.xy[1]) : this.actualPath!.moveTo(p.xy[0], p.xy[1])));
+      onTrip.forEach((p, i) => (i ? this.actualPath!.lineTo(p.xy[0], p.xy[1]) : this.actualPath!.moveTo(p.xy[0], p.xy[1])));
     }
     this.requestRender();
   }
@@ -447,6 +472,9 @@ export class MapEngine {
     for (const w of [...PLACES.values()].filter((p): p is Extract<typeof p, { kind: string }> => "kind" in p && p.kind !== "via"))
       add({ id: `st-${w.id}`, kind: "station", mode: "beside", xy: w.xy, visible: (k) => k >= T.stations },
         `${w.name} <span lang="zh-Hans">${w.chineseName}</span>`);
+    for (const i of IDEAS)
+      add({ id: `idea-${i.id}`, kind: "idea", mode: "beside", xy: project(i.longitude, i.latitude), visible: (k) => k >= T.chinese && !this.visitedIdeas.has(i.id) },
+        `${i.name} <span lang="zh-Hans">${i.chineseName}</span> <em>idea</em>`);
     for (const c of CONTEXT_CITIES)
       add({ id: `city-${c.name}`, kind: "city", mode: "beside", xy: project(c.lon, c.lat), visible: () => true },
         `${c.name} <span lang="zh-Hans">${c.zh}</span>`);
@@ -622,6 +650,19 @@ export class MapEngine {
 
     this.drawRoutes();
     ctx.globalAlpha = 1;
+
+    // ideas for the loose second half: small hollow dots (gone once visited: the post pin takes over)
+    ctx.strokeStyle = C.actual;
+    ctx.fillStyle = C.paper;
+    ctx.lineWidth = 1.4 * px;
+    for (const i of IDEAS) {
+      if (this.visitedIdeas.has(i.id) || this.poster) continue;
+      const [x, y] = project(i.longitude, i.latitude);
+      ctx.beginPath();
+      ctx.arc(x, y, 3.2 * px, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+    }
 
     // our actual route, joining located journal posts in date order
     if (this.actualPath && this.reveal == null) {
@@ -993,7 +1034,7 @@ export class MapEngine {
     this.arcLabel.classList.toggle("is-active", !!lj && (this.active === lj || this.hoverStop === lj));
 
     // ---- 4. everything else, never on top of the route
-    for (const lab of this.secondary) {
+    for (const lab of [...this.visitLabels, ...this.secondary]) {
       const el = lab.el;
       if (!lab.visible(k, this.poster)) {
         el.style.visibility = "hidden";
@@ -1003,16 +1044,22 @@ export class MapEngine {
       const { w, h } = this.measure(el, lab.id);
       const cands: Pt[] = lab.mode === "center"
         ? [[sp[0] - w / 2, sp[1] - h / 2]]
-        : [[sp[0] + 6, sp[1] - h / 2], [sp[0] - 6 - w, sp[1] - h / 2], [sp[0] - w / 2, sp[1] + 5], [sp[0] - w / 2, sp[1] - 5 - h]];
+        : (() => {
+            const g = lab.gap ?? 6;
+            return [[sp[0] + g, sp[1] - h / 2], [sp[0] - g - w, sp[1] - h / 2], [sp[0] - w / 2, sp[1] + g - 1], [sp[0] - w / 2, sp[1] - g + 1 - h]] as Pt[];
+          })();
       let ok = false;
-      for (const [x, y] of cands) {
-        const rect = { x0: x, y0: y, x1: x + w, y1: y + h };
-        if (free(rect, routeObs)) {
-          placed.push(rect);
-          el.style.transform = `translate(${x}px, ${y}px)`;
-          ok = true;
-          break;
+      for (const pass of lab.overRoute ? [routeObs, undefined] : [routeObs]) {
+        for (const [x, y] of cands) {
+          const rect = { x0: x, y0: y, x1: x + w, y1: y + h };
+          if (free(rect, pass)) {
+            placed.push(rect);
+            el.style.transform = `translate(${x}px, ${y}px)`;
+            ok = true;
+            break;
+          }
         }
+        if (ok) break;
       }
       el.style.visibility = ok ? "visible" : "hidden";
     }

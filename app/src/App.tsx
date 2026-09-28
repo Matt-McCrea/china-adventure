@@ -100,7 +100,7 @@ export default function App() {
     engine.current?.setPosts(
       posts
         .filter((p) => p.locSource !== "plan" && p.lat != null && p.lon != null)
-        .map((p) => ({ id: p.id, title: p.title, date: p.date, xy: project(p.lon!, p.lat!), thumb: p.photos[0]?.thumb })),
+        .map((p) => ({ id: p.id, title: p.title, date: p.date, xy: project(p.lon!, p.lat!), thumb: p.photos[0]?.thumb, place: p.place?.name, ideaId: p.place?.ideaId })),
     );
   }, [posts]);
   // engine callbacks are bound once; point them at the latest closures
@@ -426,6 +426,7 @@ export default function App() {
               <div><dt><svg width="28" height="8" aria-hidden="true" className="sw sw-rail"><line x1="1" y1="4" x2="27" y2="4" /><line className="tie" x1="1" y1="4" x2="27" y2="4" /></svg></dt><dd>Rail</dd></div>
               <div><dt><svg width="28" height="8" aria-hidden="true" className="sw sw-local"><line x1="1" y1="4" x2="27" y2="4" /></svg></dt><dd>Local</dd></div>
               <div><dt><svg width="28" height="8" aria-hidden="true" className="sw sw-rail sw-rough"><line x1="1" y1="4" x2="27" y2="4" /><line className="tie" x1="1" y1="4" x2="27" y2="4" /></svg></dt><dd>Rough plan</dd></div>
+              <div><dt><svg width="14" height="8" aria-hidden="true" className="sw sw-idea"><circle cx="7" cy="4" r="3" /></svg></dt><dd>Idea</dd></div>
               {posts.some((p) => p.locSource !== "plan") && (
                 <div><dt><svg width="28" height="8" aria-hidden="true" className="sw sw-actual"><line x1="2" y1="4" x2="21" y2="4" /><circle cx="24" cy="4" r="3" /></svg></dt><dd>Actual</dd></div>
               )}
@@ -487,6 +488,7 @@ export default function App() {
             stop={stop}
             lengths={lengths}
             posts={posts.filter((p) => p.stopId === stop.id)}
+            visitedIdeas={new Set(posts.map((p) => p.place?.ideaId).filter((x): x is string => !!x))}
             onOpenPost={showPost}
             variant={mobile ? "sheet" : "float"}
             onClose={() => select(null, false)}

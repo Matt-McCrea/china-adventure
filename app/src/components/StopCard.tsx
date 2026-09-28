@@ -1,4 +1,4 @@
-import { SEGMENTS, STOPS } from "../data/itinerary";
+import { IDEAS, SEGMENTS, STOPS } from "../data/itinerary";
 import type { RouteSegment, Stop } from "../data/types";
 import { approxKm, dateRange, pad2, stopDates } from "../data/format";
 import { Icon } from "./Icon";
@@ -33,8 +33,9 @@ export function LegLine({ seg, km }: { seg: RouteSegment; km?: number }) {
 }
 
 export function StopCard({
-  stop, lengths, onClose, onGo, variant, posts = [], onOpenPost,
+  stop, lengths, onClose, onGo, variant, posts = [], onOpenPost, visitedIdeas,
 }: {
+  visitedIdeas?: Set<string>;
   stop: Stop;
   lengths: SegLengths;
   posts?: JournalEntry[];
@@ -86,6 +87,21 @@ export function StopCard({
         </section>
       )}
       {stop.number === 1 && <p className="card-note">Arrive 2 October. The route starts here.</p>}
+
+      {IDEAS.some((i) => i.near === stop.id) && (
+        <section className="card-section card-ideas">
+          <h3>Maybe along the way · ideas, not booked</h3>
+          <ul>
+            {IDEAS.filter((i) => i.near === stop.id).map((i) => (
+              <li key={i.id}>
+                <b>{i.name}</b> <span lang="zh-Hans">{i.chineseName}</span>
+                {visitedIdeas?.has(i.id) && <span className="tag tag-confirmed">Visited</span>}
+                <span className="idea-why">{i.why}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {posts.length > 0 && onOpenPost && (
         <section className="card-section card-journal">

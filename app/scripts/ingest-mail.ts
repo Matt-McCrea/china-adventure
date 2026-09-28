@@ -21,8 +21,8 @@ import exifr from "exifr";
 import heicConvert from "heic-convert";
 import { createHash } from "node:crypto";
 import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { STOPS } from "../src/data/itinerary";
-import { chinaDate, parseCoords, parseStopTag, stopForDate, type JournalEntry, type JournalFile, type JournalPhoto } from "../src/data/journal";
+import { IDEAS, STOPS } from "../src/data/itinerary";
+import { chinaDate, parseCoords, parsePlaceTag, stopForDate, type JournalEntry, type JournalFile, type JournalPhoto } from "../src/data/journal";
 
 const OUT_DIR = "public/journal";
 const IMG_DIR = `${OUT_DIR}/img`;
@@ -88,6 +88,43 @@ async function savePhotos(mail: ParsedMail, id: string): Promise<JournalPhoto[]>
   return out;
 }
 
+// ---- OpenStreetMap Nominatim (max 1 request/second, identified user agent)
+const UA = { "User-Agent": "ChinaAdventureJournal/1.0 (github.com/Matt-McCrea/china-adventure)" };
+const pause = () => new Promise((r) => setTimeout(r, 1100));
+const tidy = (n: string) => n.replace(/\s+(Prefecture|City|District|County)$/i, "").trim();
+
+async function geocode(q: string): Promise<{ lat: number; lon: number; name: string; zh?: string } | null> {
+  try {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&limit=3&countrycodes=cn&namedetails=1&accept-language=en&q=${encodeURIComponent(q)}`;
+    const res: any[] = await (await fetch(url, { headers: UA })).json();
+    await pause();
+    // prefer actual towns/sights over administrative areas (a prefecture's centre can be 100+ km from its city)
+    const rank = (r: any) => ["place", "tourism", "historic", "natural", "water", "waterway", "leisure", "amenity"].indexOf(r.class);
+    const hit = res.filter((r) => rank(r) >= 0).sort((a, b) => rank(a) - rank(b))[0] ?? res.find((r) => r.class === "boundary");
+    if (!hit) return null;
+    return { lat: +hit.lat, lon: +hit.lon, name: tidy(hit.namedetails?.["name:en"] || hit.display_name.split(",")[0]), zh: hit.namedetails?.["name:zh"] || hit.namedetails?.name };
+  } catch {
+    return null;
+  }
+}
+
+async function reverseGeocode(lat: number, lon: number): Promise<{ name: string; zh?: string } | undefined> {
+  try {
+    const url = `https://nominatim.openstreetmap.org/reverse?format=json&zoom=10&namedetails=1&accept-language=en&lat=${lat}&lon=${lon}`;
+    const r: any = await (await fetch(url, { headers: UA })).json();
+    await pause();
+    const a = r.address ?? {};
+    const raw = a.city || a.town || a.village || a.county || a.state_district || a.state;
+    if (!raw) return undefined;
+    // the Chinese name is only trustworthy when the returned object IS that place
+    const same = tidy(r.namedetails?.["name:en"] ?? r.name ?? "") === tidy(raw);
+    const zh = same ? r.namedetails?.["name:zh"] || (/[\u4e00-\u9fff]/.test(r.namedetails?.name ?? "") ? r.namedetails.name : undefined) : undefined;
+    return { name: tidy(raw), zh };
+  } catch {
+    return undefined;
+  }
+}
+
 async function process1(raw: Buffer, db: ReturnType<typeof load>): Promise<"added" | "command" | "skipped"> {
   const mail = await simpleParser(raw);
   const mid = hash(mail.messageId ?? raw.toString("utf8", 0, 2000));
@@ -115,29 +152,53 @@ async function process1(raw: Buffer, db: ReturnType<typeof load>): Promise<"adde
   const id = `${day}-${mid.slice(0, 6)}`;
   const body = (mail.text ?? "").replace(/\r/g, "");
   const coords = parseCoords(body);
-  // "@ stop 1" / "@ Chongqing" puts the post under that stop, whatever the date
-  const bodyTag = parseStopTag(body);
-  const subjectTag = bodyTag ? null : parseStopTag(subject);
+  // "@ stop 1" / "@ Chongqing" / "@ Xining" / "@ any place name": files the post and names the place
+  const bodyTag = parsePlaceTag(body, { allowFree: true });
+  const subjectTag = bodyTag ? null : parsePlaceTag(subject);
+  const tag = bodyTag ?? subjectTag;
   const photos = await savePhotos(mail, id);
   const text = cleanText(body, coords?.match, bodyTag?.match);
-  const stopId = bodyTag?.stopId ?? subjectTag?.stopId ?? stopForDate(day);
+  const stopId = tag?.kind === "stop" ? tag.stopId : stopForDate(day);
   const stop = STOPS.find((s) => s.id === stopId)!;
   const photoLoc = photos.find((p) => p.lat != null);
 
+  let loc: Pick<JournalEntry, "lat" | "lon" | "locSource"> = coords
+    ? { lat: coords.lat, lon: coords.lon, locSource: "email" }
+    : photoLoc
+      ? { lat: photoLoc.lat, lon: photoLoc.lon, locSource: "photo" }
+      : { lat: stop.latitude, lon: stop.longitude, locSource: "plan" };
+  let place: JournalEntry["place"];
+  if (tag?.kind === "stop") {
+    place = { name: stop.city, zh: stop.chineseName };
+  } else if (tag?.kind === "idea") {
+    const idea = IDEAS.find((i) => i.id === tag.ideaId)!;
+    place = { name: idea.name, zh: idea.chineseName, ideaId: idea.id };
+    if (loc.locSource === "plan") loc = { lat: idea.latitude, lon: idea.longitude, locSource: "named" };
+  } else if (tag?.kind === "free") {
+    place = { name: tag.text };
+    if (loc.locSource === "plan") {
+      const g = await geocode(tag.text);
+      if (g) {
+        loc = { lat: g.lat, lon: g.lon, locSource: "named" };
+        place = { name: g.name, zh: g.zh };
+      } else console.log(`  ! couldn't find "${tag.text}" on the map; filed by date instead`);
+    }
+  } else if (loc.locSource !== "plan") {
+    const r = await reverseGeocode(loc.lat!, loc.lon!);
+    if (r) place = r;
+  }
+
   const entry: JournalEntry = {
     id, date,
-    title: (subjectTag ? subject.replace(subjectTag.match, "").trim() : subject) || text.split("\n")[0].slice(0, 80) || `Update from ${stop.city}`,
+    title: (subjectTag ? subject.replace(subjectTag.match, "").trim() : subject) || text.split("\n")[0].slice(0, 80) || `Update from ${place?.name ?? stop.city}`,
     text,
-    ...(coords
-      ? { lat: coords.lat, lon: coords.lon, locSource: "email" as const }
-      : photoLoc
-        ? { lat: photoLoc.lat, lon: photoLoc.lon, locSource: "photo" as const }
-        : { lat: stop.latitude, lon: stop.longitude, locSource: "plan" as const }),
+    ...loc,
     stopId,
+    ...(place ? { place } : {}),
     photos,
   };
   db.entries.push(entry);
-  console.log(`  + "${entry.title}" (${day}, ${photos.length} photo(s), location from ${entry.locSource})`);
+  console.log(`  + "${entry.title}" (${day}, ${photos.length} photo(s), location from ${entry.locSource}${entry.place ? `, place ${entry.place.name}` : ""})`);
   return "added";
 }
 

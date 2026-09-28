@@ -49,6 +49,23 @@ export type Stop = {
   minor?: boolean;
 };
 
+/**
+ * A place we might go in the loose second half. Drawn as a small hollow dot (name when zoomed in)
+ * and listed on the `near` stop's card. Turns into a visited place once a journal post is tagged there.
+ */
+export type Idea = {
+  id: string;
+  name: string;
+  chineseName: string;
+  longitude: number;
+  latitude: number;
+  /** one line: why it's worth a look (facts only) */
+  why: string;
+  /** stop whose card lists this idea */
+  near: string;
+  coordSource: string;
+};
+
 /** Stations and transfer points. Not numbered; drawn as small ticks. */
 export type Waypoint = {
   id: string;

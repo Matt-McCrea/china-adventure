@@ -13,6 +13,7 @@ Email the journal inbox **from your Hover or iCloud address**. Not from Gmail: G
 | Photos attached | Photos (resized automatically; location data is stripped from the published copy) |
 | A line like `@ 41.7135, 82.9544` | Exact pin on the map |
 | A line like `@ stop 1` or `@ Chongqing` | Files the post under that stop's card (whatever day you send it) |
+| A line like `@ Xining` (any place name) | Names the place and pins it there, even without coordinates |
 
 No signal? Press send anyway. Mail keeps it in the Outbox and sends it the next time you have a connection.
 
@@ -42,6 +43,10 @@ By default a post goes under the stop planned for the day you send it. To choose
 | 7 | Kashgar 喀什 | | |
 
 A stop tag only chooses the card. Coordinates (or a photo's location) still place the exact pin.
+
+**Anywhere else:** `@` plus any place name (`@ Xining`, `@ Jiuquan`, `@ 青海湖`) looks the place up on OpenStreetMap, pins the post there and names it on the map in blue. Posts with coordinates or a photo location get their place name looked up automatically. A number that isn't a stop (`@ stop 14`) is ignored and the post is filed by date.
+
+**Ideas for the second half** (hollow dots on the map, listed on the Zhangye and Xi'an cards): Jiayuguan Pass, Xining, Kumbum Monastery, Qinghai Lake, Lanzhou, Maijishan Grottoes. Post from one (`@ Xining`) and it shows as visited.
 
 ## Fix a mistake
 
