@@ -115,15 +115,58 @@ export function NewPopup({ posts, firstVisit, onOpen, onDismiss }: { posts: Jour
 }
 
 export function JournalPanel({ posts, onOpen, onClose }: { posts: JournalEntry[]; onOpen: (id: string) => void; onClose: () => void }) {
+  const ref = useRef<HTMLElement>(null);
+  useEffect(() => ref.current?.focus(), []);
+  const list = [...posts].reverse();
   return (
-    <aside className="news news-panel" role="dialog" aria-labelledby="jp-title" data-map-ui>
-      <header className="news-head">
-        <h2 id="jp-title">Journal · {posts.length} {posts.length === 1 ? "post" : "posts"}</h2>
+    <aside
+      ref={ref}
+      className="journal-drawer"
+      role="dialog"
+      aria-labelledby="jp-title"
+      tabIndex={-1}
+      data-map-ui
+      onKeyDown={(e) => e.key === "Escape" && onClose()}
+    >
+      <header className="jd-head">
+        <div>
+          <p className="post-kicker">From the road · {posts.length} {posts.length === 1 ? "post" : "posts"}</p>
+          <h2 id="jp-title" className="jd-title">Journal</h2>
+          {list[0] && <p className="news-sub">Latest {timeAgo(list[0].date)}</p>}
+        </div>
         <button type="button" className="icon-btn" onClick={onClose} aria-label="Close journal">
-          <svg width="12" height="12" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" /></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" /></svg>
         </button>
       </header>
-      {posts.length ? <PostThumbs posts={[...posts].reverse()} onOpen={onOpen} /> : <p className="news-sub">Nothing yet. Posts appear here once the trip starts on 2 October.</p>}
+      {list.length ? (
+        <ul className="jd-list">
+          {list.map((p) => {
+            const stop = STOPS.find((s) => s.id === p.stopId);
+            return (
+              <li key={p.id}>
+                <button type="button" className="jd-card" onClick={() => onOpen(p.id)}>
+                  {p.photos[0] && (
+                    <span className="jd-photo">
+                      <img src={p.photos[0].src} alt="" loading="lazy" width={p.photos[0].w} height={p.photos[0].h} />
+                      {p.photos.length > 1 && <span className="jd-more">+{p.photos.length - 1}</span>}
+                    </span>
+                  )}
+                  <span className="jd-body">
+                    <small>
+                      {postTime(p.date)} · {p.place?.name ?? stop?.city}
+                      {stop && <span className="jd-stop"> · stop {String(stop.number).padStart(2, "0")}</span>}
+                    </small>
+                    <b>{p.title}</b>
+                    {p.text && <span className="post-snippet">{p.text.slice(0, 200)}{p.text.length > 200 ? "…" : ""}</span>}
+                  </span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p className="jd-empty">Nothing yet. Posts will appear here once the trip starts on 2 October.</p>
+      )}
     </aside>
   );
 }

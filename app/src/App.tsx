@@ -139,15 +139,22 @@ export default function App() {
     (cardOpen: boolean) => {
       if (poster) return { top: 150, right: 60, bottom: 150, left: 60 };
       if (mobile) return { top: 110, right: 20, bottom: cardOpen ? Math.round(window.innerHeight * 0.5) : 60, left: 20 };
+      // desktop: keep the route clear of the open stop card, or of the journal drawer (46% of the width)
+      if (journalOpen) return { top: 120, right: Math.round(Math.min(580, window.innerWidth * 0.46)) + 150, bottom: 80, left: 70 };
       return { top: 120, right: cardOpen ? 400 : 200, bottom: 80, left: 70 };
     },
-    [mobile, poster],
+    [mobile, poster, journalOpen],
   );
 
   useEffect(() => {
     engine.current?.setPadding(padFor(!!active));
     requestAnimationFrame(() => engine.current?.refreshReserved());
   }, [padFor, active, legendOpen, mobile, poster, pinnedSeg]);
+  // re-frame the whole route when the journal drawer opens or closes (desktop)
+  useEffect(() => {
+    if (!mobile && !active) engine.current?.fitAll();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [journalOpen]);
 
   const select = useCallback(
     (id: string | null, fly = true) => {
