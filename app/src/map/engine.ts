@@ -329,7 +329,7 @@ export class MapEngine {
   private readColors() {
     const cs = getComputedStyle(this.el);
     for (const k of ["sea", "sea-line", "land", "land-other", "border", "border-focus", "prov", "river", "lake", "grat",
-      "ink", "ink-2", "rail", "local", "accent", "paper", "ghost"])
+      "ink", "ink-2", "rail", "local", "accent", "hi", "actual", "paper", "ghost"])
       this.colors[k] = cs.getPropertyValue(`--map-${k}`).trim() || "#888";
     this.colors.reliefAlpha = cs.getPropertyValue("--map-relief-alpha").trim() || "0.6";
   }
@@ -625,7 +625,7 @@ export class MapEngine {
 
     // our actual route, joining located journal posts in date order
     if (this.actualPath && this.reveal == null) {
-      ctx.strokeStyle = C.accent;
+      ctx.strokeStyle = C.actual;
       ctx.globalAlpha = 0.85;
       ctx.lineWidth = 1.6 * px;
       ctx.setLineDash([1.5 * px, 3.5 * px]);
@@ -726,7 +726,7 @@ export class MapEngine {
       // rough-plan legs (after Kashgar) are drawn faded unless highlighted
       ctx.globalAlpha = !hi && STOPS.find((s) => s.id === r.seg.leg)?.tentative ? 0.5 : 1;
       const hov = r.seg.id === this.hoverSeg;
-      const col = hi ? C.accent : r.seg.mode === "local" ? C.local : C.rail;
+      const col = hi ? C.hi : r.seg.mode === "local" ? C.local : C.rail;
       const extra = hov ? 1.2 : 0;
       if (r.seg.mode === "rail") {
         ctx.strokeStyle = C.paper;
