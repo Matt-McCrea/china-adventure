@@ -5,9 +5,10 @@
   "afe082c5d0300427844f6915d34f13fadb3130bc5547300f3259a9794d7fab1b",
   "b5a9c6f491133723291bf4cad521722db7974eadf66c0ae9d4309f31ee5e09bf",
   "b9bb6cbade6d838f168e2a16f1afaf124d7f380fe8f70607c2b12d15e910bfa9",
-  "d106c512888ebb535a9901cb210e2e1c52e42819b69f94f9d5f23a658a2b3cba"
+  "d106c512888ebb535a9901cb210e2e1c52e42819b69f94f9d5f23a658a2b3cba",
+  "3ab2df210994a088f7d459879113475a72be90524aeaa5c1431fd7045e3d58c3"
  ],
- "updated": "2026-09-28T18:45:00.085Z",
+ "updated": "2026-09-29T14:39:28.978Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -34,6 +35,17 @@
      "h": 1600
     }
    ]
+  },
+  {
+   "id": "2026-09-29-3ab2df",
+   "date": "2026-09-29T14:35:21.000Z",
+   "title": "Aymon test",
+   "text": "This is Aymon, testing something!\n\nSending from my phone :)\nCiao",
+   "lat": 29.5657,
+   "lon": 106.5479,
+   "locSource": "plan",
+   "stopId": "chongqing",
+   "photos": []
   }
  ]
 }
