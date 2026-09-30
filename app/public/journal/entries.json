@@ -6,9 +6,10 @@
   "b5a9c6f491133723291bf4cad521722db7974eadf66c0ae9d4309f31ee5e09bf",
   "b9bb6cbade6d838f168e2a16f1afaf124d7f380fe8f70607c2b12d15e910bfa9",
   "d106c512888ebb535a9901cb210e2e1c52e42819b69f94f9d5f23a658a2b3cba",
-  "3ab2df210994a088f7d459879113475a72be90524aeaa5c1431fd7045e3d58c3"
+  "3ab2df210994a088f7d459879113475a72be90524aeaa5c1431fd7045e3d58c3",
+  "42c0d5ea6cbc6ffeefbaa6962d0ddb7fba462cb599111dcd53625086f1c5bc2a"
  ],
- "updated": "2026-09-29T14:39:28.978Z",
+ "updated": "2026-09-30T20:36:41.988Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -46,6 +47,69 @@
    "locSource": "plan",
    "stopId": "chongqing",
    "photos": []
+  },
+  {
+   "id": "2026-10-01-42c0d5",
+   "date": "2026-09-30T20:34:31.000Z",
+   "title": "TAKEOFF!!",
+   "text": "After one last good cup of tea we are on the road! My bag is a little lighter than expected but that’s not a problem, they made all the clothes in China anyway so can get more if needs be. My friend Will who works in the airport joined me for some pints on the layover  and the plane is ready for takeoff. Maybe 12 other non Chinese on the flight from all around the world. See you on the other side 🇨🇳😎",
+   "lat": 51.47078333333334,
+   "lon": -0.4647027777777778,
+   "locSource": "photo",
+   "stopId": "chongqing",
+   "place": {
+    "name": "Greater London"
+   },
+   "photos": [
+    {
+     "src": "journal/img/2026-10-01-42c0d5-1.jpg",
+     "thumb": "journal/img/2026-10-01-42c0d5-1-t.jpg",
+     "w": 1158,
+     "h": 1544,
+     "lat": 51.47078333333334,
+     "lon": -0.4647027777777778
+    },
+    {
+     "src": "journal/img/2026-10-01-42c0d5-2.jpg",
+     "thumb": "journal/img/2026-10-01-42c0d5-2-t.jpg",
+     "w": 1158,
+     "h": 1544,
+     "lat": 51.47101666666667,
+     "lon": -0.4640944444444445
+    },
+    {
+     "src": "journal/img/2026-10-01-42c0d5-3.jpg",
+     "thumb": "journal/img/2026-10-01-42c0d5-3-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 51.47014166666667,
+     "lon": -0.4567111111111111
+    },
+    {
+     "src": "journal/img/2026-10-01-42c0d5-4.jpg",
+     "thumb": "journal/img/2026-10-01-42c0d5-4-t.jpg",
+     "w": 1158,
+     "h": 1544,
+     "lat": 51.47017777777778,
+     "lon": -0.4566
+    },
+    {
+     "src": "journal/img/2026-10-01-42c0d5-5.jpg",
+     "thumb": "journal/img/2026-10-01-42c0d5-5-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 53.426833333333335,
+     "lon": -6.240236111111111
+    },
+    {
+     "src": "journal/img/2026-10-01-42c0d5-6.jpg",
+     "thumb": "journal/img/2026-10-01-42c0d5-6-t.jpg",
+     "w": 1158,
+     "h": 1544,
+     "lat": 53.29345,
+     "lon": -6.186741666666667
+    }
+   ]
   }
  ]
 }
