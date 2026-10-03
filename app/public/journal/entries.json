@@ -8,9 +8,10 @@
   "d106c512888ebb535a9901cb210e2e1c52e42819b69f94f9d5f23a658a2b3cba",
   "3ab2df210994a088f7d459879113475a72be90524aeaa5c1431fd7045e3d58c3",
   "42c0d5ea6cbc6ffeefbaa6962d0ddb7fba462cb599111dcd53625086f1c5bc2a",
-  "e82812b9d510100e5120731cba4245a84e79f0f565bf45b150f1945f3c0904c1"
+  "e82812b9d510100e5120731cba4245a84e79f0f565bf45b150f1945f3c0904c1",
+  "a7d4ce4148dc0bc20a72fd5f06f55ef14541f3259daca136daa69e1f8c287da6"
  ],
- "updated": "2026-10-01T14:48:14.984Z",
+ "updated": "2026-10-03T02:59:20.166Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -180,6 +181,107 @@
      "h": 1600,
      "lat": 29.559422222222224,
      "lon": 106.5906
+    }
+   ]
+  },
+  {
+   "id": "2026-10-03-a7d4ce",
+   "date": "2026-10-02T16:31:40.000Z",
+   "title": "Chongqing, China",
+   "text": "Aymon touched down on a beautiful Chongqing day. We really saw the multilayered nature of the city though it’s hard to capture in photos. No one knows where the real ground is.\n\nSaw the biggest crane ever and it was on a boat! \n\nAre some mysterious street goop, not bad.\n\nThe wholesale shops here are insane. This glasses one went on a long way with different shops.",
+   "lat": 29.563122222222223,
+   "lon": 106.57003888888889,
+   "locSource": "photo",
+   "stopId": "chongqing",
+   "place": {
+    "name": "Yuzhong"
+   },
+   "photos": [
+    {
+     "src": "journal/img/2026-10-03-a7d4ce-1.jpg",
+     "thumb": "journal/img/2026-10-03-a7d4ce-1-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 29.563122222222223,
+     "lon": 106.57003888888889
+    },
+    {
+     "src": "journal/img/2026-10-03-a7d4ce-2.jpg",
+     "thumb": "journal/img/2026-10-03-a7d4ce-2-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 29.563850000000002,
+     "lon": 106.56985555555555
+    },
+    {
+     "src": "journal/img/2026-10-03-a7d4ce-3.jpg",
+     "thumb": "journal/img/2026-10-03-a7d4ce-3-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 29.554544444444446,
+     "lon": 106.56915277777777
+    },
+    {
+     "src": "journal/img/2026-10-03-a7d4ce-4.jpg",
+     "thumb": "journal/img/2026-10-03-a7d4ce-4-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 29.554958333333335,
+     "lon": 106.56919722222221
+    },
+    {
+     "src": "journal/img/2026-10-03-a7d4ce-5.jpg",
+     "thumb": "journal/img/2026-10-03-a7d4ce-5-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 29.555180555555555,
+     "lon": 106.58023055555554
+    },
+    {
+     "src": "journal/img/2026-10-03-a7d4ce-6.jpg",
+     "thumb": "journal/img/2026-10-03-a7d4ce-6-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 29.564883333333334,
+     "lon": 106.58505277777778
+    },
+    {
+     "src": "journal/img/2026-10-03-a7d4ce-7.jpg",
+     "thumb": "journal/img/2026-10-03-a7d4ce-7-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 29.57026111111111,
+     "lon": 106.58363333333332
+    },
+    {
+     "src": "journal/img/2026-10-03-a7d4ce-8.jpg",
+     "thumb": "journal/img/2026-10-03-a7d4ce-8-t.jpg",
+     "w": 1158,
+     "h": 1544,
+     "lat": 29.55878611111111,
+     "lon": 106.57347222222222
+    },
+    {
+     "src": "journal/img/2026-10-03-a7d4ce-9.jpg",
+     "thumb": "journal/img/2026-10-03-a7d4ce-9-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 29.559272222222223,
+     "lon": 106.57408888888888
+    },
+    {
+     "src": "journal/img/2026-10-03-a7d4ce-10.jpg",
+     "thumb": "journal/img/2026-10-03-a7d4ce-10-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 29.560244444444447,
+     "lon": 106.57643055555555
+    },
+    {
+     "src": "journal/img/2026-10-03-a7d4ce-11.jpg",
+     "thumb": "journal/img/2026-10-03-a7d4ce-11-t.jpg",
+     "w": 900,
+     "h": 1600
     }
    ]
   }
