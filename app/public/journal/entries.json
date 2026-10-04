@@ -9,9 +9,10 @@
   "3ab2df210994a088f7d459879113475a72be90524aeaa5c1431fd7045e3d58c3",
   "42c0d5ea6cbc6ffeefbaa6962d0ddb7fba462cb599111dcd53625086f1c5bc2a",
   "e82812b9d510100e5120731cba4245a84e79f0f565bf45b150f1945f3c0904c1",
-  "a7d4ce4148dc0bc20a72fd5f06f55ef14541f3259daca136daa69e1f8c287da6"
+  "a7d4ce4148dc0bc20a72fd5f06f55ef14541f3259daca136daa69e1f8c287da6",
+  "fdecb13fb2f1590327553fb5b1b28046ef09d63f9eefcc703e10131f17190c90"
  ],
- "updated": "2026-10-03T02:59:20.166Z",
+ "updated": "2026-10-04T01:43:18.563Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -282,6 +283,85 @@
      "thumb": "journal/img/2026-10-03-a7d4ce-11-t.jpg",
      "w": 900,
      "h": 1600
+    }
+   ]
+  },
+  {
+   "id": "2026-10-04-fdecb1",
+   "date": "2026-10-04T01:03:27.000Z",
+   "title": "We love Chongqing",
+   "text": "Texting in from a gorgeous high speed train through countryside that looks like a fairytale (pics attached, phone aperture too slow). Last day in Chongqing was awesome, Buddhist temple in the middle of skyscrapers was the highlight. Took the metro for a while to see the outskirts but the city just keeps going, skyscraper flats for tens of kilometres! Took the metro through an apartment block to start a series of things An Bord Pleanála would never allow alongside today’s train station.",
+   "lat": 29.562655555555555,
+   "lon": 106.57775833333334,
+   "locSource": "photo",
+   "stopId": "taipan",
+   "place": {
+    "name": "Yuzhong"
+   },
+   "photos": [
+    {
+     "src": "journal/img/2026-10-04-fdecb1-1.jpg",
+     "thumb": "journal/img/2026-10-04-fdecb1-1-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 29.562655555555555,
+     "lon": 106.57775833333334
+    },
+    {
+     "src": "journal/img/2026-10-04-fdecb1-2.jpg",
+     "thumb": "journal/img/2026-10-04-fdecb1-2-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 29.565161111111113,
+     "lon": 106.57405
+    },
+    {
+     "src": "journal/img/2026-10-04-fdecb1-3.jpg",
+     "thumb": "journal/img/2026-10-04-fdecb1-3-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 29.565047222222223,
+     "lon": 106.57434722222222
+    },
+    {
+     "src": "journal/img/2026-10-04-fdecb1-4.jpg",
+     "thumb": "journal/img/2026-10-04-fdecb1-4-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 29.1792,
+     "lon": 106.5136
+    },
+    {
+     "src": "journal/img/2026-10-04-fdecb1-5.jpg",
+     "thumb": "journal/img/2026-10-04-fdecb1-5-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 29.1792,
+     "lon": 106.5136
+    },
+    {
+     "src": "journal/img/2026-10-04-fdecb1-6.jpg",
+     "thumb": "journal/img/2026-10-04-fdecb1-6-t.jpg",
+     "w": 1280,
+     "h": 720,
+     "lat": 29.5548,
+     "lon": 106.533
+    },
+    {
+     "src": "journal/img/2026-10-04-fdecb1-7.jpg",
+     "thumb": "journal/img/2026-10-04-fdecb1-7-t.jpg",
+     "w": 720,
+     "h": 1280,
+     "lat": 29.5552,
+     "lon": 106.5334
+    },
+    {
+     "src": "journal/img/2026-10-04-fdecb1-8.jpg",
+     "thumb": "journal/img/2026-10-04-fdecb1-8-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 29.50285277777778,
+     "lon": 106.43331944444445
     }
    ]
   }
