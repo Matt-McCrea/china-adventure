@@ -10,9 +10,10 @@
   "42c0d5ea6cbc6ffeefbaa6962d0ddb7fba462cb599111dcd53625086f1c5bc2a",
   "e82812b9d510100e5120731cba4245a84e79f0f565bf45b150f1945f3c0904c1",
   "a7d4ce4148dc0bc20a72fd5f06f55ef14541f3259daca136daa69e1f8c287da6",
-  "fdecb13fb2f1590327553fb5b1b28046ef09d63f9eefcc703e10131f17190c90"
+  "fdecb13fb2f1590327553fb5b1b28046ef09d63f9eefcc703e10131f17190c90",
+  "be05d50bff4df1c4ac988b2ae48a7754eeddc6c372e711e8ef84e7e36869b39d"
  ],
- "updated": "2026-10-04T01:43:18.563Z",
+ "updated": "2026-10-05T16:23:26.207Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -362,6 +363,126 @@
      "h": 1600,
      "lat": 29.50285277777778,
      "lon": 106.43331944444445
+    }
+   ]
+  },
+  {
+   "id": "2026-10-06-be05d5",
+   "date": "2026-10-05T16:16:44.000Z",
+   "title": "All China Village Basketball Championship",
+   "text": "Insane 24 hours:\n\n- Xinjiang Turpan won the All China Village Basketball Championship! We have been avid supporters since yesterday and will visit the town later\n\n- This village is very small and only has the basketball once a year going on. Everyone thinks we’re from Xinjiang, either asking us or telling each other we are which is a fun surprise. Having great fun telling them I’m from Ireland, or when they don’t know Ireland (80% of the time) then Australia. It appears that many people here have never seen a foreigner before and are very very curious. There’s no such thing as walking past a group of people drinking here as they make you join them.\n\n- Got taken in by some local kids and their grandmother to have lunch in their house in this TINY village, played basketball with the whole village. Their parents work in Guanzhou and don’t come home but left a BMW there, the kids have a real MacBook and watch brain rot on it but grow their own food.  Miao people are very friendly and kind\n\n- Aymon was interviewed for something we don’t know what\n\n- The show around the basketball was wild. One million Chinese flags. So many  performances. CCP notable deaths played to rave music. I can’t upload videos here but there is lots of strange things to share. Some pics attached.\n\n- Miao people do eat dog :(\n\n- We came back to middle aged people drinking in and around our room, one speaks English very well. They want to bring us to a similar football championship tomorrow, confirmation pending.",
+   "lat": 26.679230555555556,
+   "lon": 108.15561666666667,
+   "locSource": "photo",
+   "stopId": "zhenyuan",
+   "place": {
+    "name": "Taijiang",
+    "zh": "台江县"
+   },
+   "photos": [
+    {
+     "src": "journal/img/2026-10-06-be05d5-1.jpg",
+     "thumb": "journal/img/2026-10-06-be05d5-1-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.679230555555556,
+     "lon": 108.15561666666667
+    },
+    {
+     "src": "journal/img/2026-10-06-be05d5-2.jpg",
+     "thumb": "journal/img/2026-10-06-be05d5-2-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.679180555555558,
+     "lon": 108.15556388888889
+    },
+    {
+     "src": "journal/img/2026-10-06-be05d5-3.jpg",
+     "thumb": "journal/img/2026-10-06-be05d5-3-t.jpg",
+     "w": 1600,
+     "h": 1200,
+     "lat": 26.679783333333333,
+     "lon": 108.14773611111112
+    },
+    {
+     "src": "journal/img/2026-10-06-be05d5-4.jpg",
+     "thumb": "journal/img/2026-10-06-be05d5-4-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.679100000000002,
+     "lon": 108.14766666666668
+    },
+    {
+     "src": "journal/img/2026-10-06-be05d5-5.jpg",
+     "thumb": "journal/img/2026-10-06-be05d5-5-t.jpg",
+     "w": 1600,
+     "h": 1200,
+     "lat": 26.678325,
+     "lon": 108.15604444444445
+    },
+    {
+     "src": "journal/img/2026-10-06-be05d5-6.jpg",
+     "thumb": "journal/img/2026-10-06-be05d5-6-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.679444444444446,
+     "lon": 108.15586111111112
+    },
+    {
+     "src": "journal/img/2026-10-06-be05d5-7.jpg",
+     "thumb": "journal/img/2026-10-06-be05d5-7-t.jpg",
+     "w": 1600,
+     "h": 1200,
+     "lat": 26.67925,
+     "lon": 108.15512222222223
+    },
+    {
+     "src": "journal/img/2026-10-06-be05d5-8.jpg",
+     "thumb": "journal/img/2026-10-06-be05d5-8-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.679469444444447,
+     "lon": 108.15516666666667
+    },
+    {
+     "src": "journal/img/2026-10-06-be05d5-9.jpg",
+     "thumb": "journal/img/2026-10-06-be05d5-9-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.678719444444447,
+     "lon": 108.14933055555557
+    },
+    {
+     "src": "journal/img/2026-10-06-be05d5-10.jpg",
+     "thumb": "journal/img/2026-10-06-be05d5-10-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.679769444444446,
+     "lon": 108.15523611111112
+    },
+    {
+     "src": "journal/img/2026-10-06-be05d5-11.jpg",
+     "thumb": "journal/img/2026-10-06-be05d5-11-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.68009166666667,
+     "lon": 108.15359444444445
+    },
+    {
+     "src": "journal/img/2026-10-06-be05d5-12.jpg",
+     "thumb": "journal/img/2026-10-06-be05d5-12-t.jpg",
+     "w": 960,
+     "h": 1280,
+     "lat": 26.6792,
+     "lon": 108.1556
+    },
+    {
+     "src": "journal/img/2026-10-06-be05d5-13.jpg",
+     "thumb": "journal/img/2026-10-06-be05d5-13-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.679100000000002,
+     "lon": 108.14760000000001
     }
    ]
   }
