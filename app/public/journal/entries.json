@@ -11,9 +11,10 @@
   "e82812b9d510100e5120731cba4245a84e79f0f565bf45b150f1945f3c0904c1",
   "a7d4ce4148dc0bc20a72fd5f06f55ef14541f3259daca136daa69e1f8c287da6",
   "fdecb13fb2f1590327553fb5b1b28046ef09d63f9eefcc703e10131f17190c90",
-  "be05d50bff4df1c4ac988b2ae48a7754eeddc6c372e711e8ef84e7e36869b39d"
+  "be05d50bff4df1c4ac988b2ae48a7754eeddc6c372e711e8ef84e7e36869b39d",
+  "3a4c36ef52ad0882647d9973a521239f56a0874d98cb34dcec0f5d8415c71a08"
  ],
- "updated": "2026-10-05T16:23:26.207Z",
+ "updated": "2026-10-07T21:52:52.794Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -483,6 +484,86 @@
      "h": 1600,
      "lat": 26.679100000000002,
      "lon": 108.14760000000001
+    }
+   ]
+  },
+  {
+   "id": "2026-10-08-3a4c36",
+   "date": "2026-10-07T16:52:37.000Z",
+   "title": "All China International Football Tournament",
+   "text": "We followed the middle aged crew from the night before to the All China International Football Tournament and it was awesome.\n\nThis was similar to the basketball with a team from every province AND 5 “village teams” from a few countries that are just random local teams that heard about it and asked to come. In a complete upset the best Chinese provincial level football team is… a random town in Brazil!!!!! 🇧🇷 These guys are not semi-professional or anything!!\n\nWe jumped the barriers and celebrated with the Brazilians, had moonshine rice liquor with the Malaysian delegation on the pitch, and afterwards were mistaken by everyone including the organisers as part of the Brazil team in some capacity and given winners garlands. \n\nThis led to even more photos with random Chinese spectators to the extent that I was signing balls and we were brought into photos with actual team mates and locals. Brazil guys were great craic. We even saw 3 other foreigners there that weren’t playing, friends of the Australian on the Guangzhou team who the commentators just call “the Australian” \n\n12/10 experience highly recommend to everyone, including anyone with a half decent football team as the Malaysians (who were not a football team at all, they are the workers at a football academy and lost every game) were very very very well taken care of on their trip.",
+   "lat": 25.941930555555555,
+   "lon": 108.5244388888889,
+   "locSource": "photo",
+   "stopId": "guiyang",
+   "place": {
+    "name": "Rongjiang",
+    "zh": "榕江县"
+   },
+   "photos": [
+    {
+     "src": "journal/img/2026-10-08-3a4c36-1.jpg",
+     "thumb": "journal/img/2026-10-08-3a4c36-1-t.jpg",
+     "w": 1600,
+     "h": 1200,
+     "lat": 25.941930555555555,
+     "lon": 108.5244388888889
+    },
+    {
+     "src": "journal/img/2026-10-08-3a4c36-2.jpg",
+     "thumb": "journal/img/2026-10-08-3a4c36-2-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 25.9414,
+     "lon": 108.52478888888889
+    },
+    {
+     "src": "journal/img/2026-10-08-3a4c36-3.jpg",
+     "thumb": "journal/img/2026-10-08-3a4c36-3-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 25.941444444444446,
+     "lon": 108.52478888888889
+    },
+    {
+     "src": "journal/img/2026-10-08-3a4c36-4.jpg",
+     "thumb": "journal/img/2026-10-08-3a4c36-4-t.jpg",
+     "w": 1600,
+     "h": 1200,
+     "lat": 25.941933333333335,
+     "lon": 108.52444444444444
+    },
+    {
+     "src": "journal/img/2026-10-08-3a4c36-5.jpg",
+     "thumb": "journal/img/2026-10-08-3a4c36-5-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 25.941755555555556,
+     "lon": 108.52444444444444
+    },
+    {
+     "src": "journal/img/2026-10-08-3a4c36-6.jpg",
+     "thumb": "journal/img/2026-10-08-3a4c36-6-t.jpg",
+     "w": 1600,
+     "h": 1200,
+     "lat": 25.941783333333333,
+     "lon": 108.52434444444444
+    },
+    {
+     "src": "journal/img/2026-10-08-3a4c36-7.jpg",
+     "thumb": "journal/img/2026-10-08-3a4c36-7-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 25.941697222222224,
+     "lon": 108.524575
+    },
+    {
+     "src": "journal/img/2026-10-08-3a4c36-8.jpg",
+     "thumb": "journal/img/2026-10-08-3a4c36-8-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 25.9419,
+     "lon": 108.5245
     }
    ]
   }
