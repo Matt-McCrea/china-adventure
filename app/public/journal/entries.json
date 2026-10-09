@@ -12,9 +12,10 @@
   "a7d4ce4148dc0bc20a72fd5f06f55ef14541f3259daca136daa69e1f8c287da6",
   "fdecb13fb2f1590327553fb5b1b28046ef09d63f9eefcc703e10131f17190c90",
   "be05d50bff4df1c4ac988b2ae48a7754eeddc6c372e711e8ef84e7e36869b39d",
-  "3a4c36ef52ad0882647d9973a521239f56a0874d98cb34dcec0f5d8415c71a08"
+  "3a4c36ef52ad0882647d9973a521239f56a0874d98cb34dcec0f5d8415c71a08",
+  "6ac3b7d1188285ffad4fed20cdfbb9775ca83827617f5921514292ed5d704eb8"
  ],
- "updated": "2026-10-07T21:52:52.794Z",
+ "updated": "2026-10-09T09:19:11.086Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -564,6 +565,54 @@
      "h": 1600,
      "lat": 25.9419,
      "lon": 108.5245
+    }
+   ]
+  },
+  {
+   "id": "2026-10-09-6ac3b7",
+   "date": "2026-10-09T09:16:05.000Z",
+   "title": "All My Homies Hate Green Macha",
+   "text": "Just a quick one from a tea house, we are told it’s perplexing everything is green macha when it’s the most bitter. Other teas don’t need all that added sugar when you put them in something else",
+   "lat": 26.58490833333333,
+   "lon": 106.71446944444445,
+   "locSource": "photo",
+   "stopId": "chengdu",
+   "place": {
+    "name": "Yunyan",
+    "zh": "云岩区"
+   },
+   "photos": [
+    {
+     "src": "journal/img/2026-10-09-6ac3b7-1.jpg",
+     "thumb": "journal/img/2026-10-09-6ac3b7-1-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.58490833333333,
+     "lon": 106.71446944444445
+    },
+    {
+     "src": "journal/img/2026-10-09-6ac3b7-2.jpg",
+     "thumb": "journal/img/2026-10-09-6ac3b7-2-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.58459722222222,
+     "lon": 106.71466944444445
+    },
+    {
+     "src": "journal/img/2026-10-09-6ac3b7-3.jpg",
+     "thumb": "journal/img/2026-10-09-6ac3b7-3-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.584638888888886,
+     "lon": 106.71468333333334
+    },
+    {
+     "src": "journal/img/2026-10-09-6ac3b7-4.jpg",
+     "thumb": "journal/img/2026-10-09-6ac3b7-4-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.584386111111108,
+     "lon": 106.71473055555556
     }
    ]
   }
