@@ -14,9 +14,10 @@
   "be05d50bff4df1c4ac988b2ae48a7754eeddc6c372e711e8ef84e7e36869b39d",
   "3a4c36ef52ad0882647d9973a521239f56a0874d98cb34dcec0f5d8415c71a08",
   "6ac3b7d1188285ffad4fed20cdfbb9775ca83827617f5921514292ed5d704eb8",
-  "1d63fec6c8bf928967b65d508e8aaa6756059995c31e9aa9ffe94ad8612b9d43"
+  "1d63fec6c8bf928967b65d508e8aaa6756059995c31e9aa9ffe94ad8612b9d43",
+  "49b7c1f53056e6cf7516204c020426e841b945647bf2e7ed72a55606988aec35"
  ],
- "updated": "2026-10-10T18:15:03.882Z",
+ "updated": "2026-10-12T08:15:22.172Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -632,6 +633,134 @@
      "thumb": "journal/img/2026-10-11-1d63fe-1-t.jpg",
      "w": 1600,
      "h": 1200
+    }
+   ]
+  },
+  {
+   "id": "2026-10-12-49b7c1",
+   "date": "2026-10-11T17:01:12.000Z",
+   "title": "Pre-train update",
+   "text": "Very cool but less crazy Chinese stuff lately. Went to a real rice field, old villages, many temples in Guiyang and Chengdu. We have also been visiting the Catholic Churches of China as they are super cool and a mix of traditions, though our cards were declined in the gift shop strangely…\n\nMet some cool people along the way and spent some time at the Chengdu bead convention which is apparently very big business. Aymon had zero luck at the marriage market but hopes remain high. The train begins tomorrow. Anticipation building. We have been informed there are no chargers or food onboard for our 3 day journey so we will prep as we can.",
+   "lat": 26.59316111111111,
+   "lon": 106.71126666666667,
+   "locSource": "photo",
+   "stopId": "chengdu",
+   "place": {
+    "name": "Yunyan",
+    "zh": "云岩区"
+   },
+   "photos": [
+    {
+     "src": "journal/img/2026-10-12-49b7c1-1.jpg",
+     "thumb": "journal/img/2026-10-12-49b7c1-1-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.59316111111111,
+     "lon": 106.71126666666667
+    },
+    {
+     "src": "journal/img/2026-10-12-49b7c1-2.jpg",
+     "thumb": "journal/img/2026-10-12-49b7c1-2-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.592913888888887,
+     "lon": 106.71081666666667
+    },
+    {
+     "src": "journal/img/2026-10-12-49b7c1-3.jpg",
+     "thumb": "journal/img/2026-10-12-49b7c1-3-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.59353611111111,
+     "lon": 106.71000555555555
+    },
+    {
+     "src": "journal/img/2026-10-12-49b7c1-4.jpg",
+     "thumb": "journal/img/2026-10-12-49b7c1-4-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.601508333333335,
+     "lon": 106.69334444444445
+    },
+    {
+     "src": "journal/img/2026-10-12-49b7c1-5.jpg",
+     "thumb": "journal/img/2026-10-12-49b7c1-5-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.575516666666665,
+     "lon": 106.71617222222223
+    },
+    {
+     "src": "journal/img/2026-10-12-49b7c1-6.jpg",
+     "thumb": "journal/img/2026-10-12-49b7c1-6-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.581683333333334,
+     "lon": 106.71495
+    },
+    {
+     "src": "journal/img/2026-10-12-49b7c1-7.jpg",
+     "thumb": "journal/img/2026-10-12-49b7c1-7-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 30.66028611111111,
+     "lon": 104.05454166666667
+    },
+    {
+     "src": "journal/img/2026-10-12-49b7c1-8.jpg",
+     "thumb": "journal/img/2026-10-12-49b7c1-8-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 30.66653611111111,
+     "lon": 104.0598611111111
+    },
+    {
+     "src": "journal/img/2026-10-12-49b7c1-9.jpg",
+     "thumb": "journal/img/2026-10-12-49b7c1-9-t.jpg",
+     "w": 1600,
+     "h": 1200,
+     "lat": 30.67885,
+     "lon": 104.0382
+    },
+    {
+     "src": "journal/img/2026-10-12-49b7c1-10.jpg",
+     "thumb": "journal/img/2026-10-12-49b7c1-10-t.jpg",
+     "w": 1600,
+     "h": 1200,
+     "lat": 30.660027777777778,
+     "lon": 104.03414166666667
+    },
+    {
+     "src": "journal/img/2026-10-12-49b7c1-11.jpg",
+     "thumb": "journal/img/2026-10-12-49b7c1-11-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 30.64994722222222,
+     "lon": 104.046775
+    },
+    {
+     "src": "journal/img/2026-10-12-49b7c1-12.jpg",
+     "thumb": "journal/img/2026-10-12-49b7c1-12-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 26.581125,
+     "lon": 106.72354166666666
+    },
+    {
+     "src": "journal/img/2026-10-12-49b7c1-13.jpg",
+     "thumb": "journal/img/2026-10-12-49b7c1-13-t.jpg",
+     "w": 1158,
+     "h": 1544,
+     "lat": 25.909594444444444,
+     "lon": 109.16867777777779
+    },
+    {
+     "src": "journal/img/2026-10-12-49b7c1-14.jpg",
+     "thumb": "journal/img/2026-10-12-49b7c1-14-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 25.909741666666665,
+     "lon": 109.18097777777778
     }
    ]
   }
