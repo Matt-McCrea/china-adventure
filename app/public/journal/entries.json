@@ -15,9 +15,10 @@
   "3a4c36ef52ad0882647d9973a521239f56a0874d98cb34dcec0f5d8415c71a08",
   "6ac3b7d1188285ffad4fed20cdfbb9775ca83827617f5921514292ed5d704eb8",
   "1d63fec6c8bf928967b65d508e8aaa6756059995c31e9aa9ffe94ad8612b9d43",
-  "49b7c1f53056e6cf7516204c020426e841b945647bf2e7ed72a55606988aec35"
+  "49b7c1f53056e6cf7516204c020426e841b945647bf2e7ed72a55606988aec35",
+  "dd3082a83e42a21c6d24698e9dc1e54a8dc579c3090beda67f25f613fb6072b3"
  ],
- "updated": "2026-10-12T08:15:22.172Z",
+ "updated": "2026-10-12T11:09:36.661Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -761,6 +762,61 @@
      "h": 1600,
      "lat": 25.909741666666665,
      "lon": 109.18097777777778
+    }
+   ]
+  },
+  {
+   "id": "2026-10-12-dd3082",
+   "date": "2026-10-12T11:07:06.000Z",
+   "title": "Train Day 1",
+   "text": "Day 1. \n\nWe are set up in two middle bunks, friendly carriage mates. Full train. Spirits high. \n\nSupplies:\n\n6 instant noodle\n\n10 tangerine\n\n12 banana\n\n6 bread\n\n4 kg tea leaves\n\n2 veg stir fry noodles\n\n2 kg nuts\n\n6 L water\n\n4 apples\n\n6 carrots\n\n3 days to go",
+   "lat": 30.7012,
+   "lon": 103.9775,
+   "locSource": "photo",
+   "stopId": "chengdu",
+   "place": {
+    "name": "Jinniu"
+   },
+   "photos": [
+    {
+     "src": "journal/img/2026-10-12-dd3082-1.jpg",
+     "thumb": "journal/img/2026-10-12-dd3082-1-t.jpg",
+     "w": 720,
+     "h": 1280,
+     "lat": 30.7012,
+     "lon": 103.9775
+    },
+    {
+     "src": "journal/img/2026-10-12-dd3082-2.jpg",
+     "thumb": "journal/img/2026-10-12-dd3082-2-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 31.347480555555553,
+     "lon": 104.54528055555555
+    },
+    {
+     "src": "journal/img/2026-10-12-dd3082-3.jpg",
+     "thumb": "journal/img/2026-10-12-dd3082-3-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 31.34155277777778,
+     "lon": 104.52954166666666
+    },
+    {
+     "src": "journal/img/2026-10-12-dd3082-4.jpg",
+     "thumb": "journal/img/2026-10-12-dd3082-4-t.jpg",
+     "w": 1600,
+     "h": 1200,
+     "lat": 31.349138888888888,
+     "lon": 104.54854722222223
+    },
+    {
+     "src": "journal/img/2026-10-12-dd3082-5.jpg",
+     "thumb": "journal/img/2026-10-12-dd3082-5-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 30.924219444444446,
+     "lon": 104.22695833333333
     }
    ]
   }
