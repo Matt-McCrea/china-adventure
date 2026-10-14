@@ -17,9 +17,10 @@
   "1d63fec6c8bf928967b65d508e8aaa6756059995c31e9aa9ffe94ad8612b9d43",
   "49b7c1f53056e6cf7516204c020426e841b945647bf2e7ed72a55606988aec35",
   "dd3082a83e42a21c6d24698e9dc1e54a8dc579c3090beda67f25f613fb6072b3",
-  "1886e2ed2f78309e78b9bcb255025ffe09a8330c383a421b52c045ae1f94c4a8"
+  "1886e2ed2f78309e78b9bcb255025ffe09a8330c383a421b52c045ae1f94c4a8",
+  "2d2195cfa08f5c253b1fb1851ffc2bd37836aca2232ce73beba8e78d0ab2d9a4"
  ],
- "updated": "2026-10-14T00:17:27.179Z",
+ "updated": "2026-10-14T09:03:57.296Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -871,6 +872,30 @@
      "h": 1280,
      "lat": 40.185824999999994,
      "lon": 97.17453888888889
+    }
+   ]
+  },
+  {
+   "id": "2026-10-14-2d2195",
+   "date": "2026-10-14T09:01:27.000Z",
+   "title": "Made it to Kashgar!",
+   "text": "47 hours later, we made it to the westernmost big city in Xinjiang!\n\nInstantly headed to the hostel (apparently the only one in all of\nXinjiang), and SHOWERED.\n\nOn the taxi in, I spotted fresh naan and lamb skewers, and Matthew spotted\nstreet vendors selling pomegranate and melon. We won't be going hungry here\n\nOff to the streets!",
+   "lat": 39.4722,
+   "lon": 75.9842,
+   "locSource": "plan",
+   "stopId": "kashgar",
+   "photos": [
+    {
+     "src": "journal/img/2026-10-14-2d2195-1.jpg",
+     "thumb": "journal/img/2026-10-14-2d2195-1-t.jpg",
+     "w": 914,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-14-2d2195-2.jpg",
+     "thumb": "journal/img/2026-10-14-2d2195-2-t.jpg",
+     "w": 1200,
+     "h": 1600
     }
    ]
   }
