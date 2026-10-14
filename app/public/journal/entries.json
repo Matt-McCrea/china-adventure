@@ -16,9 +16,10 @@
   "6ac3b7d1188285ffad4fed20cdfbb9775ca83827617f5921514292ed5d704eb8",
   "1d63fec6c8bf928967b65d508e8aaa6756059995c31e9aa9ffe94ad8612b9d43",
   "49b7c1f53056e6cf7516204c020426e841b945647bf2e7ed72a55606988aec35",
-  "dd3082a83e42a21c6d24698e9dc1e54a8dc579c3090beda67f25f613fb6072b3"
+  "dd3082a83e42a21c6d24698e9dc1e54a8dc579c3090beda67f25f613fb6072b3",
+  "1886e2ed2f78309e78b9bcb255025ffe09a8330c383a421b52c045ae1f94c4a8"
  ],
- "updated": "2026-10-12T11:09:36.661Z",
+ "updated": "2026-10-14T00:17:27.179Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -817,6 +818,59 @@
      "h": 1600,
      "lat": 30.924219444444446,
      "lon": 104.22695833333333
+    }
+   ]
+  },
+  {
+   "id": "2026-10-14-1886e2",
+   "date": "2026-10-14T00:15:19.000Z",
+   "title": "Train Day 2",
+   "text": "Not a terrible night. Train lights out at 22:00 and back on at 7:00. The grandmas are up and chatting loudly some time before that. We fell asleep in the jungle of South China and have awoken on Mars. The land of the Gansu Corridor is semi arid and desert in alternating parts. At points all we can see are pylons in all directions as far as the eye can see. Much of the train has taken pictures with us. \nOur new Chinese grandmothers are part of a group of 37 who travel together, they are returning to Xinjiang for the 7th time and have much to recommend. The rest of the train has worked in oil in the Taklamakan  Desert.\nClaustrophobia at a minimum and spirits still high. The train chugs on.",
+   "lat": 38.366030555555554,
+   "lon": 102.06153055555555,
+   "locSource": "photo",
+   "stopId": "kashgar",
+   "place": {
+    "name": "Yongchang"
+   },
+   "photos": [
+    {
+     "src": "journal/img/2026-10-14-1886e2-1.jpg",
+     "thumb": "journal/img/2026-10-14-1886e2-1-t.jpg",
+     "w": 960,
+     "h": 1280,
+     "lat": 38.366030555555554,
+     "lon": 102.06153055555555
+    },
+    {
+     "src": "journal/img/2026-10-14-1886e2-2.jpg",
+     "thumb": "journal/img/2026-10-14-1886e2-2-t.jpg",
+     "w": 960,
+     "h": 1280,
+     "lat": 38.40430555555555,
+     "lon": 102.04881388888889
+    },
+    {
+     "src": "journal/img/2026-10-14-1886e2-3.jpg",
+     "thumb": "journal/img/2026-10-14-1886e2-3-t.jpg",
+     "w": 960,
+     "h": 1280
+    },
+    {
+     "src": "journal/img/2026-10-14-1886e2-4.jpg",
+     "thumb": "journal/img/2026-10-14-1886e2-4-t.jpg",
+     "w": 1280,
+     "h": 960,
+     "lat": 38.81657777777777,
+     "lon": 101.00794166666667
+    },
+    {
+     "src": "journal/img/2026-10-14-1886e2-5.jpg",
+     "thumb": "journal/img/2026-10-14-1886e2-5-t.jpg",
+     "w": 960,
+     "h": 1280,
+     "lat": 40.185824999999994,
+     "lon": 97.17453888888889
     }
    ]
   }
