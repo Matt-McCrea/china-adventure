@@ -18,9 +18,10 @@
   "49b7c1f53056e6cf7516204c020426e841b945647bf2e7ed72a55606988aec35",
   "dd3082a83e42a21c6d24698e9dc1e54a8dc579c3090beda67f25f613fb6072b3",
   "1886e2ed2f78309e78b9bcb255025ffe09a8330c383a421b52c045ae1f94c4a8",
-  "2d2195cfa08f5c253b1fb1851ffc2bd37836aca2232ce73beba8e78d0ab2d9a4"
+  "2d2195cfa08f5c253b1fb1851ffc2bd37836aca2232ce73beba8e78d0ab2d9a4",
+  "e636120fbef40bc5c5af78ce322dc80007b18cab6a4b0c9c115756c3c04ff1db"
  ],
- "updated": "2026-10-14T09:03:57.296Z",
+ "updated": "2026-10-14T17:08:08.311Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -896,6 +897,60 @@
      "thumb": "journal/img/2026-10-14-2d2195-2-t.jpg",
      "w": 1200,
      "h": 1600
+    }
+   ]
+  },
+  {
+   "id": "2026-10-15-e63612",
+   "date": "2026-10-14T17:02:10.000Z",
+   "title": "Train day 3",
+   "text": "Freedom at last! \n\nAs we stagger from our mobile cage the sun is brighter, the air carries the scents of soil and flowers, the birds overhead an orchestra. \n\nWe emerge victorious. \n\nToday the land of Xinjiang passed our window in a blur. More fertile than the desolation of the Gansu corridor, with the exception of a small section that looked like Jordan, with cotton and pomegranate in bountiful quantities. We were told 20% of all the earths cotton is grown here and it is hard to doubt the claim looking out at the fields, with the occasional farmer hand picking their crop.\n\nThere were the most beautiful mountains today. The high peaks of the Kyrgyz border visible from our carriage and the multicoloured rainbow hills up against the tracks. Reds, pinks, orange, yellow, and green rock in strata. \nAymon got some pics so maybe you’ll see them. \n\nThe train is a fantastic experience and way to see the country. With the exception of the grannies throwing their wake up party loudly at 04:30 local time! The beds are more than long enough even for the usual westerner, I recommend them to anyone under 6 foot/180cm. The idea that there is hardship is limited to the confined space and quality of the food you brought, the staff swept regularly, everything was cleaned often, and the people are very kind and friendly. Indeed, we have amassed yet more tea as gifts, the joyful burden now well over 2 kg worth. \n\nThank you all, enjoy any train you have the privilege to be on. Here comes Xinjiang",
+   "lat": 41.236530555555554,
+   "lon": 80.48316944444444,
+   "locSource": "photo",
+   "stopId": "kashgar",
+   "place": {
+    "name": "Onsu",
+    "zh": "温宿县"
+   },
+   "photos": [
+    {
+     "src": "journal/img/2026-10-15-e63612-1.jpg",
+     "thumb": "journal/img/2026-10-15-e63612-1-t.jpg",
+     "w": 1200,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-15-e63612-2.jpg",
+     "thumb": "journal/img/2026-10-15-e63612-2-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 41.236530555555554,
+     "lon": 80.48316944444444
+    },
+    {
+     "src": "journal/img/2026-10-15-e63612-3.jpg",
+     "thumb": "journal/img/2026-10-15-e63612-3-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 40.071675000000006,
+     "lon": 78.71966666666667
+    },
+    {
+     "src": "journal/img/2026-10-15-e63612-4.jpg",
+     "thumb": "journal/img/2026-10-15-e63612-4-t.jpg",
+     "w": 1600,
+     "h": 1200,
+     "lat": 41.28475833333333,
+     "lon": 80.72321388888889
+    },
+    {
+     "src": "journal/img/2026-10-15-e63612-5.jpg",
+     "thumb": "journal/img/2026-10-15-e63612-5-t.jpg",
+     "w": 1600,
+     "h": 1200,
+     "lat": 41.520919444444445,
+     "lon": 82.046775
     }
    ]
   }
