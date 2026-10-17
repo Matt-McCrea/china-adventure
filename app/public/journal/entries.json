@@ -19,9 +19,10 @@
   "dd3082a83e42a21c6d24698e9dc1e54a8dc579c3090beda67f25f613fb6072b3",
   "1886e2ed2f78309e78b9bcb255025ffe09a8330c383a421b52c045ae1f94c4a8",
   "2d2195cfa08f5c253b1fb1851ffc2bd37836aca2232ce73beba8e78d0ab2d9a4",
-  "e636120fbef40bc5c5af78ce322dc80007b18cab6a4b0c9c115756c3c04ff1db"
+  "e636120fbef40bc5c5af78ce322dc80007b18cab6a4b0c9c115756c3c04ff1db",
+  "d7f1990f2fb0267b6927d7ebecae0973b0d4dee5fbf315c67576a788e1577374"
  ],
- "updated": "2026-10-14T17:08:08.311Z",
+ "updated": "2026-10-17T02:22:41.110Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -951,6 +952,24 @@
      "h": 1200,
      "lat": 41.520919444444445,
      "lon": 82.046775
+    }
+   ]
+  },
+  {
+   "id": "2026-10-17-d7f199",
+   "date": "2026-10-17T02:21:18.000Z",
+   "title": "Exploring Xinjiang",
+   "text": "After 2 days in Kashgar, we've decided to check out the southern road on\nthe perimeter of the Taklamakan Desert.\n\nOur experience so far in Xinjiang has been different to what we expected,\nbut just as fun.\n\nWhat was aligned with our expectations:\n\n• NAAN BREAD and YOGHURT!!! With naan and yoghurt, Matthew is happy. With\nbbq lamb skewers, I am happy. Food has been ELITE\n• Even the locals thinking that Matthew is Uyghur\n• I am getting strong flashbacks to Kazakhstan. This all looks so different\nto Chengdu and Guizhou\n\nWhat surprised us:\n• a \"small\" town in China may have very few western tourists, but thousands\nof domestic Chinese tourists\n• with that in mind, even the smallest towns have 3-5 cheap hotels that\ninternational guests can stay at\n\n---------\n\nAt our hostel in Kashgar, out of the 5 other guests we met not one, but TWO\nAussies!!\n1. One of them was a 20 y/o down in the dumps after having a travel\nrelationship not turn out so good :( so we took him under our wing as we\nexplored Kashgar.\n2. The other Aussie we might end up meeting up in Turpan in a few days!\n\nMatthew and I debated sample bias, as we realised that everyone else in\nthis hostel had:\n\n• travelled to Afghanistan\n• is at least on a 6 month trip\n• crazy stories (one dude kayaked some 300km river in Kazakhstan, another\nguy is mountain biking through the snowy mountain passes, etc...)\n\nEventually, we moved on from Kashgar, and after a failed attempt at hitch-\nhiking (the officials politely stopped the next bus for us), we are now in\nthe next town 2 hours east (Yarkant).\n\n---------\n\nNow what?\n\nWe're on the southern road, but eventually need to be on the north side of\nthe desert. From Hotan (next major city), there's a road that crosses the\nENTIRE desert and brings us back to the North side. 600km traverse.\n\nIt's unclear to us if there's much traffic on that road. Ideally we'll\nhitch-hike through it, or get put on a bus.\n\nIf no traffic appears, we'll backtrack our steps to Kashgar and take our\noriginally \"planned\" route.\n\nThat's all for now, hopefully tomorrow you'll see pictures of us on camels!!",
+   "lat": 41.7135,
+   "lon": 82.9544,
+   "locSource": "plan",
+   "stopId": "kuqa",
+   "photos": [
+    {
+     "src": "journal/img/2026-10-17-d7f199-1.jpg",
+     "thumb": "journal/img/2026-10-17-d7f199-1-t.jpg",
+     "w": 1200,
+     "h": 1600
     }
    ]
   }
