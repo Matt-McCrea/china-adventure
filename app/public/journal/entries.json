@@ -21,9 +21,10 @@
   "2d2195cfa08f5c253b1fb1851ffc2bd37836aca2232ce73beba8e78d0ab2d9a4",
   "e636120fbef40bc5c5af78ce322dc80007b18cab6a4b0c9c115756c3c04ff1db",
   "d7f1990f2fb0267b6927d7ebecae0973b0d4dee5fbf315c67576a788e1577374",
-  "e4f19486e2ff92b2f3c748bbdb438702d3015a463e3768ffc84c585025f862be"
+  "e4f19486e2ff92b2f3c748bbdb438702d3015a463e3768ffc84c585025f862be",
+  "d801c504c89a16500208ad73c4b6f2a5abccdbef47ef54452cc06b4e0b818b3e"
  ],
- "updated": "2026-10-18T05:54:33.907Z",
+ "updated": "2026-10-18T17:52:50.515Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -1067,6 +1068,36 @@
      "h": 1600,
      "lat": 39.47139444444445,
      "lon": 75.99640555555555
+    }
+   ]
+  },
+  {
+   "id": "2026-10-19-d801c5",
+   "date": "2026-10-18T17:52:05.000Z",
+   "title": "Cirque du Soleil, but Chinese",
+   "text": "Unfortunately we have no camel photos to share just yet, but (after a\nkerfuffle this morning) we have made it to Hetan!\n\nAs is now routine, we get a taxi to the highway toll booth, we get out, and\nwithin 15 seconds we have traffic police come talk to us. This time they\nseemed quite friendly, and (after much hesitation) actually asked a few\ncars if they would take two such fine individuals on a 4 hour drive.\n\nAccording to the officials, with all the checkpoints and controls, the\ndrivers they talked to weren't too keen on letting two random people in\ntheir cars. Let alone two foreigners!!\n\nRealistically, they only asked 2 cars, and we had plenty of vehicles slow\ndown and say hi as we walked back to the train station with our tails\nbetween our legs.\n\nAlas, we eventually got on the train and ended up meeting 2 other solo\nchinese backpackers!\n\nThey suggested that we explore the old city with them. Apparently there was\nan evening show at 8pm. We've seen these before, every \"old city\" (often\nrebuilt in the last 10 years) seems to have some opening or closing\nceremony with traditional dances. So we weren't expecting anything crazy.\n\nThat could not have been further from the truth.\n\nImagine a MASSIVE complex, that looks just like a traditional desert town\nfrom thousands of years ago. Like Disney, but with Chinese-scale\ninfrastructure. I cannot emphasise how MASSIVE and realistic it looked.\n\nAs you walk through, there's tonnes of actors and actresses in traditional\ncostume, singing, dancing, playing traditional instruments.\n\nTHEN, at 9pm sharp, all the lights go off and the actors rush you to the\nmain square, where a Cirque du Soleil style performance begins out of\nnowhere.\n\nI'm talking (real!) horses, flying dancers, fire, dragons flying through\nthe sky, and actors in every direction you can see. There's no \"stage\".\nYou're amongst all the actors. As they run off, you follow them through\nthis desert town.\n\n(being the only foreigners there, we kept getting pulled in by the actors,\nour two chinese friends found this quite hilarious)\n\nWhat we thought was going to be a \"regular\" traditional dance, ended up\nbeing a crazy immersive theatre experience. Good thing those two travellers\nrecommended that we joined them!!!\n\nWe then headed to the night market, avoiding the ridiculous number of\nstalls selling either testicles or fish (despite being 2,000 km from the\nnearest sea), and settled from some safe veggie fried rice.\n\nOff to bed, finally on an actual mattress!",
+   "lat": 42.8255,
+   "lon": 93.513,
+   "locSource": "plan",
+   "stopId": "hami",
+   "photos": [
+    {
+     "src": "journal/img/2026-10-19-d801c5-1.jpg",
+     "thumb": "journal/img/2026-10-19-d801c5-1-t.jpg",
+     "w": 1600,
+     "h": 1200
+    },
+    {
+     "src": "journal/img/2026-10-19-d801c5-2.jpg",
+     "thumb": "journal/img/2026-10-19-d801c5-2-t.jpg",
+     "w": 1600,
+     "h": 1200
+    },
+    {
+     "src": "journal/img/2026-10-19-d801c5-3.jpg",
+     "thumb": "journal/img/2026-10-19-d801c5-3-t.jpg",
+     "w": 1200,
+     "h": 1600
     }
    ]
   }
