@@ -20,9 +20,10 @@
   "1886e2ed2f78309e78b9bcb255025ffe09a8330c383a421b52c045ae1f94c4a8",
   "2d2195cfa08f5c253b1fb1851ffc2bd37836aca2232ce73beba8e78d0ab2d9a4",
   "e636120fbef40bc5c5af78ce322dc80007b18cab6a4b0c9c115756c3c04ff1db",
-  "d7f1990f2fb0267b6927d7ebecae0973b0d4dee5fbf315c67576a788e1577374"
+  "d7f1990f2fb0267b6927d7ebecae0973b0d4dee5fbf315c67576a788e1577374",
+  "e4f19486e2ff92b2f3c748bbdb438702d3015a463e3768ffc84c585025f862be"
  ],
- "updated": "2026-10-17T02:22:41.110Z",
+ "updated": "2026-10-18T05:54:33.907Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -970,6 +971,102 @@
      "thumb": "journal/img/2026-10-17-d7f199-1-t.jpg",
      "w": 1200,
      "h": 1600
+    }
+   ]
+  },
+  {
+   "id": "2026-10-18-e4f194",
+   "date": "2026-10-18T05:45:00.000Z",
+   "title": "Xinjiang Updates",
+   "text": "Hello all, \n\nWe’re on a train to the South Xinjiang city of Hotan after failing to hitchhike as the officials weren’t too keen. \n\nAymon converted most of the last few days in his post I think (haven’t read it) but couldn’t upload photos. So here’s some photos! \nKashgar was super cool made lots of local and international friends, though all the travellers were mad and had separately been to Afghanistan in the last few weeks for fun.\n\nWherever we are was also cool for two days and far less polished, people were astounded to see Aymon. Though I could be a stock image picture of a Uighur apparently as they all think I’m local. Kids in Xinjiang speak way more English than in the east. \n\nStay safe out there!",
+   "lat": 38.364872222222225,
+   "lon": 77.19013333333334,
+   "locSource": "photo",
+   "stopId": "turpan",
+   "place": {
+    "name": "Yarkand",
+    "zh": "莎车县"
+   },
+   "photos": [
+    {
+     "src": "journal/img/2026-10-18-e4f194-1.jpg",
+     "thumb": "journal/img/2026-10-18-e4f194-1-t.jpg",
+     "w": 960,
+     "h": 1280,
+     "lat": 38.364872222222225,
+     "lon": 77.19013333333334
+    },
+    {
+     "src": "journal/img/2026-10-18-e4f194-2.jpg",
+     "thumb": "journal/img/2026-10-18-e4f194-2-t.jpg",
+     "w": 1280,
+     "h": 960,
+     "lat": 38.36493055555556,
+     "lon": 77.19021666666667
+    },
+    {
+     "src": "journal/img/2026-10-18-e4f194-3.jpg",
+     "thumb": "journal/img/2026-10-18-e4f194-3-t.jpg",
+     "w": 960,
+     "h": 1280,
+     "lat": 38.416469444444445,
+     "lon": 77.25553055555555
+    },
+    {
+     "src": "journal/img/2026-10-18-e4f194-4.jpg",
+     "thumb": "journal/img/2026-10-18-e4f194-4-t.jpg",
+     "w": 960,
+     "h": 1280,
+     "lat": 38.4122,
+     "lon": 77.2612
+    },
+    {
+     "src": "journal/img/2026-10-18-e4f194-5.jpg",
+     "thumb": "journal/img/2026-10-18-e4f194-5-t.jpg",
+     "w": 1280,
+     "h": 960,
+     "lat": 38.87038888888889,
+     "lon": 76.23991388888889
+    },
+    {
+     "src": "journal/img/2026-10-18-e4f194-6.jpg",
+     "thumb": "journal/img/2026-10-18-e4f194-6-t.jpg",
+     "w": 960,
+     "h": 1280,
+     "lat": 39.472630555555554,
+     "lon": 75.98365
+    },
+    {
+     "src": "journal/img/2026-10-18-e4f194-7.jpg",
+     "thumb": "journal/img/2026-10-18-e4f194-7-t.jpg",
+     "w": 960,
+     "h": 1280,
+     "lat": 39.47273333333334,
+     "lon": 75.98056111111111
+    },
+    {
+     "src": "journal/img/2026-10-18-e4f194-8.jpg",
+     "thumb": "journal/img/2026-10-18-e4f194-8-t.jpg",
+     "w": 960,
+     "h": 1280,
+     "lat": 39.47304166666667,
+     "lon": 75.989975
+    },
+    {
+     "src": "journal/img/2026-10-18-e4f194-9.jpg",
+     "thumb": "journal/img/2026-10-18-e4f194-9-t.jpg",
+     "w": 720,
+     "h": 1280,
+     "lat": 39.453,
+     "lon": 76.0052
+    },
+    {
+     "src": "journal/img/2026-10-18-e4f194-10.jpg",
+     "thumb": "journal/img/2026-10-18-e4f194-10-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 39.47139444444445,
+     "lon": 75.99640555555555
     }
    ]
   }
