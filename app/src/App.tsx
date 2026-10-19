@@ -9,6 +9,7 @@ import { JournalButton, JournalPanel, NewPopup, PostViewer, timeAgo } from "./co
 import { WorldView } from "./components/WorldView";
 import { chinaDate, type JournalEntry, type JournalFile } from "./data/journal";
 import { project } from "./map/routeModel";
+import { geoDistance } from "d3-geo";
 
 const SEEN_KEY = "china-adventure:journal-seen";
 const WELCOME_KEY = "china-adventure:welcomed";
@@ -40,6 +41,8 @@ const useMedia = (q: string) => {
 const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const PHOTO_DAY_RE = /\/(\d{4}-\d{2}-\d{2})-/;
+const R_EARTH_KM = 6371.0088;
+const NEARBY_STOP_KM = 100;
 const routeDay = (p: JournalEntry) =>
   p.photos.map((ph) => PHOTO_DAY_RE.exec(ph.src)?.[1]).find((d): d is string => !!d) ?? chinaDate(p.date);
 
@@ -119,6 +122,8 @@ export default function App() {
             title: p.title,
             date: p.date,
             routeDay: routeDay(p),
+            lat,
+            lon,
             xy: project(lon, lat),
             thumb: p.photos[0]?.thumb,
             place: p.place?.name,
@@ -127,9 +132,23 @@ export default function App() {
         }),
     [posts],
   );
+  const visibleStopIds = useMemo(() => {
+    const onTrip = locatedPosts.filter((p) => p.routeDay >= TRIP.start);
+    return STOPS
+      .filter((s) =>
+        onTrip.some((p) => geoDistance([p.lon, p.lat], [s.longitude, s.latitude]) * R_EARTH_KM <= NEARBY_STOP_KM))
+      .map((s) => s.id);
+  }, [locatedPosts]);
+  const visibleStops = useMemo(() => STOPS.filter((s) => visibleStopIds.includes(s.id)), [visibleStopIds]);
   useEffect(() => {
     engine.current?.setPosts(locatedPosts);
   }, [locatedPosts]);
+  useEffect(() => {
+    engine.current?.setVisibleStops(visibleStopIds);
+  }, [visibleStopIds]);
+  useEffect(() => {
+    if (active && !visibleStopIds.includes(active)) setActive(null);
+  }, [active, visibleStopIds]);
   // engine callbacks are bound once; point them at the latest closures
   useEffect(() => {
     if (engine.current) engine.current.cb.onOpenPost = showPost;
@@ -228,9 +247,9 @@ export default function App() {
         else if (poster) togglePoster(false);
       }
       if (!active || (ev.target as HTMLElement)?.classList?.contains("map")) return;
-      const i = STOPS.findIndex((s) => s.id === active);
-      if (ev.key === "ArrowRight" && STOPS[i + 1]) select(STOPS[i + 1].id);
-      if (ev.key === "ArrowLeft" && STOPS[i - 1]) select(STOPS[i - 1].id);
+      const i = visibleStops.findIndex((s) => s.id === active);
+      if (ev.key === "ArrowRight" && visibleStops[i + 1]) select(visibleStops[i + 1].id);
+      if (ev.key === "ArrowLeft" && visibleStops[i - 1]) select(visibleStops[i - 1].id);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -263,7 +282,7 @@ export default function App() {
   const play = async (restart = false) => {
     const e = engine.current!;
     const ps = playState.current;
-    if (restart || !played || ps.step >= STOPS.length) {
+    if (restart || !played || ps.step >= visibleStops.length) {
       ps.step = 0;
       ps.reveal = 0;
       e.setReveal(0);
@@ -273,8 +292,8 @@ export default function App() {
     setPlayed(true);
     setPinnedSeg(null);
     e.setPadding(padFor(true));
-    while (ps.step < STOPS.length && !ps.stop) {
-      const s = STOPS[ps.step];
+    while (ps.step < visibleStops.length && !ps.stop) {
+      const s = visibleStops[ps.step];
       const idx = segIndexFor(s.id);
       const to = idx.length ? Math.max(...idx) + 1 : ps.reveal;
       const long = SEGMENTS.slice(Math.floor(ps.reveal), to).some((x) => x.longJourney);
@@ -289,9 +308,9 @@ export default function App() {
       await wait(reduced() ? 3200 : 2600);
     }
     setPlaying(false);
-    if (ps.step >= STOPS.length) {
+    if (ps.step >= visibleStops.length) {
       e.setReveal(null);
-      ps.step = STOPS.length;
+      ps.step = visibleStops.length;
     }
   };
   const pause = () => {
@@ -304,7 +323,7 @@ export default function App() {
   };
   const showAll = () => {
     playState.current.stop = true;
-    playState.current.step = STOPS.length;
+    playState.current.step = visibleStops.length;
     setPlaying(false);
     engine.current!.setReveal(null);
     select(null, false);
@@ -341,7 +360,7 @@ export default function App() {
   useEffect(() => {
     const h = decodeURIComponent(window.location.hash.slice(1));
     if (h === "poster") togglePoster(true);
-    else if (STOPS.some((s) => s.id === h)) setTimeout(() => select(h), 300);
+    else if (visibleStops.some((s) => s.id === h)) setTimeout(() => select(h), 300);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const firstHashSync = useRef(true);
@@ -358,7 +377,7 @@ export default function App() {
     }
   }, [active, poster, openPost, worldOpen]);
 
-  const stop = STOPS.find((s) => s.id === active) ?? null;
+  const stop = visibleStops.find((s) => s.id === active) ?? null;
   const seg = pinnedSeg ?? hoverSeg;
   const segData = seg ? SEGMENTS.find((s) => s.id === seg.id) : null;
   const scale = view ? niceScale(view.kmPerPx, mobile ? 64 : 84) : null;
@@ -445,9 +464,9 @@ export default function App() {
                   <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" /></svg> <span className="ctrl-label">Pause</span>
                 </button>
               ) : (
-                <button type="button" className="ctrl ctrl-wide ctrl-play" onClick={() => play()} aria-label={played && playState.current.step < STOPS.length ? "Resume journey" : "Play journey"}>
+                <button type="button" className="ctrl ctrl-wide ctrl-play" onClick={() => play()} disabled={!visibleStops.length} aria-label={played && playState.current.step < visibleStops.length ? "Resume journey" : "Play journey"}>
                   <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l8 5-8 5z" /></svg>
-                  <span className="ctrl-label">{played && playState.current.step > 0 && playState.current.step < STOPS.length ? "Resume" : "Play journey"}</span>
+                  <span className="ctrl-label">{played && playState.current.step > 0 && playState.current.step < visibleStops.length ? "Resume" : "Play journey"}</span>
                 </button>
               )}
               {played && (
