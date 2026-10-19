@@ -7,7 +7,7 @@ import { approxKm, dateRange } from "./data/format";
 import { StopCard, LegLine, type SegLengths } from "./components/StopCard";
 import { JournalButton, JournalPanel, NewPopup, PostViewer, timeAgo } from "./components/Journal";
 import { WorldView } from "./components/WorldView";
-import type { JournalEntry, JournalFile } from "./data/journal";
+import { chinaDate, type JournalEntry, type JournalFile } from "./data/journal";
 import { project } from "./map/routeModel";
 
 const SEEN_KEY = "china-adventure:journal-seen";
@@ -39,6 +39,9 @@ const useMedia = (q: string) => {
 };
 const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const PHOTO_DAY_RE = /\/(\d{4}-\d{2}-\d{2})-/;
+const routeDay = (p: JournalEntry) =>
+  p.photos.map((ph) => PHOTO_DAY_RE.exec(ph.src)?.[1]).find((d): d is string => !!d) ?? chinaDate(p.date);
 
 function niceScale(kmPerPx: number, maxPx = 84) {
   const raw = kmPerPx * maxPx;
@@ -103,13 +106,30 @@ export default function App() {
       })
       .catch(() => {});
   }, []);
-  useEffect(() => {
-    engine.current?.setPosts(
+  const locatedPosts = useMemo(
+    () =>
       posts
-        .filter((p) => p.locSource !== "plan" && p.lat != null && p.lon != null)
-        .map((p) => ({ id: p.id, title: p.title, date: p.date, xy: project(p.lon!, p.lat!), thumb: p.photos[0]?.thumb, place: p.place?.name, ideaId: p.place?.ideaId })),
-    );
-  }, [posts]);
+        .filter((p) => p.locSource !== "plan" && (p.lat != null && p.lon != null || p.photos.some((ph) => ph.lat != null && ph.lon != null)))
+        .map((p) => {
+          const photoLoc = p.photos.find((ph) => ph.lat != null && ph.lon != null);
+          const lat = photoLoc?.lat ?? p.lat!;
+          const lon = photoLoc?.lon ?? p.lon!;
+          return {
+            id: p.id,
+            title: p.title,
+            date: p.date,
+            routeDay: routeDay(p),
+            xy: project(lon, lat),
+            thumb: p.photos[0]?.thumb,
+            place: p.place?.name,
+            ideaId: p.place?.ideaId,
+          };
+        }),
+    [posts],
+  );
+  useEffect(() => {
+    engine.current?.setPosts(locatedPosts);
+  }, [locatedPosts]);
   // engine callbacks are bound once; point them at the latest closures
   useEffect(() => {
     if (engine.current) engine.current.cb.onOpenPost = showPost;
@@ -476,9 +496,9 @@ export default function App() {
               <div><dt><svg width="28" height="8" aria-hidden="true" className="sw sw-rail sw-rough"><line x1="1" y1="4" x2="27" y2="4" /><line className="tie" x1="1" y1="4" x2="27" y2="4" /></svg></dt><dd>Rough plan</dd></div>
               <div><dt><svg width="14" height="8" aria-hidden="true" className="sw sw-idea"><circle cx="7" cy="4" r="3" /></svg></dt><dd>Idea</dd></div>
               {posts.some((p) => p.locSource !== "plan") && (
-                <div><dt><svg width="28" height="8" aria-hidden="true" className="sw sw-actual"><line x1="2" y1="4" x2="21" y2="4" /><circle cx="24" cy="4" r="3" /></svg></dt><dd>Actual</dd></div>
+                <div><dt><svg width="14" height="8" aria-hidden="true" className="sw sw-actual"><circle cx="7" cy="4" r="3" /></svg></dt><dd>Journal pin</dd></div>
               )}
-              {SEGMENTS.some((s) => s.mode === "schematic") && (
+              {!locatedPosts.length && SEGMENTS.some((s) => s.mode === "schematic") && (
                 <div><dt><svg width="28" height="8" aria-hidden="true" className="sw sw-schematic"><line x1="2" y1="4" x2="27" y2="4" /></svg></dt><dd>Schematic</dd></div>
               )}
             </dl>
@@ -574,8 +594,8 @@ function Welcome({ posts, onClose, onOpenJournal }: { posts: JournalEntry[]; onC
           <li><b>Zoom out</b> with −, or tap the globe, for the whole world: posts from anywhere on the way show up there too.</li>
           <li><b>Tap a numbered stop</b> to see where we'll be, when, and how we're getting there.</li>
           <li><b>Press Play journey</b> to watch the whole route unfold, Chongqing to Xi'an.</li>
-          <li><b>Updates from the road</b> pop up here the next time you open this page. They also appear as <span className="welcome-pin" aria-hidden="true" /> pins, and the dotted line shows where we've actually been.</li>
-          <li><b>After Kashgar it's a rough plan.</b> The faded part of the route will change as we go, so follow the pins for where we really are.</li>
+          <li><b>Updates from the road</b> pop up here the next time you open this page. They also appear as <span className="welcome-pin" aria-hidden="true" /> pins, and the red route follows photo metadata in trip-date order.</li>
+          <li><b>After Kashgar it's a rough plan.</b> Stops and transport may still change as we go, so follow the pins for where we really are.</li>
           <li>Signal will be patchy in places, so a quiet few days usually just means no signal.</li>
         </ul>
         <p className="welcome-status">
