@@ -22,9 +22,10 @@
   "e636120fbef40bc5c5af78ce322dc80007b18cab6a4b0c9c115756c3c04ff1db",
   "d7f1990f2fb0267b6927d7ebecae0973b0d4dee5fbf315c67576a788e1577374",
   "e4f19486e2ff92b2f3c748bbdb438702d3015a463e3768ffc84c585025f862be",
-  "d801c504c89a16500208ad73c4b6f2a5abccdbef47ef54452cc06b4e0b818b3e"
+  "d801c504c89a16500208ad73c4b6f2a5abccdbef47ef54452cc06b4e0b818b3e",
+  "a5879bcd7cc30336ae4b8afc8fc71648f11a6def7180c4e1b13ca78f4b4b95fd"
  ],
- "updated": "2026-10-18T17:52:50.515Z",
+ "updated": "2026-10-19T15:09:19.924Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -1096,6 +1097,36 @@
     {
      "src": "journal/img/2026-10-19-d801c5-3.jpg",
      "thumb": "journal/img/2026-10-19-d801c5-3-t.jpg",
+     "w": 1200,
+     "h": 1600
+    }
+   ]
+  },
+  {
+   "id": "2026-10-19-a5879b",
+   "date": "2026-10-19T15:08:24.000Z",
+   "title": "Back on the train we go!",
+   "text": "In today's episode of \"you don't know what you've got till it's gone\":\nmattresses!\n\nWe slept 11 hours.\n\nI'm sure the rock hard traditional Chinese mattress has sooooome health\nbenefits, and that soft mattresses are somehow ruining are backs.\n\nRegardless, we hibernated last night and woke up reborn.\n\nAfter checking out the quite disappointing \"old-town\", not so in-use mosque\nand not so \"grand\" bazaar, we headed to the Jade market.\n\nHotan is to this day China's epicentre for jade!! Pretty impressive for a\nsuper remote town of 300k people. We de ides to investigate the MASSIVE\nmarket with at least 500 booths.\n\nIn the process, we picked up little pieces of rock somehow worth $10k usd\n(and carefully placed them back down), before settling on little souvenirs\nworth closer to $10. (pictured)\n\nAfter deliberating between hitch-hiking across the desert highway, taking\nthe overnight bus, or getting on the brand new train line, we find\nourselves yet again at home in the hard sleeper train.\n\nWe'll be rolling into Turpan tomorrow morning, where we will hopefully meet\nup with an Aussie mate we briefly met in Kashgar 10mins before leaving!",
+   "lat": 42.8255,
+   "lon": 93.513,
+   "locSource": "plan",
+   "stopId": "hami",
+   "photos": [
+    {
+     "src": "journal/img/2026-10-19-a5879b-1.jpg",
+     "thumb": "journal/img/2026-10-19-a5879b-1-t.jpg",
+     "w": 1600,
+     "h": 900
+    },
+    {
+     "src": "journal/img/2026-10-19-a5879b-2.jpg",
+     "thumb": "journal/img/2026-10-19-a5879b-2-t.jpg",
+     "w": 1200,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-19-a5879b-3.jpg",
+     "thumb": "journal/img/2026-10-19-a5879b-3-t.jpg",
      "w": 1200,
      "h": 1600
     }
