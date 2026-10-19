@@ -32,7 +32,7 @@ export type EngineCallbacks = {
 export type StopMark = { thumb?: string; count: number; isNew: boolean };
 
 /** A journal post as the map needs it: only posts with a real location get a pin. */
-export type MapPost = { id: string; title: string; date: string; routeDay?: string; xy: Pt; thumb?: string; place?: string; ideaId?: string };
+export type MapPost = { id: string; title: string; date: string; xy: Pt; thumb?: string; place?: string; ideaId?: string };
 
 const overlaps = (a: Rect, b: Rect, m = 2) => a.x0 < b.x1 + m && a.x1 > b.x0 - m && a.y0 < b.y1 + m && a.y1 > b.y0 - m;
 const R_EARTH_KM = 6371.0088;
@@ -88,7 +88,6 @@ export class MapEngine {
   private visitLabels: SecondaryLabel[] = [];
   private marks: Record<string, StopMark> = {};
   private visitedIdeas = new Set<string>();
-  private visibleStops = new Set(STOPS.map((s) => s.id));
   private stopLabels = new Map<string, HTMLDivElement>();
   private leaders = new Map<string, { line: SVGLineElement; dot: SVGCircleElement }>();
   private arcLabel: HTMLDivElement;
@@ -223,14 +222,6 @@ export class MapEngine {
       const s = STOPS.find((x) => x.id === id)!;
       b.setAttribute("aria-label", `Stop ${s.number}: ${s.city}, ${dateRangeLong(s.dateStart, s.dateEnd)}, ${m.count} journal ${m.count === 1 ? "post" : "posts"}${m.isNew ? ", new" : ""}`);
     }
-
-    this.requestRender();
-  }
-
-  setVisibleStops(ids: string[]) {
-    this.visibleStops = new Set(ids);
-    if (this.active && !this.visibleStops.has(this.active)) this.active = null;
-    if (this.hoverStop && !this.visibleStops.has(this.hoverStop)) this.hoverStop = null;
     this.requestRender();
   }
 
@@ -238,7 +229,7 @@ export class MapEngine {
   setPosts(posts: MapPost[]) {
     for (const el of this.postPins.values()) el.remove();
     this.postPins.clear();
-    this.posts = [...posts].sort((a, b) => (a.routeDay ?? chinaDate(a.date)).localeCompare(b.routeDay ?? chinaDate(b.date)) || a.date.localeCompare(b.date));
+    this.posts = [...posts].sort((a, b) => a.date.localeCompare(b.date));
     const latest = this.posts[this.posts.length - 1]?.id;
     for (const p of this.posts) {
       const b = document.createElement("button");
@@ -272,7 +263,7 @@ export class MapEngine {
     }
     this.actualPath = null;
     // the actual route only joins posts made during the trip (a pre-trip post from home isn't part of it)
-    const onTrip = this.posts.filter((p) => (p.routeDay ?? chinaDate(p.date)) >= TRIP.start);
+    const onTrip = this.posts.filter((p) => chinaDate(p.date) >= TRIP.start);
     if (onTrip.length > 1) {
       this.actualPath = new Path2D();
       onTrip.forEach((p, i) => (i ? this.actualPath!.lineTo(p.xy[0], p.xy[1]) : this.actualPath!.moveTo(p.xy[0], p.xy[1])));
@@ -295,13 +286,8 @@ export class MapEngine {
   }
 
   fitAll(animate = true) {
-    const pts = STOPS.filter((s) => this.visibleStops.has(s.id)).map((s) => STOP_XY.get(s.id)!);
-    if (this.actualPath && this.reveal == null) {
-      for (const p of this.posts) pts.push(p.xy);
-    } else {
-      for (const r of this.routes) pts.push(r.bbox[0], r.bbox[1]);
-    }
-    if (!pts.length) pts.push(STOP_XY.get(STOPS[0].id)!);
+    const pts = [...STOP_XY.values()];
+    for (const r of this.routes) pts.push(r.bbox[0], r.bbox[1]);
     return this.flyToBox(this.bboxOf(pts), animate ? 900 : 0);
   }
 
@@ -709,6 +695,17 @@ export class MapEngine {
       ctx.stroke();
     }
 
+    // our actual route, joining located journal posts in date order
+    if (this.actualPath && this.reveal == null) {
+      ctx.strokeStyle = C.actual;
+      ctx.globalAlpha = 0.85;
+      ctx.lineWidth = 1.6 * px;
+      ctx.setLineDash([1.5 * px, 3.5 * px]);
+      ctx.stroke(this.actualPath);
+      ctx.setLineDash([]);
+      ctx.globalAlpha = 1;
+    }
+
     // stations & transfers
     if (k >= MAP_CONFIG.tiers.stations * 0.6) {
       const used = new Set(SEGMENTS.flatMap((s) => [s.from, s.to]));
@@ -731,7 +728,6 @@ export class MapEngine {
       ctx.lineWidth = 1.2 * px;
       ctx.setLineDash([2 * px, 2.5 * px]);
       for (const s of STOPS) {
-        if (!this.visibleStops.has(s.id)) continue;
         if (s.confidence !== "approximate") continue;
         const [x, y] = STOP_XY.get(s.id)!;
         ctx.beginPath();
@@ -779,15 +775,6 @@ export class MapEngine {
     const { ctx, colors: C } = this;
     const px = (this.W < 560 ? 1.3 : 1) / this.t.k; // phones: thicker lines
     const focus = this.hoverStop ?? this.active;
-    if (this.actualPath && this.reveal == null) {
-      ctx.strokeStyle = C.paper;
-      ctx.lineWidth = 6 * px;
-      ctx.stroke(this.actualPath);
-      ctx.strokeStyle = C.rail;
-      ctx.lineWidth = 3.4 * px;
-      ctx.stroke(this.actualPath);
-      return;
-    }
 
     // ghost of the whole route while the journey is playing
     if (this.reveal != null) {
@@ -894,14 +881,7 @@ export class MapEngine {
     });
 
     // ---- 1. badges: singletons sit on their point; crowded stops fan out with leader lines
-    const shownStops = STOPS.filter((s) => this.visibleStops.has(s.id));
-    for (const s of STOPS.filter((s) => !this.visibleStops.has(s.id))) {
-      this.badges.get(s.id)!.style.visibility = "hidden";
-      this.stopLabels.get(s.id)!.style.visibility = "hidden";
-      const { line, dot } = this.leaders.get(s.id)!;
-      line.style.display = dot.style.display = "none";
-    }
-    const anchors = shownStops.map((s) => ({ s, p: this.toScreen(STOP_XY.get(s.id)!) }));
+    const anchors = STOPS.map((s) => ({ s, p: this.toScreen(STOP_XY.get(s.id)!) }));
     const parent = anchors.map((_, i) => i);
     const find = (i: number): number => (parent[i] === i ? i : (parent[i] = find(parent[i])));
     for (let i = 0; i < anchors.length; i++)
@@ -953,7 +933,6 @@ export class MapEngine {
       const id = a.s.id;
       const bp = badgePos.get(id)!;
       const b = this.badges.get(id)!;
-      b.style.visibility = "visible";
       b.style.transform = `translate(${bp[0] - B / 2}px, ${bp[1] - B / 2}px) scale(var(--s, 1))`;
       b.classList.toggle("is-active", this.active === id);
       b.classList.toggle("is-future", !this.stopReached(a.s));
@@ -999,7 +978,7 @@ export class MapEngine {
 
     // ---- 2. stop labels, active/hovered first, falling back to less detail before giving up
     const tier = this.tierFor(k);
-    const order = [...shownStops].sort((a, b) => {
+    const order = [...STOPS].sort((a, b) => {
       const pa = a.id === this.active ? -2 : a.id === this.hoverStop ? -1 : a.number;
       const pb = b.id === this.active ? -2 : b.id === this.hoverStop ? -1 : b.number;
       return pa - pb;

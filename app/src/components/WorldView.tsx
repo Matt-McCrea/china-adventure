@@ -5,12 +5,11 @@ import { zoom, zoomIdentity, type ZoomTransform } from "d3-zoom";
 import { feature } from "topojson-client";
 import type { Topology } from "topojson-specification";
 import type { FeatureCollection, Polygon, Position } from "geojson";
+import routesGeo from "../data/generated/routes.geo.json";
 import { STOPS, TRIP } from "../data/itinerary";
 import { MAP_CONFIG } from "../map/config";
 import type { JournalEntry } from "../data/journal";
 import { postTime } from "./Journal";
-
-const PHOTO_DAY_RE = /\/(\d{4}-\d{2}-\d{2})-/;
 
 /**
  * The whole world, for posts sent from anywhere (Beijing on the way home, or from home before the trip).
@@ -61,26 +60,7 @@ export function WorldView({ posts, onOpenPost, onClose }: { posts: JournalEntry[
     return () => ro.disconnect();
   }, []);
 
-  const located = useMemo(
-    () =>
-      posts
-        .filter((p) => p.locSource !== "plan" && (p.lat != null && p.lon != null || p.photos.some((ph) => ph.lat != null && ph.lon != null)))
-        .map((p) => {
-          const photoLoc = p.photos.find((ph) => ph.lat != null && ph.lon != null);
-          return {
-            ...p,
-            lat: photoLoc?.lat ?? p.lat!,
-            lon: photoLoc?.lon ?? p.lon!,
-            routeDay: p.photos.map((ph) => PHOTO_DAY_RE.exec(ph.src)?.[1]).find((d): d is string => !!d) ?? p.date.slice(0, 10),
-          };
-        }),
-    [posts],
-  );
-  const routed = useMemo(
-    () => [...located].sort((a, b) => a.routeDay.localeCompare(b.routeDay) || a.date.localeCompare(b.date)),
-    [located],
-  );
-  const routeLine = routed.length > 1 ? { type: "LineString", coordinates: routed.map((p) => [p.lon!, p.lat!]) } as const : null;
+  const located = posts.filter((p) => p.locSource !== "plan" && p.lat != null && p.lon != null);
 
   // frame Europe → East Asia → Australia (home to the trip), stretched to take in any post outside it
   const proj = useMemo(() => {
@@ -101,10 +81,8 @@ export function WorldView({ posts, onOpenPost, onClose }: { posts: JournalEntry[
 
   const hovered = located.find((p) => p.id === hover);
   const hp = hovered ? proj([hovered.lon!, hovered.lat!]) : null;
-  const firstP = routed[0] ? [routed[0].lon!, routed[0].lat!] as [number, number] : [STOPS[0].longitude, STOPS[0].latitude] as [number, number];
-  const lastP = routed[routed.length - 1] ? [routed[routed.length - 1].lon!, routed[routed.length - 1].lat!] as [number, number] : [STOPS[STOPS.length - 1].longitude, STOPS[STOPS.length - 1].latitude] as [number, number];
-  const first = proj(firstP);
-  const last = proj(lastP);
+  const first = proj([STOPS[0].longitude, STOPS[0].latitude]);
+  const last = proj([STOPS[STOPS.length - 1].longitude, STOPS[STOPS.length - 1].latitude]);
 
   return (
     <div className="world" data-map-ui>
@@ -122,7 +100,9 @@ export function WorldView({ posts, onOpenPost, onClose }: { posts: JournalEntry[
           {world?.features.map((f, i) => (
             <path key={i} className={focus.has(f.properties?.a3) ? "world-focus" : "world-land"} d={path(f) ?? ""} style={{ strokeWidth: 0.5 / k }} />
           ))}
-          {routeLine && <path className="world-route is-rail" d={path(routeLine) ?? ""} style={{ strokeWidth: 2.4 / k }} />}
+          {(routesGeo as any).features.map((f: any) => (
+            <path key={f.properties.id} className={`world-route is-${f.properties.mode}`} d={path(f) ?? ""} style={{ strokeWidth: 2.4 / k }} />
+          ))}
           {first && last && (
             <g className="world-trip" style={{ fontSize: 12 / k }}>
               <circle cx={first[0]} cy={first[1]} r={3 / k} />
