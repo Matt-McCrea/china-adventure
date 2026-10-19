@@ -19,10 +19,9 @@ export function timeAgo(iso: string) {
 }
 
 const cityOf = (id: string) => STOPS.find((s) => s.id === id)?.city ?? "";
-const postPlace = (p: JournalEntry) => p.place?.name ?? (p.locSource === "plan" ? "Location pending" : cityOf(p.stopId) || "On the road");
 
 function where(e: JournalEntry) {
-  if (e.locSource === "plan") return `${e.place?.name ?? "Location pending"} · no exact location sent`;
+  if (e.locSource === "plan") return e.place ? `${e.place.name} · no exact location sent` : `Around ${cityOf(e.stopId)} · no exact location sent`;
   if (e.locSource === "named") return `${e.place?.name ?? ""}${e.place?.zh ? ` ${e.place.zh}` : ""} · placed by name`;
   const lat = `${Math.abs(e.lat!).toFixed(3)}° ${e.lat! >= 0 ? "N" : "S"}`;
   const lon = `${Math.abs(e.lon!).toFixed(3)}° ${e.lon! >= 0 ? "E" : "W"}`;
@@ -38,7 +37,7 @@ export function PostThumbs({ posts, onOpen }: { posts: JournalEntry[]; onOpen: (
             {p.photos[0] ? <img src={p.photos[0].thumb} alt="" loading="lazy" width={56} height={56} /> : <span className="post-nophoto" aria-hidden="true" />}
             <span className="post-row-body">
               <b>{p.title}</b>
-              <small>{postTime(p.date)} · {postPlace(p)}</small>
+              <small>{postTime(p.date)} · {p.place?.name ?? cityOf(p.stopId)}</small>
               {p.text && <span className="post-snippet">{p.text.slice(0, 90)}{p.text.length > 90 ? "…" : ""}</span>}
             </span>
           </button>
@@ -188,8 +187,8 @@ export function JournalPanel({ posts, onOpen, onClose }: { posts: JournalEntry[]
                   )}
                   <span className="jd-body">
                     <small>
-                      {postTime(p.date)} · {postPlace(p)}
-                      {stop && p.locSource !== "plan" && <span className="jd-stop"> · stop {String(stop.number).padStart(2, "0")}</span>}
+                      {postTime(p.date)} · {p.place?.name ?? stop?.city}
+                      {stop && <span className="jd-stop"> · stop {String(stop.number).padStart(2, "0")}</span>}
                     </small>
                     <b>{p.title}</b>
                     {p.text && <span className="post-snippet">{p.text.slice(0, 200)}{p.text.length > 200 ? "…" : ""}</span>}
