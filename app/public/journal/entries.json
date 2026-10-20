@@ -23,9 +23,10 @@
   "d7f1990f2fb0267b6927d7ebecae0973b0d4dee5fbf315c67576a788e1577374",
   "e4f19486e2ff92b2f3c748bbdb438702d3015a463e3768ffc84c585025f862be",
   "d801c504c89a16500208ad73c4b6f2a5abccdbef47ef54452cc06b4e0b818b3e",
-  "a5879bcd7cc30336ae4b8afc8fc71648f11a6def7180c4e1b13ca78f4b4b95fd"
+  "a5879bcd7cc30336ae4b8afc8fc71648f11a6def7180c4e1b13ca78f4b4b95fd",
+  "fce8f38638efe3c294b21934dd05c0e44460e0d2d802b03f6543a8faab36c37d"
  ],
- "updated": "2026-10-19T15:09:19.924Z",
+ "updated": "2026-10-20T15:38:42.018Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -1127,6 +1128,42 @@
     {
      "src": "journal/img/2026-10-19-a5879b-3.jpg",
      "thumb": "journal/img/2026-10-19-a5879b-3-t.jpg",
+     "w": 1200,
+     "h": 1600
+    }
+   ]
+  },
+  {
+   "id": "2026-10-20-fce8f3",
+   "date": "2026-10-20T15:37:28.000Z",
+   "title": "Last stop in Xinjiang: Turpan",
+   "text": "We yet again found ourselves waking up to the chugging of the train. This\ntime heading eastwards, parallel to the Taklamakan Desert.\n\nThis train was much bumpier and louder than the last, with way more twists\nand turns in the track. Odd since this track was only built 3 years ago.\n\nMatthew recalls waking up throughout the night to our bags falling off the\nrack, and catapulting to the ground. It's unclear if he was dreaming or\nthat actually happened. Personally, I slept like a baby.\n\nAnyway, we made our oats and arrived in Turpan mid-morning. After hearing\nabout this town from the Turpan basketball team (that won the finals back\nin Taipan weeks ago) we had high hopes for this city.\n\nWe'd organised to meet this Aussie guy at the hostel. Considering he'd been\nhere for 2 days already, we presumed he had some ideas of where to go.\nInstead, he was mostly preoccupied in regretting his decision of not\njoining his mates who are currently driving around Iran.\n\nMatthew and I quickly do some research and make a vague plan of sights to\nsee. It appears that all the cool sights are out of town (most of which\nwe'll be visiting tomorrow), and the town itself isn't much of interest.\n\nWe make our way towards what appears to be a lovely mosque on Amap (the\nchinese version of Google maps). When we arrive at the location, we can't\nsee anything of resemblance. This isn't unusual. Amap is confusing at best,\nand inaccurate at worst.\n\nHoping to get directions, we show the photo of the mosque to these guys\nsitting across the street, who reply with \"before\".\n\nThey eventually explain that it had been removed last year, and is now\nreplaced by an apartment block...\n\nAfter dilly dallying around this town with zero attractions, museums, or\nmuch happening at all, we walk past this square full of life, with dozens\nof table tennis tables and people playing badminton. We head around the\ncorner to buy some €3 bats.\n\nNow equipped with the right tools, we end up spending our afternoon playing\ntable tennis and badmiton with the locals, with some traditional chinese\nmusic in the background. Now this felt very Chinese.\n\nMatthew has made it very clear to me that he is not leaving Xinjiang until\nhe has ridden a camel, so tomorrow we're renting a taxi for the day with a\nGerman guy to find some (and also to see some of the real attractions of\nthis area).\n\nCiaooo",
+   "lat": 40.1387,
+   "lon": 94.6611,
+   "locSource": "plan",
+   "stopId": "dunhuang",
+   "photos": [
+    {
+     "src": "journal/img/2026-10-20-fce8f3-1.jpg",
+     "thumb": "journal/img/2026-10-20-fce8f3-1-t.jpg",
+     "w": 1200,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-20-fce8f3-2.jpg",
+     "thumb": "journal/img/2026-10-20-fce8f3-2-t.jpg",
+     "w": 1200,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-20-fce8f3-3.jpg",
+     "thumb": "journal/img/2026-10-20-fce8f3-3-t.jpg",
+     "w": 1200,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-20-fce8f3-4.jpg",
+     "thumb": "journal/img/2026-10-20-fce8f3-4-t.jpg",
      "w": 1200,
      "h": 1600
     }
