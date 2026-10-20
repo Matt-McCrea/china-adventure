@@ -404,23 +404,29 @@ a { color: inherit; }
 .map-jpin {
   position: absolute; left: 0; top: 0; width: 14px; height: 14px; padding: 0;
   border: 2px solid var(--map-paper); border-radius: 50%;
-  background: var(--map-actual); cursor: pointer; pointer-events: auto;
+  background: var(--ink); cursor: pointer; pointer-events: auto;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   will-change: transform;
 }
-.map-jpin::before { content: ""; position: absolute; inset: -12px; border-radius: 50%; } /* 38px touch target */
-.map-jpin span { position: absolute; inset: 3px; border-radius: 50%; background: var(--map-paper); }
+.map-jpin::before { content: ""; position: absolute; inset: -9px; border-radius: 50%; } /* 42px touch target */
+.map-jpin span { position: absolute; inset: 3px; border-radius: 50%; background: var(--paper-2); }
 .map-jpin.is-full {
   width: var(--badge);
   height: var(--badge);
   border-width: 1.5px;
+  background: var(--ink);
+  color: var(--paper-2);
+  font: 600 10.5px/1 var(--f-mono);
+  letter-spacing: -0.02em;
+  display: grid;
+  place-items: center;
 }
-.map-jpin.is-full span { display: none; }
+.map-jpin.is-full span { position: static; inset: auto; border-radius: 0; background: none; }
 .map-jpin[data-count]:not([data-count=""])::after {
   content: attr(data-count); position: absolute; left: 10px; top: -9px;
   font: 600 9px/1 var(--f-mono); color: var(--accent);
 }
-.map-jpin.is-latest { box-shadow: 0 0 0 0 color-mix(in srgb, var(--map-actual) 60%, transparent); animation: pin-pulse 2.4s ease-out infinite; }
+.map-jpin.is-latest { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ink) 40%, transparent); animation: pin-pulse 2.4s ease-out infinite; }
 @keyframes pin-pulse { 70% { box-shadow: 0 0 0 10px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
 .map-jpin:focus-visible { --s: 1.25; z-index: 4; }
 @media (hover: hover) { .map-jpin:hover { --s: 1.25; z-index: 4; } }

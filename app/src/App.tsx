@@ -119,16 +119,20 @@ export default function App() {
     engine.current?.setPosts(
       posts
         .filter((p) => p.locSource !== "plan" && p.lat != null && p.lon != null)
-        .map((p) => ({
-          id: p.id,
-          title: p.title,
-          date: p.date,
-          routeDate: photoDay(p) ?? chinaDate(p.date),
-          xy: project(p.lon!, p.lat!),
-          thumb: p.photos[0]?.thumb,
-          place: p.place?.name,
-          ideaId: p.place?.ideaId,
-        })),
+        .map((p) => {
+          const stop = STOPS.find((s) => s.id === p.stopId);
+          return {
+            id: p.id,
+            title: p.title,
+            date: p.date,
+            routeDate: photoDay(p) ?? chinaDate(p.date),
+            xy: project(p.lon!, p.lat!),
+            stopNumber: stop?.number,
+            thumb: p.photos[0]?.thumb,
+            place: p.place?.name,
+            ideaId: p.place?.ideaId,
+          };
+        }),
     );
   }, [posts]);
   // engine callbacks are bound once; point them at the latest closures
