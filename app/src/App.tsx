@@ -7,7 +7,7 @@ import { approxKm, dateRange } from "./data/format";
 import { StopCard, LegLine, type SegLengths } from "./components/StopCard";
 import { JournalButton, JournalPanel, NewPopup, PostViewer, timeAgo } from "./components/Journal";
 import { WorldView } from "./components/WorldView";
-import type { JournalEntry, JournalFile } from "./data/journal";
+import { chinaDate, stopForDate, stopForLocation, type JournalEntry, type JournalFile } from "./data/journal";
 import { project } from "./map/routeModel";
 
 const SEEN_KEY = "china-adventure:journal-seen";
@@ -39,6 +39,8 @@ const useMedia = (q: string) => {
 };
 const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const photoDay = (p: JournalEntry) => p.photos[0]?.src.match(/(\d{4}-\d{2}-\d{2})-/)?.[1];
+const routeStamp = (p: JournalEntry) => `${photoDay(p) ?? chinaDate(p.date)}:${p.date}:${p.id}`;
 
 function niceScale(kmPerPx: number, maxPx = 84) {
   const raw = kmPerPx * maxPx;
@@ -90,7 +92,17 @@ export default function App() {
     fetch(`journal/entries.json?t=${Date.now()}`, { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : null))
       .then((j: JournalFile | null) => {
-        const list = (j?.entries ?? []).filter((e) => !e.hidden);
+        const list = (j?.entries ?? [])
+          .filter((e) => !e.hidden)
+          .map((e) => {
+            const day = chinaDate(e.date);
+            if (e.locSource !== "plan" && e.lat != null && e.lon != null)
+              return { ...e, stopId: stopForLocation(e.lat, e.lon, day, e.stopId) };
+            if (!STOPS.some((s) => s.id === e.stopId))
+              return { ...e, stopId: stopForDate(day) };
+            return e;
+          })
+          .sort((a, b) => routeStamp(a).localeCompare(routeStamp(b)));
         setPosts(list);
         if (!list.length) return;
         const seen = readSeen();
@@ -107,7 +119,16 @@ export default function App() {
     engine.current?.setPosts(
       posts
         .filter((p) => p.locSource !== "plan" && p.lat != null && p.lon != null)
-        .map((p) => ({ id: p.id, title: p.title, date: p.date, xy: project(p.lon!, p.lat!), thumb: p.photos[0]?.thumb, place: p.place?.name, ideaId: p.place?.ideaId })),
+        .map((p) => ({
+          id: p.id,
+          title: p.title,
+          date: p.date,
+          routeDate: photoDay(p) ?? chinaDate(p.date),
+          xy: project(p.lon!, p.lat!),
+          thumb: p.photos[0]?.thumb,
+          place: p.place?.name,
+          ideaId: p.place?.ideaId,
+        })),
     );
   }, [posts]);
   // engine callbacks are bound once; point them at the latest closures

@@ -32,7 +32,7 @@ export type EngineCallbacks = {
 export type StopMark = { thumb?: string; count: number; isNew: boolean };
 
 /** A journal post as the map needs it: only posts with a real location get a pin. */
-export type MapPost = { id: string; title: string; date: string; xy: Pt; thumb?: string; place?: string; ideaId?: string };
+export type MapPost = { id: string; title: string; date: string; routeDate?: string; xy: Pt; thumb?: string; place?: string; ideaId?: string };
 
 const overlaps = (a: Rect, b: Rect, m = 2) => a.x0 < b.x1 + m && a.x1 > b.x0 - m && a.y0 < b.y1 + m && a.y1 > b.y0 - m;
 const R_EARTH_KM = 6371.0088;
@@ -229,7 +229,7 @@ export class MapEngine {
   setPosts(posts: MapPost[]) {
     for (const el of this.postPins.values()) el.remove();
     this.postPins.clear();
-    this.posts = [...posts].sort((a, b) => a.date.localeCompare(b.date));
+    this.posts = [...posts].sort((a, b) => `${a.routeDate ?? a.date}:${a.id}`.localeCompare(`${b.routeDate ?? b.date}:${b.id}`));
     const latest = this.posts[this.posts.length - 1]?.id;
     for (const p of this.posts) {
       const b = document.createElement("button");

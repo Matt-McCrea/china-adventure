@@ -25,7 +25,7 @@ export type JournalEntry = {
   locSource: "email" | "photo" | "named" | "plan";
   /** where the post was made, as a name: from the @tag, or looked up from the coordinates */
   place?: { name: string; zh?: string; ideaId?: string };
-  /** planned stop for the date the post was sent (China time) */
+  /** stop matched from location metadata when available, else from plan date */
   stopId: string;
   photos: JournalPhoto[];
   hidden?: boolean;
@@ -42,6 +42,37 @@ export function stopForDate(ymd: string): string {
   if (inside.length) return inside[inside.length - 1].id;
   const before = STOPS.filter((s) => s.dateStart <= ymd);
   return (before[before.length - 1] ?? STOPS[0]).id;
+}
+
+const R = 6371.0088;
+const rad = Math.PI / 180;
+const hav = (aLat: number, aLon: number, bLat: number, bLon: number) => {
+  const dLat = (bLat - aLat) * rad;
+  const dLon = (bLon - aLon) * rad;
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(aLat * rad) * Math.cos(bLat * rad) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+};
+const dayGap = (d: string, a: string, b: string) =>
+  d < a ? (new Date(a).getTime() - new Date(d).getTime()) / 86400e3
+    : d > b ? (new Date(d).getTime() - new Date(b).getTime()) / 86400e3
+      : 0;
+
+/**
+ * Match a post location to the closest stop. Date is used as a light tie-breaker so
+ * updates and reordering never re-file a post to a different stop unexpectedly.
+ */
+export function stopForLocation(lat: number, lon: number, ymd?: string, fallback = STOPS[0]?.id): string {
+  let best = STOPS[0];
+  let bestScore = Infinity;
+  for (const s of STOPS) {
+    const km = hav(lat, lon, s.latitude, s.longitude);
+    const score = km + (ymd ? dayGap(ymd, s.dateStart, s.dateEnd) * 25 : 0);
+    if (score < bestScore) {
+      bestScore = score;
+      best = s;
+    }
+  }
+  return best?.id ?? fallback;
 }
 
 /**
