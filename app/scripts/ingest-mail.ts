@@ -22,7 +22,7 @@ import heicConvert from "heic-convert";
 import { createHash } from "node:crypto";
 import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { IDEAS, STOPS } from "../src/data/itinerary";
-import { chinaDate, parseCoords, parsePlaceTag, stopForDate, type JournalEntry, type JournalFile, type JournalPhoto } from "../src/data/journal";
+import { chinaDate, parseCoords, parsePlaceTag, stopForDate, stopForLocation, type JournalEntry, type JournalFile, type JournalPhoto } from "../src/data/journal";
 
 const OUT_DIR = "public/journal";
 const IMG_DIR = `${OUT_DIR}/img`;
@@ -167,8 +167,9 @@ async function process1(raw: Buffer, db: ReturnType<typeof load>): Promise<"adde
   const tag = bodyTag ?? subjectTag;
   const photos = await savePhotos(mail, id);
   const text = cleanText(body, coords?.match, bodyTag?.match);
-  const stopId = tag?.kind === "stop" ? tag.stopId : stopForDate(day);
-  const stop = STOPS.find((s) => s.id === stopId)!;
+  const plannedStopId = stopForDate(day);
+  let stopId = tag?.kind === "stop" ? tag.stopId : plannedStopId;
+  const stop = STOPS.find((s) => s.id === plannedStopId)!;
   const photoLoc = photos.find((p) => p.lat != null);
 
   let loc: Pick<JournalEntry, "lat" | "lon" | "locSource"> = coords
@@ -196,6 +197,9 @@ async function process1(raw: Buffer, db: ReturnType<typeof load>): Promise<"adde
     const r = await reverseGeocode(loc.lat!, loc.lon!);
     if (r) place = r;
   }
+
+  if (tag?.kind !== "stop" && loc.locSource !== "plan" && loc.lat != null && loc.lon != null)
+    stopId = stopForLocation(loc.lat, loc.lon, day, plannedStopId);
 
   const entry: JournalEntry = {
     id, date,

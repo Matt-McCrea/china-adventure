@@ -1,6 +1,6 @@
 # China Adventure 2026: route map
 
-Interactive map of a 26-day rail journey across China (Chongqing → Guizhou → Chengdu → Kashgar → Silk Road → Xi'an, 2–27 Oct 2026).
+Interactive map of a 26-day rail journey across China (Chongqing → Guizhou → Chengdu → Kashgar → Shache/Yarkant → Hotan → Turpan → Xi'an, 2–27 Oct 2026).
 
 **Status:** map stage, for approval. The full website (timeline, chapters, field notes) builds on this code next.
 
@@ -61,10 +61,8 @@ The script prints each leg's measured length next to the straight-line distance,
 
 ### Known data gaps (OSM, Sept 2026)
 
-- Tiexi Valley isn't mapped in OSM. It's placed about 4 km north of Zhenyuan town (Baidu Baike / Ctrip) and marked approximate.
 - Taipan: OSM has the township centre, not the 村BA court. Marked approximate.
-- T60 (Chengdu → Kashgar) is drawn as an arc by choice, but its real track is still traced hop by hop (`osmRoute`) for the distance: 3,909 km vs 3,941 km published. Two small OSM gaps (under 8 km) are bridged. To draw the real line, see the comment on that segment in itinerary.ts.
-- The Lanzhou–Xinjiang line relation passes about 8 km from Hami station, so the rail line ends slightly short of the Hami marker at close zoom.
+- Taklamakan corridor segments are routed from Overpass `railway=rail` way geometry when available. If Overpass is unavailable in the build environment, the script falls back to corridor line vertices so the map still renders without breaking.
 
 ## Base map
 
