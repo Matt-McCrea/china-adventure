@@ -20,9 +20,8 @@ export const TRIP = {
 export const CHAPTERS: Chapter[] = [
   { id: "south", numeral: "I", title: "Mountain city & Guizhou", label: { lon: 110.2, lat: 28.4 } },
   { id: "sichuan", numeral: "II", title: "Sichuan", label: { lon: 101.6, lat: 30.9 } },
-  { id: "west", numeral: "III", title: "Across the west", label: { lon: 90.5, lat: 35.0 } },
-  { id: "xinjiang", numeral: "IV", title: "Taklamakan rail corridor", label: { lon: 82.9, lat: 38.9 } },
-  { id: "xian", numeral: "V", title: "Xi'an", label: { lon: 111.4, lat: 34.9 } },
+  { id: "xinjiang", numeral: "III", title: "Taklamakan rail corridor", label: { lon: 82.9, lat: 38.9 } },
+  { id: "xian", numeral: "IV", title: "Xi'an", label: { lon: 111.4, lat: 34.9 } },
 ];
 
 const OSM = "OpenStreetMap place node";
@@ -105,8 +104,17 @@ export const STOPS: Stop[] = [
     icon: "oasis",
   },
   {
-    id: "xian", tentative: true, number: 9, chapter: "xian",
-    dateStart: "2026-10-23", dateEnd: "2026-10-27",
+    id: "xining", tentative: true, number: 9, chapter: "xian",
+    dateStart: "2026-10-23", dateEnd: "2026-10-24",
+    city: "Xining", chineseName: "西宁", region: "Qinghai", regionZh: "青海",
+    longitude: 101.7762, latitude: 36.6173, confidence: "verified", coordSource: "OSM, Xining station area",
+    kicker: "Qinghai plateau stopover",
+    highlights: ["Plateau city break", "Old quarter food streets", "Gateway to Qinghai landscapes"],
+    icon: "city",
+  },
+  {
+    id: "xian", tentative: true, number: 10, chapter: "xian",
+    dateStart: "2026-10-25", dateEnd: "2026-10-27",
     city: "Xi'an", chineseName: "西安", region: "Shaanxi", regionZh: "陕西",
     longitude: 108.9423, latitude: 34.261, confidence: "verified", coordSource: "OSM, Bell Tower",
     kicker: "End of the line",
@@ -140,6 +148,7 @@ export const WAYPOINTS: Waypoint[] = [
   { id: "ruoqiang", name: "Ruoqiang", chineseName: "若羌", longitude: 88.1704, latitude: 39.0176, confidence: "verified", coordSource: "OSM station", kind: "via" },
   { id: "korla", name: "Korla", chineseName: "库尔勒", longitude: 86.1196, latitude: 41.7564, confidence: "verified", coordSource: "OSM station", kind: "via" },
   { id: "turpan-stn", name: "Turpan station (Daheyan)", chineseName: "吐鲁番站", longitude: 88.8723, latitude: 43.1499, confidence: "verified", coordSource: "OSM station", kind: "transfer" },
+  { id: "xining-stn", name: "Xining", chineseName: "西宁", longitude: 101.7754, latitude: 36.6209, confidence: "verified", coordSource: "OSM station", kind: "station" },
   { id: "xian-north", name: "Xi'an North", chineseName: "西安北", longitude: 108.934, latitude: 34.3777, confidence: "verified", coordSource: "OSM station", kind: "station" },
 ];
 
@@ -225,9 +234,14 @@ export const SEGMENTS: RouteSegment[] = [
     notes: "Turpan's conventional station is at Daheyan, well outside the city.",
   },
   {
-    id: "turpan-xian", from: "turpan-stn", to: "xian-north", mode: "rail", leg: "xian", date: "2026-10-23",
-    transport: "High-speed rail to Xi'an via Lanzhou", serviceStatus: "tbc",
-    osmLines: [LINES.lanxinHSR, LINES.xulanHSR],
+    id: "turpan-xining", from: "turpan-stn", to: "xining-stn", mode: "rail", leg: "xining", date: "2026-10-23",
+    transport: "High-speed rail toward Qinghai", serviceStatus: "tbc",
+    osmLines: [LINES.lanxinHSR, LINES.lanxin, LINES.xulanHSR],
+  },
+  {
+    id: "xining-xian", from: "xining-stn", to: "xian-north", mode: "rail", leg: "xian", date: "2026-10-25",
+    transport: "High-speed rail to Xi'an", serviceStatus: "tbc",
+    osmLines: [LINES.xulanHSR, LINES.longhai],
   },
 ];
 

@@ -695,17 +695,6 @@ export class MapEngine {
       ctx.stroke();
     }
 
-    // our actual route, joining located journal posts in date order
-    if (this.actualPath && this.reveal == null) {
-      ctx.strokeStyle = C.actual;
-      ctx.globalAlpha = 0.85;
-      ctx.lineWidth = 1.6 * px;
-      ctx.setLineDash([1.5 * px, 3.5 * px]);
-      ctx.stroke(this.actualPath);
-      ctx.setLineDash([]);
-      ctx.globalAlpha = 1;
-    }
-
     // stations & transfers
     if (k >= MAP_CONFIG.tiers.stations * 0.6) {
       const used = new Set(SEGMENTS.flatMap((s) => [s.from, s.to]));
@@ -965,14 +954,16 @@ export class MapEngine {
       shown.add(id);
       el.dataset.ids = g.ids.join(",");
       el.dataset.count = g.ids.length > 1 ? String(g.ids.length) : "";
-      // a post sent from a stop would hide its number: tuck the pin onto the badge's shoulder instead
-      let [px, py] = g.p;
-      for (const bp of badgePos.values())
-        if (Math.abs(bp[0] - px) < B / 2 + 6 && Math.abs(bp[1] - py) < B / 2 + 6) { px = bp[0] + B / 2 - 1; py = bp[1] + B / 2 - 1; break; }
-      g.p = [px, py];
-      el.style.transform = `translate(${g.p[0] - 7}px, ${g.p[1] - 7}px) scale(var(--s, 1))`;
+      const nearStopBadge = [...badgePos.values()].some((bp) => Math.abs(bp[0] - g.p[0]) < B / 2 + 6 && Math.abs(bp[1] - g.p[1]) < B / 2 + 6);
+      if (nearStopBadge) {
+        el.classList.remove("is-full");
+        el.style.visibility = "hidden";
+        continue;
+      }
+      el.classList.add("is-full");
+      el.style.transform = `translate(${g.p[0] - B / 2}px, ${g.p[1] - B / 2}px) scale(var(--s, 1))`;
       el.style.visibility = this.reveal == null && !this.poster ? "visible" : "hidden";
-      if (this.reveal == null && !this.poster) placed.push({ x0: g.p[0] - 7, y0: g.p[1] - 7, x1: g.p[0] + 7, y1: g.p[1] + 7 });
+      if (this.reveal == null && !this.poster) placed.push({ x0: g.p[0] - B / 2, y0: g.p[1] - B / 2, x1: g.p[0] + B / 2, y1: g.p[1] + B / 2 });
     }
     for (const [id, el] of this.postPins) if (!shown.has(id)) el.style.visibility = "hidden";
 

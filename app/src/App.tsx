@@ -393,7 +393,7 @@ export default function App() {
         {poster && (
           <aside className="poster-stats" data-map-reserve data-map-ui aria-label="Journey by numbers">
             <div><b>26</b><span>days</span></div>
-            <div><b>13</b><span>stops</span></div>
+            <div><b>{STOPS.length}</b><span>stops</span></div>
             <div><b>{approxKm(totalRail).replace(" km", "")}</b><span>km of rail, measured along the track</span></div>
             <div><b>1</b><span>村BA final</span></div>
             <div><b>2</b><span>friends: {TRIP.travellers}</span></div>
@@ -497,7 +497,7 @@ export default function App() {
               <div><dt><svg width="28" height="8" aria-hidden="true" className="sw sw-rail sw-rough"><line x1="1" y1="4" x2="27" y2="4" /><line className="tie" x1="1" y1="4" x2="27" y2="4" /></svg></dt><dd>Rough plan</dd></div>
               <div><dt><svg width="14" height="8" aria-hidden="true" className="sw sw-idea"><circle cx="7" cy="4" r="3" /></svg></dt><dd>Idea</dd></div>
               {posts.some((p) => p.locSource !== "plan") && (
-                <div><dt><svg width="28" height="8" aria-hidden="true" className="sw sw-actual"><line x1="2" y1="4" x2="21" y2="4" /><circle cx="24" cy="4" r="3" /></svg></dt><dd>Actual</dd></div>
+                <div><dt><svg width="14" height="8" aria-hidden="true" className="sw sw-actual"><circle cx="7" cy="4" r="3" /></svg></dt><dd>Actual</dd></div>
               )}
               {SEGMENTS.some((s) => s.mode === "schematic") && (
                 <div><dt><svg width="28" height="8" aria-hidden="true" className="sw sw-schematic"><line x1="2" y1="4" x2="27" y2="4" /></svg></dt><dd>Schematic</dd></div>
@@ -588,14 +588,14 @@ function Welcome({ posts, onClose, onOpenJournal }: { posts: JournalEntry[]; onC
         onClick={(e) => e.stopPropagation()}
         onKeyDown={(e) => e.key === "Escape" && onClose()}
       >
-        <p className="post-kicker">2–27 October 2026 · 26 days · 13 stops</p>
+        <p className="post-kicker">2–27 October 2026 · 26 days · {STOPS.length} stops</p>
         <h2 id="welcome-title" className="welcome-title">Hello from Matthew and Aymon! This is our route across China.</h2>
         <p className="welcome-lede">{TRIP.strap}</p>
         <ul className="welcome-list">
           <li><b>Zoom out</b> with −, or tap the globe, for the whole world: posts from anywhere on the way show up there too.</li>
           <li><b>Tap a numbered stop</b> to see where we'll be, when, and how we're getting there.</li>
           <li><b>Press Play journey</b> to watch the whole route unfold, Chongqing to Xi'an.</li>
-          <li><b>Updates from the road</b> pop up here the next time you open this page. They also appear as <span className="welcome-pin" aria-hidden="true" /> pins, and the dotted line shows where we've actually been.</li>
+          <li><b>Updates from the road</b> pop up here the next time you open this page. They also appear as <span className="welcome-pin" aria-hidden="true" /> pins.</li>
           <li><b>After Kashgar it's a rough plan.</b> The faded part of the route will change as we go, so follow the pins for where we really are.</li>
           <li>Signal will be patchy in places, so a quiet few days usually just means no signal.</li>
         </ul>

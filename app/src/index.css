@@ -410,6 +410,12 @@ a { color: inherit; }
 }
 .map-jpin::before { content: ""; position: absolute; inset: -12px; border-radius: 50%; } /* 38px touch target */
 .map-jpin span { position: absolute; inset: 3px; border-radius: 50%; background: var(--map-paper); }
+.map-jpin.is-full {
+  width: var(--badge);
+  height: var(--badge);
+  border-width: 1.5px;
+}
+.map-jpin.is-full span { display: none; }
 .map-jpin[data-count]:not([data-count=""])::after {
   content: attr(data-count); position: absolute; left: 10px; top: -9px;
   font: 600 9px/1 var(--f-mono); color: var(--accent);
@@ -419,7 +425,6 @@ a { color: inherit; }
 .map-jpin:focus-visible { --s: 1.25; z-index: 4; }
 @media (hover: hover) { .map-jpin:hover { --s: 1.25; z-index: 4; } }
 
-.sw-actual line { stroke: var(--map-actual); stroke-width: 1.6; stroke-dasharray: 1.5 3.5; stroke-linecap: round; }
 .sw-actual circle { fill: var(--map-actual); stroke: var(--map-paper); stroke-width: 1.2; }
 
 .news {
