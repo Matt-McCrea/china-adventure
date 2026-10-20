@@ -32,7 +32,7 @@ export type EngineCallbacks = {
 export type StopMark = { thumb?: string; count: number; isNew: boolean };
 
 /** A journal post as the map needs it: only posts with a real location get a pin. */
-export type MapPost = { id: string; title: string; date: string; routeDate?: string; xy: Pt; thumb?: string; place?: string; ideaId?: string };
+export type MapPost = { id: string; title: string; date: string; routeDate?: string; xy: Pt; stopNumber?: number; thumb?: string; place?: string; ideaId?: string };
 
 const overlaps = (a: Rect, b: Rect, m = 2) => a.x0 < b.x1 + m && a.x1 > b.x0 - m && a.y0 < b.y1 + m && a.y1 > b.y0 - m;
 const R_EARTH_KM = 6371.0088;
@@ -237,7 +237,7 @@ export class MapEngine {
       b.className = "map-jpin" + (p.id === latest ? " is-latest" : "");
       b.dataset.mapUi = "";
       b.setAttribute("aria-label", `Journal post: ${p.title}`);
-      b.innerHTML = "<span></span>";
+      b.innerHTML = `<span>${p.stopNumber ? pad2(p.stopNumber) : ""}</span>`;
       b.addEventListener("click", (e) => {
         e.stopPropagation();
         this.cb.onOpenPost?.(b.dataset.ids?.split(",").pop() ?? p.id);
