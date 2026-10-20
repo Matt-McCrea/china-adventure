@@ -172,8 +172,10 @@ const STATION_MATCH: Record<string, string[]> = {
 };
 
 const takFallback = (segId: string): P[] | null => {
-  if (segId === "kashgar-shache") return [place("kashgar-stn"), place("shache-stn")];
-  if (segId === "shache-hotan") return [place("shache-stn"), place("hotan-stn")];
+  if (segId === "kashgar-shache")
+    return [place("kashgar-stn"), [76.3265, 39.1415], [76.7092, 38.7899], [77.0003, 38.5332], place("shache-stn")];
+  if (segId === "shache-hotan")
+    return [place("shache-stn"), [77.5433, 38.199], [78.2838, 37.6427], [79.3381, 37.3124], place("hotan-stn")];
   if (segId === "hotan-turpan")
     return [place("hotan-stn"), place("minfeng"), place("qiemo"), place("ruoqiang"), place("korla"), place("turpan-stn")];
   return null;
@@ -257,7 +259,7 @@ async function loadTaklamakanData() {
     const match = aliases
       .map((a) => byKey.get(norm(a)) ?? [])
       .flat()
-      .sort((a, b) => Number(a.tags?.["railway"] === "station") - Number(b.tags?.["railway"] === "station"))[0];
+    .sort((a, b) => Number(b.tags?.["railway"] === "station") - Number(a.tags?.["railway"] === "station"))[0];
     if (!match) throw new Error(`station not found in bbox: ${id}`);
     stations.set(id, nearestRailNode([match.lon, match.lat]));
   }
