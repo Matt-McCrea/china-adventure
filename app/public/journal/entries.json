@@ -28,9 +28,10 @@
   "ac1e05cc86c6a1da89486e731bdc114872525c6ff559426e5ecdf74ea00838c6",
   "61eee15dc5ddb7982eafd1c67b21e5fd6fb11392db19ca24232fc7e9c55c50a9",
   "b0f9b7396a6f9cb289e8b7d095c1b4a7fa4d1c9e3de4888140ee32b31a6a645f",
-  "e6bbc32ab958c1d69482cad072114fd7c4979903143c439cce26bdce362451d1"
+  "e6bbc32ab958c1d69482cad072114fd7c4979903143c439cce26bdce362451d1",
+  "e2dec064c79f596718af244dd3768e8a2bb6d053fe924874e0560559c6484bca"
  ],
- "updated": "2026-10-22T05:02:40.092Z",
+ "updated": "2026-10-22T11:14:38.703Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -1342,6 +1343,24 @@
     {
      "src": "journal/img/2026-10-22-e6bbc3-14.jpg",
      "thumb": "journal/img/2026-10-22-e6bbc3-14-t.jpg",
+     "w": 1600,
+     "h": 1200
+    }
+   ]
+  },
+  {
+   "id": "2026-10-22-e2dec0",
+   "date": "2026-10-22T11:06:18.000Z",
+   "title": "Mango Pizza with Tibetan buddhist monks",
+   "text": "After going east on the train for 18 hours, and a 4hr bus into the\nmountains, we find ourselves in the buddhist town of Xiahe, home or Labrang\ntemple.\n\nIn the cafe directly outside our hotel we found 3 super chill monks, just\nhad the most interesting and random and fascinating conversation in a\nloooooooong time. Will send through more info tomorrow as we undoubtedly\nuncover more\n\nLearnings so far:\n- most of them eat meat\n- they get paid a stipend from the Tibetan compatriots\n- when we asked if/how often they visit Tibet, they replied with a 🤫🤫🤫\n- apparently pink is an official robe colour too\n- they seem to love pizza and coffee!!",
+   "lat": 42.9425,
+   "lon": 89.1796,
+   "locSource": "plan",
+   "stopId": "turpan",
+   "photos": [
+    {
+     "src": "journal/img/2026-10-22-e2dec0-1.jpg",
+     "thumb": "journal/img/2026-10-22-e2dec0-1-t.jpg",
      "w": 1600,
      "h": 1200
     }
