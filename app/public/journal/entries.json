@@ -27,9 +27,10 @@
   "fce8f38638efe3c294b21934dd05c0e44460e0d2d802b03f6543a8faab36c37d",
   "ac1e05cc86c6a1da89486e731bdc114872525c6ff559426e5ecdf74ea00838c6",
   "61eee15dc5ddb7982eafd1c67b21e5fd6fb11392db19ca24232fc7e9c55c50a9",
-  "b0f9b7396a6f9cb289e8b7d095c1b4a7fa4d1c9e3de4888140ee32b31a6a645f"
+  "b0f9b7396a6f9cb289e8b7d095c1b4a7fa4d1c9e3de4888140ee32b31a6a645f",
+  "e6bbc32ab958c1d69482cad072114fd7c4979903143c439cce26bdce362451d1"
  ],
- "updated": "2026-10-22T04:05:36.623Z",
+ "updated": "2026-10-22T05:02:40.092Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -1226,6 +1227,121 @@
     {
      "src": "journal/img/2026-10-22-b0f9b7-1.jpg",
      "thumb": "journal/img/2026-10-22-b0f9b7-1-t.jpg",
+     "w": 1600,
+     "h": 1200
+    }
+   ]
+  },
+  {
+   "id": "2026-10-22-e6bbc3",
+   "date": "2026-10-22T04:39:02.000Z",
+   "title": "Photos From Turpan",
+   "text": "Aymon has been doing updates so here’s some photos from Turpan and Hotan! Mostly excited about the camels…",
+   "lat": 37.09343333333334,
+   "lon": 79.92517777777778,
+   "locSource": "photo",
+   "stopId": "hotan",
+   "place": {
+    "name": "Hotan"
+   },
+   "photos": [
+    {
+     "src": "journal/img/2026-10-22-e6bbc3-1.jpg",
+     "thumb": "journal/img/2026-10-22-e6bbc3-1-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 37.09343333333334,
+     "lon": 79.92517777777778
+    },
+    {
+     "src": "journal/img/2026-10-22-e6bbc3-2.jpg",
+     "thumb": "journal/img/2026-10-22-e6bbc3-2-t.jpg",
+     "w": 1600,
+     "h": 1200,
+     "lat": 37.14254444444445,
+     "lon": 79.82715555555555
+    },
+    {
+     "src": "journal/img/2026-10-22-e6bbc3-3.jpg",
+     "thumb": "journal/img/2026-10-22-e6bbc3-3-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 37.14348611111111,
+     "lon": 79.82706388888889
+    },
+    {
+     "src": "journal/img/2026-10-22-e6bbc3-4.jpg",
+     "thumb": "journal/img/2026-10-22-e6bbc3-4-t.jpg",
+     "w": 1200,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-22-e6bbc3-5.jpg",
+     "thumb": "journal/img/2026-10-22-e6bbc3-5-t.jpg",
+     "w": 1200,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-22-e6bbc3-6.jpg",
+     "thumb": "journal/img/2026-10-22-e6bbc3-6-t.jpg",
+     "w": 1200,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-22-e6bbc3-7.jpg",
+     "thumb": "journal/img/2026-10-22-e6bbc3-7-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 42.95064166666667,
+     "lon": 89.06241666666666
+    },
+    {
+     "src": "journal/img/2026-10-22-e6bbc3-8.jpg",
+     "thumb": "journal/img/2026-10-22-e6bbc3-8-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 42.94826111111111,
+     "lon": 89.06713055555555
+    },
+    {
+     "src": "journal/img/2026-10-22-e6bbc3-9.jpg",
+     "thumb": "journal/img/2026-10-22-e6bbc3-9-t.jpg",
+     "w": 1600,
+     "h": 1200,
+     "lat": 42.95343888888889,
+     "lon": 89.53588888888889
+    },
+    {
+     "src": "journal/img/2026-10-22-e6bbc3-10.jpg",
+     "thumb": "journal/img/2026-10-22-e6bbc3-10-t.jpg",
+     "w": 1600,
+     "h": 1200,
+     "lat": 42.953425,
+     "lon": 89.53593333333333
+    },
+    {
+     "src": "journal/img/2026-10-22-e6bbc3-11.jpg",
+     "thumb": "journal/img/2026-10-22-e6bbc3-11-t.jpg",
+     "w": 1600,
+     "h": 1200
+    },
+    {
+     "src": "journal/img/2026-10-22-e6bbc3-12.jpg",
+     "thumb": "journal/img/2026-10-22-e6bbc3-12-t.jpg",
+     "w": 1200,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-22-e6bbc3-13.jpg",
+     "thumb": "journal/img/2026-10-22-e6bbc3-13-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 42.85944722222222,
+     "lon": 89.69313055555556
+    },
+    {
+     "src": "journal/img/2026-10-22-e6bbc3-14.jpg",
+     "thumb": "journal/img/2026-10-22-e6bbc3-14-t.jpg",
      "w": 1600,
      "h": 1200
     }
