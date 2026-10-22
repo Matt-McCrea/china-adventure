@@ -26,9 +26,10 @@
   "a5879bcd7cc30336ae4b8afc8fc71648f11a6def7180c4e1b13ca78f4b4b95fd",
   "fce8f38638efe3c294b21934dd05c0e44460e0d2d802b03f6543a8faab36c37d",
   "ac1e05cc86c6a1da89486e731bdc114872525c6ff559426e5ecdf74ea00838c6",
-  "61eee15dc5ddb7982eafd1c67b21e5fd6fb11392db19ca24232fc7e9c55c50a9"
+  "61eee15dc5ddb7982eafd1c67b21e5fd6fb11392db19ca24232fc7e9c55c50a9",
+  "b0f9b7396a6f9cb289e8b7d095c1b4a7fa4d1c9e3de4888140ee32b31a6a645f"
  ],
- "updated": "2026-10-22T04:02:00.707Z",
+ "updated": "2026-10-22T04:05:36.623Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -1211,6 +1212,24 @@
    "locSource": "plan",
    "stopId": "turpan",
    "photos": []
+  },
+  {
+   "id": "2026-10-22-b0f9b7",
+   "date": "2026-10-22T04:02:27.000Z",
+   "title": "WERE ON A HIGH SPEED TRAIN",
+   "text": "EATING TAYTOS\n\n#wheresoursponsorship",
+   "lat": 42.9425,
+   "lon": 89.1796,
+   "locSource": "plan",
+   "stopId": "turpan",
+   "photos": [
+    {
+     "src": "journal/img/2026-10-22-b0f9b7-1.jpg",
+     "thumb": "journal/img/2026-10-22-b0f9b7-1-t.jpg",
+     "w": 1600,
+     "h": 1200
+    }
+   ]
   }
  ]
 }
