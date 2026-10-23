@@ -29,9 +29,10 @@
   "61eee15dc5ddb7982eafd1c67b21e5fd6fb11392db19ca24232fc7e9c55c50a9",
   "b0f9b7396a6f9cb289e8b7d095c1b4a7fa4d1c9e3de4888140ee32b31a6a645f",
   "e6bbc32ab958c1d69482cad072114fd7c4979903143c439cce26bdce362451d1",
-  "e2dec064c79f596718af244dd3768e8a2bb6d053fe924874e0560559c6484bca"
+  "e2dec064c79f596718af244dd3768e8a2bb6d053fe924874e0560559c6484bca",
+  "26bb6133942446330ba2fe0e7068e7e39d3a9e8bb54db069a3f690961595fa13"
  ],
- "updated": "2026-10-22T11:14:38.703Z",
+ "updated": "2026-10-23T14:04:09.745Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -1363,6 +1364,53 @@
      "thumb": "journal/img/2026-10-22-e2dec0-1-t.jpg",
      "w": 1600,
      "h": 1200
+    }
+   ]
+  },
+  {
+   "id": "2026-10-23-26bb61",
+   "date": "2026-10-23T14:00:22.000Z",
+   "title": "Unusual day in the monastery",
+   "text": "Today was an unusual day, akin to a fever dream for each hour yielded a different pleasant surprise.\n\nAt sunrise we walked the hour long route around the compound spinning prayer wheels with the faithful, a very nice but early start. This was followed by a breakfast of the only true leavened bread we have seen since our journey to the Middle Kingdom began. Not so unusual a start.\n\nYet, out here in the remote Tibetan Plateau we found 18 Dutch over 65 year olds, many of whom wore shoes with individual toes, touring China for a month. We have not seen more than 2 Europeans at a time all month, so this was shocking to us, truly the Dutch are everywhere. After touring the monastery with them we split off and discovered in this small town, one of the 6 great monasteries of the sect of the Dali Lama, there is a huge mosque too! We walked in just as midday prayers were starting and watched proceedings, looked around, and exchanged signs of peace with the congregation. This constitutes the first active mosque we have found in China. A note worth pausing on.\n\nAfter this we volunteered to help the old ladies of the village reenforce part of the mountain after large erosion and carried bags of dirt up and down the hill, they were surprised by both ourselves and the assistance. \n\nFinally we found ourselves in conversation with another perplexing monk who chatted about how much he loved the show Shameless and the Shawshank Redemption. Not really monk appropriate! Along with the fact they eat meat, love iPhones, and play lots of jokes on eachother it appears they are more playful and less serious than initially thought. The monk gifted me the pin from his university very kindly. \n\nPerhaps written the strangeness of each experience is lessened, but trust that from our perspective this was a curious day! \n\nAymon has better pics, also yak butter smells really bad and as a result so do most of the offerings at temple. :/",
+   "lat": 35.19835,
+   "lon": 102.50842222222222,
+   "locSource": "photo",
+   "stopId": "xining",
+   "place": {
+    "name": "Sangqe"
+   },
+   "photos": [
+    {
+     "src": "journal/img/2026-10-23-26bb61-1.jpg",
+     "thumb": "journal/img/2026-10-23-26bb61-1-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 35.19835,
+     "lon": 102.50842222222222
+    },
+    {
+     "src": "journal/img/2026-10-23-26bb61-2.jpg",
+     "thumb": "journal/img/2026-10-23-26bb61-2-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 35.19305,
+     "lon": 102.50495277777777
+    },
+    {
+     "src": "journal/img/2026-10-23-26bb61-3.jpg",
+     "thumb": "journal/img/2026-10-23-26bb61-3-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 35.19365,
+     "lon": 102.511475
+    },
+    {
+     "src": "journal/img/2026-10-23-26bb61-4.jpg",
+     "thumb": "journal/img/2026-10-23-26bb61-4-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 35.18776666666666,
+     "lon": 102.50496666666666
     }
    ]
   }
