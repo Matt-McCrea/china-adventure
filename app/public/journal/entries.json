@@ -30,9 +30,10 @@
   "b0f9b7396a6f9cb289e8b7d095c1b4a7fa4d1c9e3de4888140ee32b31a6a645f",
   "e6bbc32ab958c1d69482cad072114fd7c4979903143c439cce26bdce362451d1",
   "e2dec064c79f596718af244dd3768e8a2bb6d053fe924874e0560559c6484bca",
-  "26bb6133942446330ba2fe0e7068e7e39d3a9e8bb54db069a3f690961595fa13"
+  "26bb6133942446330ba2fe0e7068e7e39d3a9e8bb54db069a3f690961595fa13",
+  "ffcae468ea77143b757d04c9b3ebe4eeb2f3d1aaadf18ebb7d171b296ad90a42"
  ],
- "updated": "2026-10-23T14:04:09.745Z",
+ "updated": "2026-10-23T15:06:23.892Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -1411,6 +1412,48 @@
      "h": 1600,
      "lat": 35.18776666666666,
      "lon": 102.50496666666666
+    }
+   ]
+  },
+  {
+   "id": "2026-10-23-ffcae4",
+   "date": "2026-10-23T15:02:32.000Z",
+   "title": "Pics today",
+   "text": "",
+   "lat": 36.6173,
+   "lon": 101.7762,
+   "locSource": "plan",
+   "stopId": "xining",
+   "photos": [
+    {
+     "src": "journal/img/2026-10-23-ffcae4-1.jpg",
+     "thumb": "journal/img/2026-10-23-ffcae4-1-t.jpg",
+     "w": 1200,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-23-ffcae4-2.jpg",
+     "thumb": "journal/img/2026-10-23-ffcae4-2-t.jpg",
+     "w": 1200,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-23-ffcae4-3.jpg",
+     "thumb": "journal/img/2026-10-23-ffcae4-3-t.jpg",
+     "w": 1200,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-23-ffcae4-4.jpg",
+     "thumb": "journal/img/2026-10-23-ffcae4-4-t.jpg",
+     "w": 1600,
+     "h": 1200
+    },
+    {
+     "src": "journal/img/2026-10-23-ffcae4-5.jpg",
+     "thumb": "journal/img/2026-10-23-ffcae4-5-t.jpg",
+     "w": 1200,
+     "h": 1600
     }
    ]
   }
