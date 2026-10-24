@@ -31,9 +31,10 @@
   "e6bbc32ab958c1d69482cad072114fd7c4979903143c439cce26bdce362451d1",
   "e2dec064c79f596718af244dd3768e8a2bb6d053fe924874e0560559c6484bca",
   "26bb6133942446330ba2fe0e7068e7e39d3a9e8bb54db069a3f690961595fa13",
-  "ffcae468ea77143b757d04c9b3ebe4eeb2f3d1aaadf18ebb7d171b296ad90a42"
+  "ffcae468ea77143b757d04c9b3ebe4eeb2f3d1aaadf18ebb7d171b296ad90a42",
+  "541736b1bba6cac00a695a8b411eeb7c149c414512512936ac6267004595a1de"
  ],
- "updated": "2026-10-23T15:06:23.892Z",
+ "updated": "2026-10-24T14:59:53.016Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -1454,6 +1455,46 @@
      "thumb": "journal/img/2026-10-23-ffcae4-5-t.jpg",
      "w": 1200,
      "h": 1600
+    }
+   ]
+  },
+  {
+   "id": "2026-10-24-541736",
+   "date": "2026-10-24T14:58:47.000Z",
+   "title": "Hiking",
+   "text": "Today we went hiking!\n\nWe awoke at 5:30 on the icy slopes of the Tibetan Plateau to catch the bus to the city. Aymon found a very cool mountain to hike so we took a bullet train 1000km to Xi’an and one stop further. Unfortunately the long journey of today had us arrive at 16:00 for an allegedly 4-6 hour route. \n\nThankfully this is China. Which means that this was the Chinese version of hiking, a fully cobblestoned and stone stepped route with lights every 10m, shops every 500m, and a gondola available to and from the top. \nThese conveniences aside, it was still 1200m of elevation purely in the steepest stairs this side of the Urals. We tore up it and completed the hike in 2 hours, racing past exhausted hikers left and right. It was beautiful in an eerie way at the top. The lights of the other routes snaking up the mountains and the ground far below blanketed in cloud as the light dimmed. We got the gondola down after the insanely shallow and steep steps on the way up, despite the lit path we would have been there all night. \n\nPerhaps a minor failure of planning but a huge success overall. We will sleep soundly tonight and take on Xi’an as our very last destination tomorrow. \n\nFor pictures I refer to Aymon, whose phone is far more capable in the dark than mine.",
+   "lat": 34.49000277777778,
+   "lon": 110.07952777777777,
+   "locSource": "photo",
+   "stopId": "xian",
+   "place": {
+    "name": "Huayin",
+    "zh": "华阴市"
+   },
+   "photos": [
+    {
+     "src": "journal/img/2026-10-24-541736-1.jpg",
+     "thumb": "journal/img/2026-10-24-541736-1-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 34.49000277777778,
+     "lon": 110.07952777777777
+    },
+    {
+     "src": "journal/img/2026-10-24-541736-2.jpg",
+     "thumb": "journal/img/2026-10-24-541736-2-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 34.54244166666666,
+     "lon": 110.09328333333333
+    },
+    {
+     "src": "journal/img/2026-10-24-541736-3.jpg",
+     "thumb": "journal/img/2026-10-24-541736-3-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 34.54244166666666,
+     "lon": 110.09328333333333
     }
    ]
   }
