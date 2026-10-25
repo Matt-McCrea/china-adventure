@@ -33,9 +33,10 @@
   "26bb6133942446330ba2fe0e7068e7e39d3a9e8bb54db069a3f690961595fa13",
   "ffcae468ea77143b757d04c9b3ebe4eeb2f3d1aaadf18ebb7d171b296ad90a42",
   "541736b1bba6cac00a695a8b411eeb7c149c414512512936ac6267004595a1de",
-  "251f307002642220565484be600cfc4ffe6aeb58d9d1aff780a53738e775e335"
+  "251f307002642220565484be600cfc4ffe6aeb58d9d1aff780a53738e775e335",
+  "0720757365c44ba2a637f200e52343de0c83f48368069f9e27b8a9851c34d1e6"
  ],
- "updated": "2026-10-25T17:40:41.430Z",
+ "updated": "2026-10-25T18:13:11.388Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -1524,6 +1525,36 @@
     {
      "src": "journal/img/2026-10-26-251f30-3.jpg",
      "thumb": "journal/img/2026-10-26-251f30-3-t.jpg",
+     "w": 1200,
+     "h": 1600
+    }
+   ]
+  },
+  {
+   "id": "2026-10-26-072075",
+   "date": "2026-10-25T18:12:05.000Z",
+   "title": "Sunday mass in Xian!!",
+   "text": "As is now routine, Matthew is fast asleep next to me and keeps telling me\nto go to bed. Well... someone's gotta write the update, so here I am,\ntaking one for the team.\n\nWe're now in Xian!! The final stop of our journey. A suitable place,\nconsidering it marks the official end of the silk road, a route we've\nfollowed since Kashgar 2 weeks ago (and over 3,000km away!!!!!!!!).\n\nWe haven't been in a big city since Chengdu, and yet again, we find\nourselves experiencing some kind of reverse culture shock seeing big groups\nof Italian tourists, dozens of KFC, and english-speaking street vendors!!!\nWe both found ourselves thinking how it suddenly felt so \"easy\" to be\ntravelling here.\n\nI'm still unclear as to how this trend started, but we yet again ended up\nexploring the different religions in this megacity.\n\nFirst, we headed to the Muslim quarter, which actually had plenty of\npractising Muslims, and even a huge active mosque!  As we walked through\nthe mosque, we realised that we were ONLY surrounded by other foreigners.\nIt appears that this isnt a very popular attraction with domestic\ntourists... Alas, we thoroughly entertained ourselves eavesdropping on the\ngroup of 20 italians, some frenchies, a british family, and so on...\n\nWe then moved out of the Muslim quarter and cycled towards the nearest\nchurch. On our way, I realised it was Sunday and joked about how we forgot\nto go to mass this morning.\n\nWell... despite arriving at 6pm, we found mass in full swing and\n(obviously) got the attention of the staff at the entrance, who helped us\nsecure a seat in the ABSOLUTELY FULL MASS.\n\nThat 2 hour experience in itself deserves a full rundown. Matt will be able\nto comment in much more depth on this experience.\n\nI was absolutely not expecting the church to be jam packed (with people\nlistening in from outside, in the rain!!), or let alone to ever hear\nhallelujah sung in Chinese.\n\nThe rest of the evening was much more normal. We attempted to find some\nnight-life in this city of 13 million people, but instead found 2 little\n\"pedestrian streets\" with more confused foreigners than there were locals.\nEvidently we all got the same (inaccurate) ChatGPT responses, something\nwe've gotten used to by now.\n\nWe ended up stumbling across this boy band live-streaming their performance\nin the street to 70k viewers, with some viewers in real life. I phrase it\nlike that since all ~100 people there were ALSO WATCHING THE LIVESTREAM.\nMatthew and I were so shocked. The musicians are 2 metres away, and some of\nthem were watching the livestream instead of looking up right in front of\nthem?!?!? And one of the singers was lip syncing anyway. We can't even\nimagine what a Chinese concert would look like.\n\nThat's all for now, time to join Matthew and get some beauty sleep ahead of\nour last full day here!",
+   "lat": 34.261,
+   "lon": 108.9423,
+   "locSource": "plan",
+   "stopId": "xian",
+   "photos": [
+    {
+     "src": "journal/img/2026-10-26-072075-1.jpg",
+     "thumb": "journal/img/2026-10-26-072075-1-t.jpg",
+     "w": 1200,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-26-072075-2.jpg",
+     "thumb": "journal/img/2026-10-26-072075-2-t.jpg",
+     "w": 1200,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-26-072075-3.jpg",
+     "thumb": "journal/img/2026-10-26-072075-3-t.jpg",
      "w": 1200,
      "h": 1600
     }
