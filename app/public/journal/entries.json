@@ -32,9 +32,10 @@
   "e2dec064c79f596718af244dd3768e8a2bb6d053fe924874e0560559c6484bca",
   "26bb6133942446330ba2fe0e7068e7e39d3a9e8bb54db069a3f690961595fa13",
   "ffcae468ea77143b757d04c9b3ebe4eeb2f3d1aaadf18ebb7d171b296ad90a42",
-  "541736b1bba6cac00a695a8b411eeb7c149c414512512936ac6267004595a1de"
+  "541736b1bba6cac00a695a8b411eeb7c149c414512512936ac6267004595a1de",
+  "251f307002642220565484be600cfc4ffe6aeb58d9d1aff780a53738e775e335"
  ],
- "updated": "2026-10-24T14:59:53.016Z",
+ "updated": "2026-10-25T17:40:41.430Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -1495,6 +1496,36 @@
      "h": 1600,
      "lat": 34.54244166666666,
      "lon": 110.09328333333333
+    }
+   ]
+  },
+  {
+   "id": "2026-10-26-251f30",
+   "date": "2026-10-25T17:39:59.000Z",
+   "title": "Pics from yesterday's hike",
+   "text": "You can't really tell from the photos, but it was SUPER STEEP",
+   "lat": 34.261,
+   "lon": 108.9423,
+   "locSource": "plan",
+   "stopId": "xian",
+   "photos": [
+    {
+     "src": "journal/img/2026-10-26-251f30-1.jpg",
+     "thumb": "journal/img/2026-10-26-251f30-1-t.jpg",
+     "w": 1200,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-26-251f30-2.jpg",
+     "thumb": "journal/img/2026-10-26-251f30-2-t.jpg",
+     "w": 1600,
+     "h": 1200
+    },
+    {
+     "src": "journal/img/2026-10-26-251f30-3.jpg",
+     "thumb": "journal/img/2026-10-26-251f30-3-t.jpg",
+     "w": 1200,
+     "h": 1600
     }
    ]
   }
