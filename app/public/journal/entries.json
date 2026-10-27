@@ -35,9 +35,10 @@
   "541736b1bba6cac00a695a8b411eeb7c149c414512512936ac6267004595a1de",
   "251f307002642220565484be600cfc4ffe6aeb58d9d1aff780a53738e775e335",
   "0720757365c44ba2a637f200e52343de0c83f48368069f9e27b8a9851c34d1e6",
-  "a39d31fcaba3c07ce1c3be74d16361b214d13d1322f9770c2cadf6af3e5822e4"
+  "a39d31fcaba3c07ce1c3be74d16361b214d13d1322f9770c2cadf6af3e5822e4",
+  "aab992046c803c7053a8edcf056c8750acd50a74c1e2d92d28d4cbfe4052baf2"
  ],
- "updated": "2026-10-27T00:14:08.954Z",
+ "updated": "2026-10-27T18:23:26.565Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -1588,6 +1589,53 @@
      "thumb": "journal/img/2026-10-27-a39d31-3-t.jpg",
      "w": 1200,
      "h": 1600
+    }
+   ]
+  },
+  {
+   "id": "2026-10-27-aab992",
+   "date": "2026-10-27T14:39:12.000Z",
+   "title": "Fin",
+   "text": "That’s a wrap folks! \n\nWhat a journey we have had, the highs and lows in both experience and altitude. Not that there were really any lows in experience.\n\nWhat could I say after such a month. We have covered over 8,000km (20% of the earths circumference) traversed from jungle to desert and back again, met Buddhists, Taoists, ancestor worshipers, Christians, and Muslims. Han, Miao, Uighers, Tibetans, Hui, Tajiks, Kazakhs, Dong, and a few non Chinese along the way (Brazilians, Nigerians, Russians, Germans, Hungarians, Dutch, Poles, Brits, and far far too many Australians). We have seen people eat the feet of chickens, pigs, cows, and dogs. The heads of dogs, goats, and cow alongside the whole bodies of sea cucumbers, camels, and many many things we couldn’t identify.  \n\nWe walked 1400 year old streets in Xian, and rode a 1400km train line so new it’s not all on satellite view (Hotan to Turpan). \n\nWe achieved our aim of learning something about China, the nation/civilisation/mindset which we will all have to become accustomed to and had a great time along the way. Our information has increased, though so has the number of questions we have. Our experiences were supplemented by an outdated copy of the book “When China Rules the World” which has provided insight into the more timeless facets of China and entertainment for the short run predictions that were not quite right back in 2012. Though I admit over the course of this month I have only read half of it! Imagine how much more will make sense after it’s done. \n\nFor those interested in what observations and conclusions we have made, some might be posted here in the next week or so. They will defo not be put to paper as I sit here in the Shanghai Pudong International Airport as I need to process our experiences, compare with my compatriot Aymon, and ensure we will continue to be welcomed in China by border security long into the future, something that cannot be taken for granted. \n\nOnly 4 hours to go before flying home, how poetic that Shanghai airport has real stained glass in every bathroom, maybe I’ll go see them all to kill time. \n\nStay safe, be good, and consider making your life a bit more Chinese. You might just like it.",
+   "lat": 31.135088888888887,
+   "lon": 121.80360277777777,
+   "locSource": "photo",
+   "stopId": "xian",
+   "place": {
+    "name": "Pudong"
+   },
+   "photos": [
+    {
+     "src": "journal/img/2026-10-27-aab992-1.jpg",
+     "thumb": "journal/img/2026-10-27-aab992-1-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 31.135088888888887,
+     "lon": 121.80360277777777
+    },
+    {
+     "src": "journal/img/2026-10-27-aab992-2.jpg",
+     "thumb": "journal/img/2026-10-27-aab992-2-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 34.259011111111114,
+     "lon": 108.95873888888889
+    },
+    {
+     "src": "journal/img/2026-10-27-aab992-3.jpg",
+     "thumb": "journal/img/2026-10-27-aab992-3-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 34.25974166666666,
+     "lon": 108.94309166666667
+    },
+    {
+     "src": "journal/img/2026-10-27-aab992-4.jpg",
+     "thumb": "journal/img/2026-10-27-aab992-4-t.jpg",
+     "w": 1200,
+     "h": 1600,
+     "lat": 31.13686388888889,
+     "lon": 121.8028861111111
     }
    ]
   }
