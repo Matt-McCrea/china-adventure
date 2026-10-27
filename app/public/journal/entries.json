@@ -34,9 +34,10 @@
   "ffcae468ea77143b757d04c9b3ebe4eeb2f3d1aaadf18ebb7d171b296ad90a42",
   "541736b1bba6cac00a695a8b411eeb7c149c414512512936ac6267004595a1de",
   "251f307002642220565484be600cfc4ffe6aeb58d9d1aff780a53738e775e335",
-  "0720757365c44ba2a637f200e52343de0c83f48368069f9e27b8a9851c34d1e6"
+  "0720757365c44ba2a637f200e52343de0c83f48368069f9e27b8a9851c34d1e6",
+  "a39d31fcaba3c07ce1c3be74d16361b214d13d1322f9770c2cadf6af3e5822e4"
  ],
- "updated": "2026-10-25T18:13:11.388Z",
+ "updated": "2026-10-27T00:14:08.954Z",
  "entries": [
   {
    "id": "2026-09-29-d106c5",
@@ -1555,6 +1556,36 @@
     {
      "src": "journal/img/2026-10-26-072075-3.jpg",
      "thumb": "journal/img/2026-10-26-072075-3-t.jpg",
+     "w": 1200,
+     "h": 1600
+    }
+   ]
+  },
+  {
+   "id": "2026-10-27-a39d31",
+   "date": "2026-10-27T00:10:20.000Z",
+   "title": "Ciao ciaooo",
+   "text": "We've officially disbanded :(\n\nI'm sitting on the tarmac right now waiting to fly back to Italy.\n\nMatthew has a very busy agenda today of:\n1. Getting a haircut\n2. Not missing his flight\n\nWhen we started our trip, we decided to keep most gifts/shopping for Xi'an,\nso we didn't have to lug big bags around our train/bus journeys. Despite\nthis, Matthew somehow accumulated not one, but TWO industrial sized tea\npots on the way.\n\nTo fit said tea pots, we headed to the markets to grab the cheapest\nsuitcase (and to find everything else on our list).\n\nI found all the hiking gear I was looking for, including a waterproof\njacket I haggled down very successfully. General haggling advice is to\noffer about ½ of the seller's first price.\n\nHer first offer was ¥680.\nI walked away with it for ¥180.\nNot too shabby.\n\nBy the time I got to pay, the seller actually seemed upset, barely looking\nup as I transferred her the funds. So much so, that when Matthew wanted the\nsame jacket for the same price, she said no and shooed us away 😅\n\nDuring said haggling adventures, we met a lovely German guy who's leaving\nfor Australia tomorrow for his working holiday visa. We ended up exploring\nXi'an with him, and grabbing a (terrible) pizza for dinner.\n\nHe's been in Asia for the last 5 months, and poor buddy cannot wait to have\nall the western food imaginable once he gets to Melbourne.\n\nThat's all from me!",
+   "lat": 34.261,
+   "lon": 108.9423,
+   "locSource": "plan",
+   "stopId": "xian",
+   "photos": [
+    {
+     "src": "journal/img/2026-10-27-a39d31-1.jpg",
+     "thumb": "journal/img/2026-10-27-a39d31-1-t.jpg",
+     "w": 1600,
+     "h": 1200
+    },
+    {
+     "src": "journal/img/2026-10-27-a39d31-2.jpg",
+     "thumb": "journal/img/2026-10-27-a39d31-2-t.jpg",
+     "w": 1200,
+     "h": 1600
+    },
+    {
+     "src": "journal/img/2026-10-27-a39d31-3.jpg",
+     "thumb": "journal/img/2026-10-27-a39d31-3-t.jpg",
      "w": 1200,
      "h": 1600
     }
